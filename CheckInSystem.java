@@ -5,12 +5,17 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class CheckInSystem {
-		/**
+
+	// instance variables
+	HashMap<String, Flight> flightMap;
+	HashMap<String, Booking> bookingMap;
+
+	/**
 	 * writes supplied text to file
 	 * @param filename the name of the file to be written to
 	 * @param report the text to be written to the file
 	 */
-	public  void writeToFile(String filename, String report) {
+	public void writeToFile(String filename, String report) {
 	
 		 FileWriter fw;
 		 try {
@@ -97,7 +102,7 @@ public class CheckInSystem {
 
 	}
 
-		/**
+	/**
 	 * Processes line, extracts data, creates Flight object
 	 * and adds to list
 	 * Checks for non-numeric capacity and missing items
@@ -119,8 +124,8 @@ public class CheckInSystem {
 			}
 
 			// create booking object and add to the map
-			Flight b = new Flight(destination, carrier, flightCapacity);
-			this.addFlight(b);
+			Flight f = new Flight(destination, carrier, flightCapacity);
+			this.addFlight(f);
 		}
 
 		//for these two formatting errors, ignore lines in error and try and carry on
@@ -139,5 +144,17 @@ public class CheckInSystem {
 			System.out.println(error);
 		}
 
+	}
+
+	public void addBooking(Booking b){
+		bookingMap.put(b.getBookingReference(), b);
+	}
+
+	public void addFlight(Flight f){
+		flightMap.put(f.getFlightCode(), f);
+	}
+
+	public static void main(String[] args){
+		
 	}
 }
