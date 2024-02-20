@@ -154,6 +154,79 @@ public class CheckInSystem {
 		flightMap.put(f.getFlightCode(), f);
 	}
 
+	public Booking findByLastName(String ln) {
+		for (Booking b : bookingMap.values()) {
+			if (b.getPassengerLastName().equals(ln)) {
+				return b;
+			}
+		}
+		return null;
+	}
+
+	public Booking findByBookingRef(String bref) {
+		return bookingMap.get(bref);
+	}
+
+	public int totalPassenger(String fcode) {
+		int totalPassengers = 0;
+		for (Booking b : bookingMap.values()) {
+			if (b.getFlightCode().equals(fcode)) {
+				totalPassengers ++;
+			}
+		}
+		return totalPassengers;
+	}
+	
+	public int totalWeight(String fcode) {
+		int totalWeight = 0;
+		for (Booking b : bookingMap.values()) {
+			if (b.getFlightCode().equals(fcode)) {
+				totalWeight += b.getBaggageWeight();
+			}
+		}
+		return totalWeight;
+	}
+	
+	public int totalVolume(String fcode) {
+		int totalVolume = 0;
+		for (Booking b : bookingMap.values()) {
+			if (b.getFlightCode().equals(fcode)) {
+				totalVolume += b.getBaggageVolume();
+			}
+		}
+		return totalVolume;
+	}
+	
+	public int totalBaggageFees(String fcode) {
+		int totalBaggageFees = 0;
+		for (Booking b : bookingMap.values()) {
+			if (b.getFlightCode().equals(fcode)) {
+				totalBaggageFees += b.getExcessBaggageFee();
+			}
+		}
+		return totalBaggageFees;
+	}
+	
+	public boolean isCapacityExceeded(String fcode) {
+		if (!flightMap.containsKey(fcode)) {
+			return false;
+		}
+		Flight f = flightMap.get(fcode);
+		int totalPassengers = totalPassenger(fcode);
+		return totalPassengers > f.getCapacity();
+	}
+	
+	public String getFlightReport(String fcode) {
+		StringBuilder report = new StringBuilder();
+		report.append("Flight Report for ").append(fcode).append(":\n");
+        report.append("Total Passengers: ").append(totalPassenger(fcode)).append("\n");
+        report.append("Total Weight: ").append(totalWeight(fcode)).append("\n");
+        report.append("Total Volume: ").append(totalVolume(fcode)).append("\n");
+        report.append("Total Baggage Fees: ").append(totalBaggageFees(fcode)).append("\n");
+        report.append("Is Capacity Exceeded: ").append(isCapacityExceeded(fcode)).append("\n");
+        return report.toString();
+	}
+
 	public static void main(String[] args){
 		
 	}
