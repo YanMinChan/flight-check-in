@@ -36,13 +36,13 @@ public class CheckInSystem {
 		 }
 	}
 	
-	/** reads file with given name, extracting student data, creating student objects
+	/** reads file with given name
 	 * and adding them to the list of students
 	 * Blank lines are skipped
 	 * Validation for integer year, missing items
 	 * @param filename the name of the input file
 	 */
-	public void readFile(String filename) {
+	public void readFile(String filename, String filetype) {
 		try {
 			File f = new File(filename);
 			Scanner scanner = new Scanner(f);
@@ -50,7 +50,12 @@ public class CheckInSystem {
 				//read first line and process it
 				String inputLine = scanner.nextLine(); 
 				if (inputLine.length() != 0) {//ignored if blank line
-					processLine(inputLine);
+					if (fileType.equals("Booking")){
+						processBooking(inputLine);
+					} else if (fileType.equals("Flight")){
+						processFlight(inputLine);
+					}
+					
 				}
 			}
 			scanner.close();
@@ -207,6 +212,7 @@ public class CheckInSystem {
 		return totalBaggageFees;
 	}
 	
+	// need to check for total Passenger, volume and weight
 	public boolean isCapacityExceeded(String fcode) {
 		if (!flightMap.containsKey(fcode)) {
 			return false;
