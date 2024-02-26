@@ -42,9 +42,9 @@ public class CheckInSystem {
 	 * Validation for integer year, missing items
 	 * @param filename the name of the input file
 	 */
-	public void readFile(String filename, String filetype) {
+	public void readFile(String fileName, String fileType) {
 		try {
-			File f = new File(filename);
+			File f = new File(fileName);
 			Scanner scanner = new Scanner(f);
 			while (scanner.hasNextLine()) {
 				//read first line and process it
@@ -233,7 +233,7 @@ public class CheckInSystem {
         return report.toString();
 	}
 
-	public static void main(String[] args){
-		
-	}
+//	public static void main(String[] args){
+//		
+//	}
 }
