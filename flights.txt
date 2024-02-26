@@ -1,0 +1,20 @@
+New York,Delta Airlines,250.0
+Los Angeles,American Airlines,300.0
+London,British Airways,350.0
+Paris,Air France,400.0
+Tokyo,Japan Airlines,450.0
+Sydney,Qantas Airways,500.0
+Beijing,Air China,550.0
+Dubai,Emirates,600.0
+Singapore,Singapore Airlines,650.0
+Hong Kong,Cathay Pacific,700.0
+Shanghai,China Eastern Airlines,750.0
+Istanbul,Turkish Airlines,800.0
+Mumbai,IndiGo,850.0
+Moscow,Aeroflot,900.0
+Seoul,Korean Air,950.0
+Berlin,Lufthansa,1000.0
+New Delhi, Air India, 550.0
+Rome, Alitalia, 600.0
+Bangkok, Thai Airways, 700.0
+Mexico City, Aeromexico, 750.0
