@@ -19,7 +19,8 @@ public class Baggage {
 	public void setdim(int dims) {
 		baggageDimension = dims;
 	}
-	public void setweight(int weigh) {
+	public void setweight(int weigh) throws IllegalBaggageWeight {
+		if (baggageWeight > 70 || baggageWeight < 0 ) throw new IllegalBaggageWeight();
 		baggageWeight = weigh;
 	}
 	public void setFee(int fees) {
