@@ -9,28 +9,28 @@ public class Flight {
 		this.carrier = carrier;
 		this.capacity = capacity;
 	}
-    public String getflightCode(){
+    public String getFlightCode(){
         return this.flightCode;
     }
-    public String getdest(){
+    public String getDest(){
         return this.destinationAirport;
     }
-    public String getcarrier(){
+    public String getCarrier(){
         return this.carrier;
     }
-    public int[] getcapacity(){
+    public int[] getCapacity(){
         return this.capacity;
     }
-    public void setflightCode(String f){
+    public void setFlightCode(String f){
         flightCode=f;
     }
-    public void setdest(String d){
+    public void setDest(String d){
         destinationAirport=d;
     }
-    public void setcarrier(String c){
+    public void setCarrier(String c){
         carrier=c;
     }
-    public void setcapacity(int[] ca){
+    public void setCapacity(int[] ca){
         capacity=ca;
     }
     public String getShortFlightDetails(){

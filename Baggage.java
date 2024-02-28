@@ -7,19 +7,19 @@ public class Baggage {
 		baggageWeight = weight;
 		baggageFee = fee;	
 	}
-	public int getdim() {
+	public int getDim() {
 		return baggageDimension;
 	}
-	public int getweight() {
+	public int getWeight() {
 		return baggageWeight;
 	}
-	public int getfee() {
+	public int getFee() {
 		return baggageFee;
 	}
-	public void setdim(int dims) {
+	public void setDim(int dims) {
 		baggageDimension = dims;
 	}
-	public void setweight(int weigh) throws IllegalBaggageWeight {
+	public void setWeight(int weigh) throws IllegalBaggageWeight {
 		if (baggageWeight > 70 || baggageWeight < 0 ) throw new IllegalBaggageWeight();
 		baggageWeight = weigh;
 	}

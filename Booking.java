@@ -11,34 +11,34 @@ public class Booking {
 		this.flightCode = flightCode;
 		this.checkIn = checkIn;
 	}
-	public String getbookingref(){
+	public String getBookingRef(){
 		return bookingReference;
 	}
-	public String getpassengerName(){
+	public String getPassengerName(){
 		return passengerName;
 	} 
-	public String getflightCode(){
+	public String getFlightCode(){
 		return flightCode;
 	}
-	public boolean getcheckIn(){
+	public boolean getCheckIn(){
 		return checkIn;
 	}
 	public Baggage getBaggage(){
 		return baggage;
 	}
-	public void setbookingref(String b){
+	public void setBookingRef(String b){
 		bookingReference=b;
 	}
-	public void setpassengerName(String p){
+	public void setPassengerName(String p){
 		passengerName=p;
 	}
-	public void setflightCode(String f){
+	public void setFlightCode(String f){
 		flightCode=f;
 	}
-	public void setcheckIn(boolean c){
+	public void setCheckIn(boolean c){
 		checkIn=c;
 	}
-	public void setbaggage(Baggage ba){
+	public void setBaggage(Baggage ba){
 		baggage = ba;
 	}
 	public String getPassengerLastName(){

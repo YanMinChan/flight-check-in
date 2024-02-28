@@ -153,11 +153,11 @@ public class CheckInSystem {
 	}
 
 	public void addBooking(Booking b){
-		bookingMap.put(b.getBookingReference(), b);
+		bookingMap.put(b.getBookingRef(), b);
 	}
 
 	public void addFlight(Flight f){
-		flightMap.put(f.getFlightCode(), f);
+		flightMap.put(f.getflightCode(), f);
 	}
 
 	public Booking findByLastName(String ln) {
@@ -187,7 +187,7 @@ public class CheckInSystem {
 		int totalWeight = 0;
 		for (Booking b : bookingMap.values()) {
 			if (b.getFlightCode().equals(fcode)) {
-				totalWeight += b.getBaggageWeight();
+				totalWeight += b.getBaggage().getWeight();
 			}
 		}
 		return totalWeight;
@@ -197,7 +197,7 @@ public class CheckInSystem {
 		int totalVolume = 0;
 		for (Booking b : bookingMap.values()) {
 			if (b.getFlightCode().equals(fcode)) {
-				totalVolume += b.getBaggageVolume();
+				totalVolume += b.getBaggage().getDim();
 			}
 		}
 		return totalVolume;
@@ -207,7 +207,7 @@ public class CheckInSystem {
 		int totalBaggageFees = 0;
 		for (Booking b : bookingMap.values()) {
 			if (b.getFlightCode().equals(fcode)) {
-				totalBaggageFees += b.getExcessBaggageFee();
+				totalBaggageFees += b.getBaggage().getFee();
 			}
 		}
 		return totalBaggageFees;
@@ -223,9 +223,9 @@ public class CheckInSystem {
 	    int totalWeight = totalWeight(fcode);
 	    int totalVolume = totalVolume(fcode);
 	    
-	    boolean isPassengerExceeded = totalPassengers > flight.getPassengerCapacity();
-	    boolean isWeightExceeded = totalWeight > flight.getMaxBaggageWeight();
-	    boolean isVolumeExceeded = totalVolume > flight.getMaxBaggageVolume();
+	    boolean isPassengerExceeded = totalPassengers > flight.getCapacity()[0];
+	    boolean isWeightExceeded = totalWeight > flight.getCapacity()[1];
+	    boolean isVolumeExceeded = totalVolume > flight.getCapacity()[2];
 	    
 	    return isPassengerExceeded || isWeightExceeded || isVolumeExceeded;
 	}
