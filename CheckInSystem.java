@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class CheckInSystem {
@@ -215,11 +216,18 @@ public class CheckInSystem {
 	// need to check for total Passenger, volume and weight
 	public boolean isCapacityExceeded(String fcode) {
 		if (!flightMap.containsKey(fcode)) {
-			return false;
-		}
-		Flight f = flightMap.get(fcode);
-		int totalPassengers = totalPassenger(fcode);
-		return totalPassengers > f.getCapacity();
+	        return false;
+	    }
+	    Flight flight = flightMap.get(fcode);
+	    int totalPassengers = totalPassenger(fcode);
+	    int totalWeight = totalWeight(fcode);
+	    int totalVolume = totalVolume(fcode);
+	    
+	    boolean isPassengerExceeded = totalPassengers > flight.getPassengerCapacity();
+	    boolean isWeightExceeded = totalWeight > flight.getMaxBaggageWeight();
+	    boolean isVolumeExceeded = totalVolume > flight.getMaxBaggageVolume();
+	    
+	    return isPassengerExceeded || isWeightExceeded || isVolumeExceeded;
 	}
 	
 	public String getFlightReport(String fcode) {
