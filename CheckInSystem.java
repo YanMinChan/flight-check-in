@@ -63,7 +63,7 @@ public class CheckInSystem {
 		}
 		//if the file is not found, stop with system exit
 		catch (FileNotFoundException fnf){
-			 System.out.println( filename + " not found ");
+			 System.out.println( fileName + " not found ");
 			 System.exit(0);
 		 }
 	}
@@ -130,7 +130,7 @@ public class CheckInSystem {
 			}
 
 			// create booking object and add to the map
-			Flight f = new Flight(destination, carrier, flightCapacity);
+			Flight f = new Flight(flightCode, destination, carrier, flightCapacity);
 			this.addFlight(f);
 		}
 
