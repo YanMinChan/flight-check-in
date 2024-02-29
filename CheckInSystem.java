@@ -16,7 +16,6 @@ public class CheckInSystem {
 		bookingMap = new HashMap<String, Booking>();
 	}
 
-
 	/**
 	 * writes supplied text to file
 	 * @param filename the name of the file to be written to
@@ -90,6 +89,9 @@ public class CheckInSystem {
 			String flightCode = parts[2];
 			boolean checkIn = Boolean.parseBoolean(parts[3]);
 
+			// check booking reference
+			if (this.findByBookingRef(bookingRef).getBookingRef() != null) throw new IllegalBookingReference();
+
 			// create booking object and add to the map
 			Booking b = new Booking(bookingRef, passengerName, flightCode, checkIn);
 			this.addBooking(b);
@@ -111,7 +113,10 @@ public class CheckInSystem {
 			                        + "' index position : " + air.getMessage();
 			System.out.println(error);
 		}
-
+		//this catches illegal booking reference
+		catch (IllegalBookingReference ibr) {
+			System.out.println(ibr.getMessage());
+		}
 	}
 
 	/**
