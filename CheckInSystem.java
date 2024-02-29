@@ -136,8 +136,8 @@ public class CheckInSystem {
 			}
 
 			// create booking object and add to the map
-			// Flight f = new Flight(flightCode, destination, carrier, flightCapacity);
-			// this.addFlight(f);
+			Flight f = new Flight(destination, carrier, flightCapacity);
+			this.addFlight(f);
 		}
 
 		//for these two formatting errors, ignore lines in error and try and carry on
@@ -251,6 +251,9 @@ public class CheckInSystem {
 		return bookingMap;
 	}
 
+	public HashMap<String, Flight> getFlightMap(){
+		return flightMap;
+	}
 
 	public static void main(String[] args){
 
@@ -258,9 +261,16 @@ public class CheckInSystem {
 		CheckInSystem sys = new CheckInSystem();
 		sys.readFile("bookings.txt", "Booking");
 
-		//Check if the readfile works
+		//Check if the readfile works for booking.txt
 		String name = sys.getBookingMap().get("BR777888").getPassengerName();
 		System.out.println(name);
 
+
+		//read flights.txt
+		sys.readFile("flights2.txt", "Flight");
+
+		//Check if readfile works for flight.txt
+		String carrier = sys.getFlightMap().get("NY").getCarrier();
+		System.out.println(carrier);
 	}
 }
