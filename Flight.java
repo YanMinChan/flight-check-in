@@ -2,13 +2,14 @@ public class Flight {
     private String flightCode;
     private String destinationAirport;
     private String carrier;
-    private int[] capacity;
-    public Flight(String flightC, String destinationAirport, String carrier, int[] capacity) {
-		flightCode = flightC;
+    private double[] capacity;
+
+    public Flight(String destinationAirport, String carrier, double[] capacity) {
 		this.destinationAirport = destinationAirport;
 		this.carrier = carrier;
 		this.capacity = capacity;
 	}
+
     public String getFlightCode(){
 
         //initialize flight code
@@ -28,7 +29,7 @@ public class Flight {
     public String getCarrier(){
         return this.carrier;
     }
-    public int[] getCapacity(){
+    public double[] getCapacity(){
         return this.capacity;
     }
     public void setFlightCode(String f){
@@ -40,7 +41,7 @@ public class Flight {
     public void setCarrier(String c){
         carrier=c;
     }
-    public void setCapacity(int[] ca){
+    public void setCapacity(double[] ca){
         capacity=ca;
     }
     public String getShortFlightDetails(){
@@ -51,9 +52,11 @@ public class Flight {
         return "The flight code is "+flightCode+" ,the destination is "+destinationAirport+" ,the capacity is "+capacity[0]+" ,the carrier is "+carrier;
     }
 
-
-
-    
+    // public static void main(String[] args){
+        
+    //     Flight flight = new Flight();
+    //     flight.getFlightCode();
+    // }
 
 
 }
