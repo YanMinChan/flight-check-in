@@ -10,7 +10,17 @@ public class Flight {
 		this.capacity = capacity;
 	}
     public String getFlightCode(){
-        return this.flightCode;
+
+        //initialize flight code
+        String flightCode = "";
+
+        //Abbreviate the dest using the initials of each word
+        String dest[] = this.destinationAirport.split(" ");
+        for (int i=0; i < dest.length; i++){
+            flightCode += dest[i].charAt(0);
+        }
+        
+        return flightCode;
     }
     public String getDest(){
         return this.destinationAirport;
