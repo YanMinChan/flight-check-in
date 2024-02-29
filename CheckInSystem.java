@@ -256,9 +256,11 @@ public class CheckInSystem {
 
 		//Initialize check in system and read booking.txt
 		CheckInSystem sys = new CheckInSystem();
-		sys.readFile("booking.txt", "Booking");
+		sys.readFile("bookings.txt", "Booking");
 
 		//Check if the readfile works
-		sys.getBookingMap().get("BR777888").getPassengerName();
+		String name = sys.getBookingMap().get("BR777888").getPassengerName();
+		System.out.println(name);
+
 	}
 }
