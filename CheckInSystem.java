@@ -90,7 +90,7 @@ public class CheckInSystem {
 			boolean checkIn = Boolean.parseBoolean(parts[3]);
 
 			// check booking reference
-			if (this.findByBookingRef(bookingRef).getBookingRef() != null) throw new IllegalBookingReference();
+			//if (this.findByBookingRef(bookingRef).getBookingRef() != null) throw new IllegalBookingReference();
 
 			// create booking object and add to the map
 			Booking b = new Booking(bookingRef, passengerName, flightCode, checkIn);
@@ -114,9 +114,9 @@ public class CheckInSystem {
 			System.out.println(error);
 		}
 		//this catches illegal booking reference
-		catch (IllegalBookingReference ibr) {
-			System.out.println(ibr.getMessage());
-		}
+		// catch (IllegalBookingReference ibr) {
+		// 	System.out.println(ibr.getMessage());
+		// }
 	}
 
 	/**
@@ -272,10 +272,10 @@ public class CheckInSystem {
 
 
 		//read flights.txt
-		sys.readFile("flights2.txt", "Flight");
+		sys.readFile("flights.txt", "Flight");
 
 		//Check if readfile works for flight.txt
-		String carrier = sys.getFlightMap().get("NY").getCarrier();
+		String carrier = sys.getFlightMap().get("LAAA002").getCarrier();
 		System.out.println(carrier);
 	}
 }
