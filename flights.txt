@@ -1,20 +1,20 @@
-New York,Delta Airlines,250.0
-Los Angeles,American Airlines,300.0
-London,British Airways,350.0
-Paris,Air France,400.0
-Tokyo,Japan Airlines,450.0
-Sydney,Qantas Airways,500.0
-Beijing,Air China,550.0
-Dubai,Emirates,600.0
-Singapore,Singapore Airlines,650.0
-Hong Kong,Cathay Pacific,700.0
-Shanghai,China Eastern Airlines,750.0
-Istanbul,Turkish Airlines,800.0
-Mumbai,IndiGo,850.0
-Moscow,Aeroflot,900.0
-Seoul,Korean Air,950.0
-Berlin,Lufthansa,1000.0
-New Delhi, Air India, 550.0
-Rome, Alitalia, 600.0
-Bangkok, Thai Airways, 700.0
-Mexico City, Aeromexico, 750.0
+New York,Delta Airlines,250.0,200.0,180.0
+Los Angeles,American Airlines,300.0,280.0,260.0
+London,British Airways,350.0,320.0,310.0
+Paris,Air France,400.0,380.0,360.0
+Tokyo,Japan Airlines,450.0,430.0,410.0
+Sydney,Qantas Airways,500.0,480.0,460.0
+Beijing,Air China,550.0,530.0,510.0
+Dubai,Emirates,600.0,580.0,560.0
+Singapore,Singapore Airlines,650.0,630.0,610.0
+Hong Kong,Cathay Pacific,700.0,680.0,660.0
+Shanghai,China Eastern Airlines,750.0,730.0,710.0
+Istanbul,Turkish Airlines,800.0,780.0,760.0
+Mumbai,IndiGo,850.0,830.0,810.0
+Moscow,Aeroflot,900.0,880.0,860.0
+Seoul,Korean Air,950.0,930.0,910.0
+Berlin,Lufthansa,1000.0,980.0,960.0
+New Delhi,Air India,550.0,530.0,510.0
+Rome,Alitalia,600.0,580.0,560.0
+Bangkok,Thai Airways,650.0,630.0,610.0
+Mexico City,Aeromexico,700.0,680.0,660.0
