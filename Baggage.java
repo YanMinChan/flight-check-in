@@ -1,33 +1,33 @@
 public class Baggage {
-    private int baggageDimension;
-	private int baggageWeight;
-	private int baggageFee;
-	public Baggage(int dim,int weight, int fee){
+    private double baggageDimension;
+	private double baggageWeight;
+	private double baggageFee;
+	public Baggage(double dim,double weight, double fee){
 		baggageDimension = dim;
 		baggageWeight = weight;
 		baggageFee = fee;	
 	}
-	public int getDim() {
+	public double getDim() {
 		return baggageDimension;
 	}
-	public int getWeight() {
+	public double getWeight() {
 		return baggageWeight;
 	}
-	public int getFee() {
+	public double getFee() {
 		return baggageFee;
 	}
-	public void setDim(int dims) {
+	public void setDim(double dims) {
 		baggageDimension = dims;
 	}
-	public void setWeight(int weigh) throws IllegalBaggageWeight {
-		if (baggageWeight > 70 || baggageWeight < 0 ) throw new IllegalBaggageWeight();
+	public void setWeight(double weigh) throws IllegalBaggageWeight {
+		if (baggageWeight > 200 || baggageWeight < 0 ) throw new IllegalBaggageWeight();
 		baggageWeight = weigh;
 	}
-	public void setFee(int fees) {
+	public void setFee(double fees) {
 		baggageFee = fees;
 	}
-	public int calculateBaggageFee(int dim,int w) {
-		int baggageFees = 0;
+	public double calculateBaggageFee(double dim,double w) {
+		double baggageFees = 0;
 		if (dim>10) {
 			baggageFees = baggageFees + ((dim-10)*20);
 		}
