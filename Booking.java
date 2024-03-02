@@ -11,7 +11,9 @@ public class Booking {
 		this.flightCode = flightCode;
 		this.checkIn = checkIn;
 	}
-	public String getBookingRef(){
+	public String getBookingRef() throws IllegalBookingReference{
+
+		if (bookingReference.length() != 8) throw new IllegalBookingReference();
 		return bookingReference;
 	}
 	public String getPassengerName(){
