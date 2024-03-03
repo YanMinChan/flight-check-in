@@ -66,6 +66,8 @@ public class CheckInSystem {
 			}
 			scanner.close();
 		}
+		
+		
 		//if the file is not found, stop with system exit
 		catch (FileNotFoundException fnf){
 			 System.out.println( fileName + " not found ");
@@ -114,9 +116,9 @@ public class CheckInSystem {
 			System.out.println(error);
 		}
 		//this catches illegal booking reference
-		catch (IllegalBookingReference ibr) {
-			System.out.println(ibr.getMessage());
-		}
+		// catch (IllegalBookingReference ibr) {
+		// 	System.out.println(ibr.getMessage());
+		// }
 	}
 
 	/**
@@ -163,7 +165,7 @@ public class CheckInSystem {
 
 	}
 
-	public void addBooking(Booking b) throws IllegalBookingReference{
+	public void addBooking(Booking b){
 		bookingMap.put(b.getBookingRef(), b);
 	}
 
@@ -174,6 +176,7 @@ public class CheckInSystem {
 	public Booking findByLastName(String ln) {
 		for (Booking b : bookingMap.values()) {
 			if (b.getPassengerLastName().equals(ln)) {
+				System.out.println(b);
 				return b;
 			}
 		}
@@ -181,7 +184,7 @@ public class CheckInSystem {
 	}
 
 	public Booking findByBookingRef(String bref) {
-		return bookingMap.get(bref);
+		return bookingMap.getOrDefault(bref,null);
 	}
 
 	public int totalPassenger(String fcode) {
@@ -251,6 +254,47 @@ public class CheckInSystem {
         report.append("Is Capacity Exceeded: ").append(isCapacityExceeded(fcode)).append("\n");
         return report.toString();
 	}
+	
+	//details to display in GUI based on ref id
+	public String DetailsByRefID(String bookRefField,String ln) {
+	    Booking details = findByBookingRef(bookRefField);
+	    if (details != null) 
+	    {
+	    	if (details.getPassengerLastName().equals(ln))
+	    	{
+	        return "Booking Reference ID : " + details.getBookingRef() + "\n" +
+	               "Passenger Name : " + details.getPassengerName() + "\n" +
+	               "Flight Code : " + details.getFlightCode() + "\n" +
+	               "Check In Status : " + details.getCheckIn() + "\n";
+	    	}
+	    	else
+	    	{
+	    		return "Passenger last name does not match" ; 
+	    	}
+	    } else {
+	        return "Booking details not found for reference ID: " + bookRefField;
+	    }
+	}
+	
+	
+	/*public String DetailsByLastName(String LastName) {
+		
+	    Booking details = findByLastName(LastName);
+	    System.out.println("function return: "+ findByLastName(LastName));
+	    System.out.println("detail: "+ details);
+	    if (details != null) {
+	        System.out.println("Found booking details: " + details.toString());
+	        
+	        return "Booking Reference ID : " + details.getBookingRef() + "\n" +
+	               "Passenger Name : " + details.getPassengerName() + "\n" +
+	               "Flight Code : " + details.getFlightCode() + "\n" +
+	               "Check In Status : " + details.getCheckIn() + "\n";
+	    } else {
+	        return "Booking details not found for LastName: " + LastName;
+	    }
+	} 
+	*/
+	
 
 	public HashMap<String, Booking> getBookingMap(){
 		return bookingMap;
@@ -277,9 +321,16 @@ public class CheckInSystem {
 		//Check if readfile works for flight.txt
 		String carrier = sys.getFlightMap().get("LAAA002").getCarrier();
 		System.out.println(carrier);
+		
+		//String RefId = sys.DetailsByRefID("BR111222");
+		//System.out.println(RefId);
+		
+		//String ln = sys.DetailsByLastName("Brown");
+		//System.out.println(ln);
+	
 
-		//find by last name
-		String ln = sys.findByBookingRef("BR777888").getPassengerName();
-		System.out.println(ln);
+	
 	}
+	
 }
+
