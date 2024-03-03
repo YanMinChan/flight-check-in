@@ -41,14 +41,31 @@ public class CheckInSystem {
 		    System.exit(1);
 		 }
 	}
+	public void createReport(String fileName){
+		StringBuilder report = new StringBuilder();
+        report.append("Flight Details:\n");
+        for (String flightId : flightMap.keySet()) {
+            report.append("Flight ID: ").append(flightId).append("\n");
+            report.append(flightMap.get(flightId).toString()).append("\n");
+        }
+
+        report.append("\nBooking Details:\n");
+        for (String bookingId : bookingMap.keySet()) {
+            report.append("Booking ID: ").append(bookingId).append("\n");
+            report.append(bookingMap.get(bookingId).toString()).append("\n");
+        }
+
+        writeToFile(fileName, report.toString());
+	}
 	
 	/** reads file with given name
 	 * and adding them to the list of students
 	 * Blank lines are skipped
 	 * Validation for integer year, missing items
 	 * @param filename the name of the input file
+	 * @throws IllegalBookingReference 
 	 */
-	public void readFile(String fileName, String fileType) {
+	public void readFile(String fileName, String fileType) throws IllegalBookingReference {
 		try {
 			File f = new File(fileName);
 			Scanner scanner = new Scanner(f);
@@ -80,8 +97,9 @@ public class CheckInSystem {
 	 * and adds to list
 	 * Checks for non-numeric check in and missing items
 	 * @param line the line to be processed
+	 * @throws IllegalBookingReference 
 	 */
-	private void processBooking(String line) {
+	private void processBooking(String line) throws IllegalBookingReference {
 		try {
 			// split parts by ","
 			String parts [] = line.split(",");
@@ -165,7 +183,7 @@ public class CheckInSystem {
 
 	}
 
-	public void addBooking(Booking b){
+	public void addBooking(Booking b) throws IllegalBookingReference{
 		bookingMap.put(b.getBookingRef(), b);
 	}
 
@@ -256,7 +274,7 @@ public class CheckInSystem {
 	}
 	
 	//details to display in GUI based on ref id
-	public String DetailsByRefID(String bookRefField,String ln) {
+	public String DetailsByRefID(String bookRefField,String ln) throws IllegalBookingReference {
 	    Booking details = findByBookingRef(bookRefField);
 	    if (details != null) 
 	    {
@@ -304,7 +322,7 @@ public class CheckInSystem {
 		return flightMap;
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws IllegalBookingReference{
 
 		//Initialize check in system and read booking.txt
 		CheckInSystem sys = new CheckInSystem();

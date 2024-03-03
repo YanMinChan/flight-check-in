@@ -2,7 +2,7 @@ public class CheckInManager {
 
 	public CheckInManager(){}
 
-	public void run(){
+	public void run() throws IllegalBookingReference{
 		//Initialize check in system and read files
 		CheckInSystem sys = new CheckInSystem();
 		sys.readFile("bookings.txt", "Booking");
@@ -13,7 +13,7 @@ public class CheckInManager {
 		System.out.println(carrier);
 
 		//Run GUI
-		new CheckInGUI();
+		new CheckInGUI(sys);
 	}
 
 	// public static void main(String[] args){

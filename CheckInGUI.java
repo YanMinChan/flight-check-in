@@ -52,6 +52,12 @@ public class CheckInGUI extends JFrame implements ActionListener {
     	    add(submitPanel, BorderLayout.SOUTH);
     	
     	    setVisible(true);
+            addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    checkInSystem.createReport("report.txt");
+                }
+            });
     	}
 
     public void actionPerformed(ActionEvent e) {
@@ -113,8 +119,10 @@ public class CheckInGUI extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "No booking details found.");
         }
     }
+    
+    
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalBookingReference {
         CheckInSystem checkInSystem = new CheckInSystem();
         checkInSystem.readFile("bookings.txt", "Booking");
         checkInSystem.readFile("flights.txt", "Flight");
