@@ -48,14 +48,15 @@ public class CheckInGUI extends JFrame implements ActionListener {
     	    JPanel submitPanel = new JPanel();
     		  submitPanel.add(submitBaggageButton);
     	
-    	    add(panel, BorderLayout.CENTER);
-    	    add(submitPanel, BorderLayout.SOUTH);
+              add(panel, BorderLayout.CENTER);
+              add(submitPanel, BorderLayout.SOUTH);
     	
     	    setVisible(true);
             addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosing(WindowEvent e) {
                     checkInSystem.getFlightReport("report.txt");
+                    dispose();
                 }
             });
     	}
