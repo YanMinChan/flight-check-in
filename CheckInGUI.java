@@ -9,6 +9,12 @@ public class CheckInGUI extends JFrame implements ActionListener {
     private CheckInSystem checkInSystem;
     private String details;
     private JPanel panel;
+    private JLabel weightLabel,dimensionLabel;
+    private int fees,dispFees;
+    private JFrame detailsFrame;
+    private JTextArea detailsArea;
+	
+    
 
     public CheckInGUI(CheckInSystem checkInSystem) {
     	    this.checkInSystem = checkInSystem;
@@ -23,33 +29,21 @@ public class CheckInGUI extends JFrame implements ActionListener {
     	    lastNameField = new JTextField();
     	    JLabel bookingReferenceLabel = new JLabel("Booking Reference:");
     	    bookingReferenceField = new JTextField();
-    	    JLabel weightLabel = new JLabel("Baggage Weight:");
-    	    JLabel dimensionLabel = new JLabel("Baggage Dimension:");
-    	    weightField = new JTextField();    
-    	    dimensionField = new JTextField();
+    	    
     	
     	    // Add labels and text fields to the panel
     	    panel.add(lastNameLabel);
     	    panel.add(lastNameField);
     	    panel.add(bookingReferenceLabel);
     	    panel.add(bookingReferenceField);
-    	    panel.add(weightLabel);
-    	    panel.add(weightField);
-    	    panel.add(dimensionLabel);
-    	    panel.add(dimensionField);
     	    panel.add(new JLabel());
     	
     	    checkInButton = new JButton("Check In"); // Initialize checkInButton here
     	    checkInButton.addActionListener(this);
     	    panel.add(checkInButton);
     	
-    	    submitBaggageButton = new JButton("Submit Baggage");
-    	    submitBaggageButton.addActionListener(this);
-    	    JPanel submitPanel = new JPanel();
-    		  submitPanel.add(submitBaggageButton);
-    	
-              add(panel, BorderLayout.CENTER);
-              add(submitPanel, BorderLayout.SOUTH);
+            add(panel, BorderLayout.CENTER);
+              
     	
     	    setVisible(true);
             addWindowListener(new WindowAdapter() {
@@ -96,8 +90,10 @@ public class CheckInGUI extends JFrame implements ActionListener {
                 try {
                     int weightValue = Integer.parseInt(weight);
                     int dimensionValue = Integer.parseInt(dimension);
-                    JOptionPane.showMessageDialog(this, "Baggage successfully submitted with weight " + weightValue + " and dimension " + dimensionValue);
-
+                    dispFees = baggageFees(weightValue,dimensionValue);
+                    JOptionPane.showMessageDialog(this, "Baggage successfully submitted with weight " + weightValue + " and dimension " + dimensionValue + "\n" + "Extra fees to be paid : "+ dispFees);
+                    detailsArea.append("Extra fees : "+ dispFees + "\n");
+                    
                     // Clear the weight and dimension fields
                     weightField.setText("");
                     dimensionField.setText("");
@@ -112,23 +108,72 @@ public class CheckInGUI extends JFrame implements ActionListener {
             }
         }
     }
-    private void displayDetails(String details) {
-        if (details != null && !details.isEmpty()) {
-            String[] lines = details.split("\n");
-            JFrame detailsFrame = new JFrame("Booking Details");
-            JTextArea detailsArea = new JTextArea(details);
-            detailsArea.setEditable(false);
-            JScrollPane scrollPane = new JScrollPane(detailsArea);
-            detailsFrame.add(scrollPane);
-            detailsFrame.setSize(300, 200);
-            detailsFrame.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "No booking details found.");
-        }
+    
+    private int baggageFees(int weightValue,int dimensionValue)
+    {
+    	Baggage bag = new Baggage(0,0,0);
+        bag.setDim(dimensionValue);
+        try {
+			bag.setWeight(weightValue);
+		} catch (IllegalBaggageWeight e) {
+			JOptionPane.showMessageDialog(this, "Invalid weight or dimension value.");
+			e.printStackTrace();
+		}
+        fees = bag.calculateBaggageFee(dimensionValue, weightValue);
+        bag.setFee(fees);
+        
+        return fees;
+        
     }
     
     
-
+    private void displayDetails(String details) 
+    { 
+    	if (details != null && !details.isEmpty()) 
+    	{ 
+    		String[] lines = details.split("\n"); 
+    		detailsFrame = new JFrame("Booking Details"); 
+    		detailsArea = new JTextArea(); 
+    		detailsArea.setEditable(false); 
+    		for (String line : lines) 
+    		{ 
+    			detailsArea.append(line); 
+    			detailsArea.append("\n"); 
+    		} 
+    		
+    		JScrollPane scrollPane = new JScrollPane(detailsArea); 
+    		detailsFrame.add(scrollPane, BorderLayout.CENTER); 
+    		
+    		JPanel inputPanel = new JPanel(); 
+    		inputPanel.setLayout(new GridLayout(3, 2)); 
+    		
+    		weightLabel = new JLabel("Baggage Weight:", SwingConstants.RIGHT); 
+    		dimensionLabel = new JLabel("Baggage Dimension:", SwingConstants.RIGHT); 
+    		weightField = new JTextField(10); 
+    		dimensionField = new JTextField(10); 
+    		
+    		inputPanel.add(weightLabel); 
+    		inputPanel.add(weightField); 
+    		inputPanel.add(dimensionLabel); 
+    		inputPanel.add(dimensionField); 
+    		
+    		submitBaggageButton = new JButton("Submit Baggage"); 
+    		submitBaggageButton.addActionListener(this); 
+    		inputPanel.add(submitBaggageButton); 
+    		detailsFrame.add(inputPanel, BorderLayout.SOUTH); 
+    		
+    		detailsFrame.setSize(300, 200); 
+    		detailsFrame.setVisible(true);
+    		
+    		// Enable the weight and dimension fields 
+    		weightField.setEnabled(true); 
+    		dimensionField.setEnabled(true); 
+    		} 
+    	else 
+    	{ 
+    		JOptionPane.showMessageDialog(this, "No booking details found."); 
+    	} 
+    } 
     public static void main(String[] args) throws IllegalBookingReference {
         CheckInSystem checkInSystem = new CheckInSystem();
         checkInSystem.readFile("bookings.txt", "Booking");
@@ -136,3 +181,8 @@ public class CheckInGUI extends JFrame implements ActionListener {
         new CheckInGUI(checkInSystem);
     }
 }
+
+
+
+
+
