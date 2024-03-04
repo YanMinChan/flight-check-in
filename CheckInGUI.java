@@ -10,7 +10,7 @@ public class CheckInGUI extends JFrame implements ActionListener {
     private String details;
     private JPanel panel;
     private JLabel weightLabel,dimensionLabel;
-    private int fees,dispFees;
+    private double fees,dispFees;
     private JFrame detailsFrame;
     private JTextArea detailsArea;
 	
@@ -109,7 +109,7 @@ public class CheckInGUI extends JFrame implements ActionListener {
         }
     }
     
-    private int baggageFees(int weightValue,int dimensionValue)
+    private double baggageFees(int weightValue,int dimensionValue)
     {
     	Baggage bag = new Baggage(0,0,0);
         bag.setDim(dimensionValue);
