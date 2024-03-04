@@ -41,22 +41,6 @@ public class CheckInSystem {
 		    System.exit(1);
 		 }
 	}
-	public void createReport(String fileName){
-		StringBuilder report = new StringBuilder();
-        report.append("Flight Details:\n");
-        for (String flightId : flightMap.keySet()) {
-            report.append("Flight ID: ").append(flightId).append("\n");
-            report.append(flightMap.get(flightId).toString()).append("\n");
-        }
-
-        report.append("\nBooking Details:\n");
-        for (String bookingId : bookingMap.keySet()) {
-            report.append("Booking ID: ").append(bookingId).append("\n");
-            report.append(bookingMap.get(bookingId).toString()).append("\n");
-        }
-
-        writeToFile(fileName, report.toString());
-	}
 	
 	/** reads file with given name
 	 * and adding them to the list of students
@@ -262,17 +246,17 @@ public class CheckInSystem {
 	    return isPassengerExceeded || isWeightExceeded || isVolumeExceeded;
 	}
 	
-	public String getFlightReport(String fcode) {
+	public void getFlightReport(String fileName) {
 		StringBuilder report = new StringBuilder();
+		for(String fcode : flightMap.keySet()){
 		report.append("Flight Report for ").append(fcode).append(":\n");
         report.append("Total Passengers: ").append(totalPassenger(fcode)).append("\n");
         report.append("Total Weight: ").append(totalWeight(fcode)).append("\n");
         report.append("Total Volume: ").append(totalVolume(fcode)).append("\n");
         report.append("Total Baggage Fees: ").append(totalBaggageFees(fcode)).append("\n");
-        report.append("Is Capacity Exceeded: ").append(isCapacityExceeded(fcode)).append("\n");
-        return report.toString();
+        report.append("Is Capacity Exceeded: ").append(isCapacityExceeded(fcode)).append("\n");}
+        writeToFile(fileName, report.toString());
 	}
-	
 	//details to display in GUI based on ref id
 	public String DetailsByRefID(String bookRefField,String ln) throws IllegalBookingReference {
 	    Booking details = findByBookingRef(bookRefField);

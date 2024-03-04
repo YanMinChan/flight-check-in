@@ -55,7 +55,7 @@ public class CheckInGUI extends JFrame implements ActionListener {
             addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosing(WindowEvent e) {
-                    checkInSystem.createReport("report.txt");
+                    checkInSystem.getFlightReport("report.txt");
                 }
             });
     	}
