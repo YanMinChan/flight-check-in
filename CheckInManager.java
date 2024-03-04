@@ -15,6 +15,19 @@ public class CheckInManager {
 		//Run GUI
 		new CheckInGUI(sys);
 	}
+	public String getReport(String filename) throws IllegalBookingReference {
+		CheckInSystem sys = new CheckInSystem();
+		sys.readFile("bookings.txt", "Booking");
+		sys.readFile("flights.txt", "Flight");
+        StringBuilder report = new StringBuilder();
+
+        for (String flightCode : sys.flightMap.keySet()) {
+            report.append(sys.getFlightReport(flightCode)).append("\n");
+        }
+
+        sys.writeToFile(filename, report.toString());
+        return report.toString();
+    }
 
 	// public static void main(String[] args){
 	// 	new CheckInManager().run();

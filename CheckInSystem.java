@@ -246,16 +246,16 @@ public class CheckInSystem {
 	    return isPassengerExceeded || isWeightExceeded || isVolumeExceeded;
 	}
 	
-	public void getFlightReport(String fileName) {
+	public String getFlightReport(String fcode) {
 		StringBuilder report = new StringBuilder();
-		for(String fcode : flightMap.keySet()){
+		
 		report.append("Flight Report for ").append(fcode).append(":\n");
         report.append("Total Passengers: ").append(totalPassenger(fcode)).append("\n");
         report.append("Total Weight: ").append(totalWeight(fcode)).append("\n");
         report.append("Total Volume: ").append(totalVolume(fcode)).append("\n");
         report.append("Total Baggage Fees: ").append(totalBaggageFees(fcode)).append("\n");
-        report.append("Is Capacity Exceeded: ").append(isCapacityExceeded(fcode)).append("\n");}
-        writeToFile(fileName, report.toString());
+        report.append("Is Capacity Exceeded: ").append(isCapacityExceeded(fcode)).append("\n");
+       return report.toString();
 	}
 	//details to display in GUI based on ref id
 	public String DetailsByRefID(String bookRefField,String ln) throws IllegalBookingReference {
