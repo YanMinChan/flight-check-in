@@ -85,11 +85,12 @@ public class CheckInGUI extends JFrame implements ActionListener {
         else if (e.getSource() == submitBaggageButton) {
             String weight = weightField.getText();
             String dimension = dimensionField.getText();
+            String bookRef = bookingReferenceField.getText();
             if (!weight.isEmpty() && !dimension.isEmpty()) {
                 try {
                     int weightValue = Integer.parseInt(weight);
                     int dimensionValue = Integer.parseInt(dimension);
-                    dispFees = baggageFees(weightValue,dimensionValue);
+                    dispFees = baggageFees(weightValue,dimensionValue,bookRef);
                     JOptionPane.showMessageDialog(this, "Baggage successfully submitted with weight " + weightValue + " and dimension " + dimensionValue + "\n" + "Extra fees to be paid : "+ dispFees);
                     detailsArea.append("Extra fees : "+ dispFees + "\n");
                     
@@ -99,16 +100,22 @@ public class CheckInGUI extends JFrame implements ActionListener {
                     weightField.setEnabled(false);
                     dimensionField.setEnabled(false);
                     submitBaggageButton.setEnabled(false);
-                } catch (NumberFormatException ex) {
+                } catch (NumberFormatException | IllegalBaggageWeight ex) {
                     JOptionPane.showMessageDialog(this, "Invalid weight or dimension value.");
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "Please enter both weight and dimension.");
+                catch (IllegalBookingReference e1) {
+                    JOptionPane.showMessageDialog(this, "Wrong booking reference ID.");
+                } 
             }
+                else 
+                {
+                    JOptionPane.showMessageDialog(this, "Please enter both weight and dimension.");
+                }
+            
         }
     }
     
-    private double baggageFees(int weightValue,int dimensionValue)
+    private double baggageFees(int weightValue,int dimensionValue,String BookRef) throws IllegalBaggageWeight, IllegalBookingReference
     {
     	Baggage bag = new Baggage(0,0,0);
         bag.setDim(dimensionValue);
@@ -119,6 +126,7 @@ public class CheckInGUI extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
         fees = bag.calculateBaggageFee(dimensionValue, weightValue);
+        checkInSystem.addBaggageDetails(BookRef, dimensionValue, weightValue,fees);
         bag.setFee(fees);
         
         return fees;

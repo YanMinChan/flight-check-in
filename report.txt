@@ -7,10 +7,10 @@ Total Baggage Fees: 0
 Is Capacity Exceeded: false
 
 Flight Report for TJA005:
-Total Passengers: 2
-Total Weight: 0
-Total Volume: 0
-Total Baggage Fees: 0
+Total Passengers: 1
+Total Weight: 30
+Total Volume: 30
+Total Baggage Fees: 400
 Is Capacity Exceeded: false
 
 Flight Report for BAC037:
@@ -70,9 +70,9 @@ Total Baggage Fees: 0
 Is Capacity Exceeded: false
 
 Flight Report for NYDA001:
-Total Passengers: 2
-Total Weight: 0
-Total Volume: 0
+Total Passengers: 1
+Total Weight: 20
+Total Volume: 10
 Total Baggage Fees: 0
 Is Capacity Exceeded: false
 

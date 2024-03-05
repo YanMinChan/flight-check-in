@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CheckInSystem {
@@ -203,12 +204,16 @@ public class CheckInSystem {
 	
 	public int totalWeight(String fcode) {
 		int totalWeight = 0;
-		for (Booking b : bookingMap.values()) {
-			if (b.getFlightCode().equals(fcode)) {
-				if(b.getCheckIn()){
-				totalWeight += b.getBaggage().getWeight();}
-			}
-		}
+		for (Map.Entry<String, Booking> entry : bookingMap.entrySet()) {
+			Booking booking = entry.getValue();
+			String fc = booking.getFlightCode();
+			Baggage baggage = booking.getBaggage();
+			double baggageWeight = baggage.getWeight();
+			if (fc.equals(fcode)) {
+            double weight = baggage != null ? baggageWeight : 0;
+            totalWeight += weight;
+        }
+    }
 		return totalWeight;
 	}
 	
@@ -216,9 +221,10 @@ public class CheckInSystem {
 		int totalVolume = 0;
 		for (Booking b : bookingMap.values()) {
 			if (b.getFlightCode().equals(fcode)) {
-				if(b.getCheckIn()){
-				totalVolume += b.getBaggage().getDim();
-			}}
+				Baggage baggage = b.getBaggage();
+            	double Vol = baggage != null ? baggage.getDim() : 0;
+				totalVolume += Vol;
+			}
 		}
 		return totalVolume;
 	}
@@ -227,8 +233,9 @@ public class CheckInSystem {
 		int totalBaggageFees = 0;
 		for (Booking b : bookingMap.values()) {
 			if (b.getFlightCode().equals(fcode)) {
-				if(b.getCheckIn()){
-				totalBaggageFees += b.getBaggage().getFee();}
+				Baggage baggage = b.getBaggage();
+            	double fees = baggage != null ? baggage.getFee() : 0;
+				totalBaggageFees += fees;
 			}
 		}
 		return totalBaggageFees;
@@ -269,10 +276,11 @@ public class CheckInSystem {
 	    {
 	    	if (details.getPassengerLastName().equals(ln))
 	    	{
+				details.setCheckIn(true);
 	        return "Booking Reference ID : " + details.getBookingRef() + "\n" +
 	               "Passenger Name : " + details.getPassengerName() + "\n" +
 	               "Flight Code : " + details.getFlightCode() + "\n" +
-	               "Check In Status : " + details.getCheckIn() + "\n";
+	               "Check In Status : TRUE" +  "\n";
 	    	}
 	    	else
 	    	{
@@ -283,25 +291,18 @@ public class CheckInSystem {
 	    }
 	}
 	
-	
-	/*public String DetailsByLastName(String LastName) {
-		
-	    Booking details = findByLastName(LastName);
-	    System.out.println("function return: "+ findByLastName(LastName));
-	    System.out.println("detail: "+ details);
-	    if (details != null) {
-	        System.out.println("Found booking details: " + details.toString());
-	        
-	        return "Booking Reference ID : " + details.getBookingRef() + "\n" +
-	               "Passenger Name : " + details.getPassengerName() + "\n" +
-	               "Flight Code : " + details.getFlightCode() + "\n" +
-	               "Check In Status : " + details.getCheckIn() + "\n";
-	    } else {
-	        return "Booking details not found for LastName: " + LastName;
-	    }
-	} 
-	*/
-	
+	public void addBaggageDetails(String bookRefField, int baggagedim, int baggageWeight,double fees) throws IllegalBookingReference, IllegalBaggageWeight {
+		Booking booking = findByBookingRef(bookRefField);
+		   if (booking != null) {
+			Baggage baggage = booking.getBaggage();
+        baggage.setDim(baggagedim);
+        baggage.setWeight(baggageWeight);
+		baggage.setFee(fees);
+		booking.setBaggage(baggage);	       
+		    } else {
+		        throw new IllegalBookingReference();
+		    }
+		}
 
 	public HashMap<String, Booking> getBookingMap(){
 		return bookingMap;
