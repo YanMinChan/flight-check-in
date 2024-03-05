@@ -3,32 +3,16 @@ public class Flight {
     private String destinationAirport;
     private String carrier;
     private double[] capacity;
-	private static int counter = 1;
+	
 
-    public Flight(String destinationAirport, String carrier, double[] capacity) {
+    public Flight(String destinationAirport, String carrier, double[] capacity,String fcode) {
 		this.destinationAirport = destinationAirport;
 		this.carrier = carrier;
 		this.capacity = capacity;
+        flightCode = fcode;
 	}
 
     public String getFlightCode(){
-
-        //initialize flight code
-        String flightCode = "";
-
-        //Abbreviate the dest using the initials of each word
-        String dest[] = this.destinationAirport.split(" ");
-        for (int i=0; i < dest.length; i++){
-            flightCode += dest[i].charAt(0);
-        }
-
-		String carrier[] = this.carrier.split(" ");
-		for (int i=0; i < carrier.length; i++){
-			flightCode += carrier[i].charAt(0);
-		}
-
-		flightCode += String.format("%03d", counter++);
-        
         return flightCode;
     }
 
@@ -61,12 +45,7 @@ public class Flight {
         return "The flight code is "+flightCode+" ,the destination is "+destinationAirport+" ,the capacity is "+capacity[0]+" ,the carrier is "+carrier;
     }
 
-    public static void main(String[] args){
-        
-        Flight flight = new Flight("New York", "Delta Airlines", new double[] {100, 200, 100});
-        String fc = flight.getFlightCode();
-		System.out.println(fc);
-    }
+   
 
 
 }

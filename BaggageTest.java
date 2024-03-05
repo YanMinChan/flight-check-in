@@ -28,17 +28,14 @@ public class BaggageTest {
         baggage.setDim(15);
         assertEquals(15, baggage.getDim(), 0.005);
     }
-
-
-   
     @Test
-    public void testSetFee() {
+    public void testsetFee() {
         baggage.setFee(60);
         assertEquals(60, baggage.getFee(), 0.01);
     }
 
     @Test
-    public void testCalculateBaggageFee() {
+    public void testcalculateBaggageFee() {
         assertEquals(140, baggage.calculateBaggageFee(12, 35), 0.01);
     }
 }

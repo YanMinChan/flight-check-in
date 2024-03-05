@@ -138,14 +138,15 @@ public class CheckInSystem {
 			String carrier = parts[1];
 			
 			//the capacity are at the end of the line
-			int capLength = parts.length - 2;
+			int capLength = parts.length - 3;
 			double flightCapacity[] = new double[capLength];
 			for (int i = 0; i < capLength; i++) {
 				flightCapacity[i] = Double.parseDouble(parts[i + 2].trim());
 			}
+			String flightCode = parts[parts.length-1];
 
 			// create booking object and add to the map
-			Flight f = new Flight(destination, carrier, flightCapacity);
+			Flight f = new Flight(destination, carrier, flightCapacity,flightCode);
 			this.addFlight(f);
 		}
 
@@ -193,7 +194,8 @@ public class CheckInSystem {
 		int totalPassengers = 0;
 		for (Booking b : bookingMap.values()) {
 			if (b.getFlightCode().equals(fcode)) {
-				totalPassengers ++;
+				if(b.getCheckIn()){
+				totalPassengers ++;}
 			}
 		}
 		return totalPassengers;
@@ -203,7 +205,8 @@ public class CheckInSystem {
 		int totalWeight = 0;
 		for (Booking b : bookingMap.values()) {
 			if (b.getFlightCode().equals(fcode)) {
-				totalWeight += b.getBaggage().getWeight();
+				if(b.getCheckIn()){
+				totalWeight += b.getBaggage().getWeight();}
 			}
 		}
 		return totalWeight;
@@ -213,8 +216,9 @@ public class CheckInSystem {
 		int totalVolume = 0;
 		for (Booking b : bookingMap.values()) {
 			if (b.getFlightCode().equals(fcode)) {
+				if(b.getCheckIn()){
 				totalVolume += b.getBaggage().getDim();
-			}
+			}}
 		}
 		return totalVolume;
 	}
@@ -223,7 +227,8 @@ public class CheckInSystem {
 		int totalBaggageFees = 0;
 		for (Booking b : bookingMap.values()) {
 			if (b.getFlightCode().equals(fcode)) {
-				totalBaggageFees += b.getBaggage().getFee();
+				if(b.getCheckIn()){
+				totalBaggageFees += b.getBaggage().getFee();}
 			}
 		}
 		return totalBaggageFees;

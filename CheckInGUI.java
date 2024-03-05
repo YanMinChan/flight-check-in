@@ -50,13 +50,12 @@ public class CheckInGUI extends JFrame implements ActionListener {
                 @Override
                 public void windowClosing(WindowEvent e) {
 
-                    CheckInManager checkInManager = new CheckInManager();
-                    try {
-                        checkInManager.getReport("report.txt");
-                    } catch (IllegalBookingReference e1) {
-                        
-                        e1.printStackTrace();
+                    StringBuilder rep = new StringBuilder();
+                    for(String flightCode : checkInSystem.flightMap.keySet()){
+                        rep.append(checkInSystem.getFlightReport(flightCode)).append("\n");
                     }
+                    checkInSystem.writeToFile("report.txt", rep.toString());
+                    
                 }
             });
     	}

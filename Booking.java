@@ -10,6 +10,7 @@ public class Booking {
 		this.passengerName = passengerName;
 		this.flightCode = flightCode;
 		this.checkIn = checkIn;
+		baggage = new Baggage(0, 0, 0);
 	}
 	public String getBookingRef() throws IllegalBookingReference{
 
