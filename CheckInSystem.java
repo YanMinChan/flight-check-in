@@ -50,7 +50,7 @@ public class CheckInSystem {
 	 * @param filename the name of the input file
 	 * @throws IllegalBookingReference 
 	 */
-	public void readFile(String fileName, String fileType) throws IllegalBookingReference {
+	public void readFile(String fileName, String fileType) {
 		try {
 			File f = new File(fileName);
 			Scanner scanner = new Scanner(f);
@@ -84,7 +84,7 @@ public class CheckInSystem {
 	 * @param line the line to be processed
 	 * @throws IllegalBookingReference 
 	 */
-	private void processBooking(String line) throws IllegalBookingReference {
+	private void processBooking(String line) {
 		try {
 			// split parts by ","
 			String parts [] = line.split(",");
@@ -93,9 +93,6 @@ public class CheckInSystem {
 			String passengerName = parts[1];
 			String flightCode = parts[2];
 			boolean checkIn = Boolean.parseBoolean(parts[3]);
-
-			// check booking reference
-			//if (this.findByBookingRef(bookingRef).getBookingRef() != null) throw new IllegalBookingReference();
 
 			// create booking object and add to the map
 			Booking b = new Booking(bookingRef, passengerName, flightCode, checkIn);
@@ -119,9 +116,11 @@ public class CheckInSystem {
 			System.out.println(error);
 		}
 		//this catches illegal booking reference
-		// catch (IllegalBookingReference ibr) {
-		// 	System.out.println(ibr.getMessage());
-		// }
+		catch (IllegalBookingReference ibr) {
+			String error = "Booking reference length less than 8 in: '" + line 
+					+ "' index position: " + ibr.getMessage(); 
+			System.out.println(error);
+		}
 	}
 
 	/**
@@ -169,7 +168,7 @@ public class CheckInSystem {
 
 	}
 
-	public void addBooking(Booking b) throws IllegalBookingReference{
+	public void addBooking(Booking b) {
 		bookingMap.put(b.getBookingRef(), b);
 	}
 
@@ -270,39 +269,33 @@ public class CheckInSystem {
        return report.toString();
 	}
 	//details to display in GUI based on ref id
-	public String DetailsByRefID(String bookRefField,String ln) throws IllegalBookingReference {
+	public String DetailsByRefID(String bookRefField,String ln) throws Exception {
 	    Booking details = findByBookingRef(bookRefField);
-	    if (details != null) 
-	    {
-	    	if (details.getPassengerLastName().equals(ln))
-	    	{
-				details.setCheckIn(true);
-	        return "Booking Reference ID : " + details.getBookingRef() + "\n" +
-	               "Passenger Name : " + details.getPassengerName() + "\n" +
-	               "Flight Code : " + details.getFlightCode() + "\n" +
-	               "Check In Status : TRUE" +  "\n";
-	    	}
-	    	else
-	    	{
-	    		return "Passenger last name does not match" ; 
-	    	}
-	    } else {
-	        return "Booking details not found for reference ID: " + bookRefField;
-	    }
+	    if (details == null) throw new IllegalBookingReference();
+    	if (details.getPassengerLastName().equals(ln))
+    	{
+			details.setCheckIn(true);
+        return "Booking Reference ID : " + details.getBookingRef() + "\n" +
+               "Passenger Name : " + details.getPassengerName() + "\n" +
+               "Flight Code : " + details.getFlightCode() + "\n" +
+               "Check In Status : TRUE" +  "\n";
+    	}
+    	else throw new Exception("Passenger last name does not match");
+//    	{
+//    		return "Passenger last name does not match" ; 
+//    	}
 	}
 	
-	public void addBaggageDetails(String bookRefField, int baggagedim, int baggageWeight,double fees) throws IllegalBookingReference, IllegalBaggageWeight {
+	public void addBaggageDetails(String bookRefField, int baggagedim, int baggageWeight,double fees) throws IllegalBaggageWeight {
 		Booking booking = findByBookingRef(bookRefField);
-		   if (booking != null) {
+		if (booking != null) {
 			Baggage baggage = booking.getBaggage();
-        baggage.setDim(baggagedim);
-        baggage.setWeight(baggageWeight);
-		baggage.setFee(fees);
-		booking.setBaggage(baggage);	       
-		    } else {
-		        throw new IllegalBookingReference();
-		    }
-		}
+			baggage.setDim(baggagedim);
+			baggage.setWeight(baggageWeight);
+			baggage.setFee(fees);
+			booking.setBaggage(baggage);	       
+		} 
+	}
 
 	public HashMap<String, Booking> getBookingMap(){
 		return bookingMap;
@@ -312,7 +305,7 @@ public class CheckInSystem {
 		return flightMap;
 	}
 
-	public static void main(String[] args) throws IllegalBookingReference{
+	public static void main(String[] args){
 
 		//Initialize check in system and read booking.txt
 		CheckInSystem sys = new CheckInSystem();
