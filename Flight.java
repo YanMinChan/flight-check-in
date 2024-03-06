@@ -10,8 +10,8 @@ public class Flight {
             throw new IllegalCapacityException();
         }
         this.destinationAirport = destinationAirport;
-		this.carrier = carrier;
-		this.capacity = capacity;
+        this,carrier = carrier;
+        this.capacity = capacity;
         flightCode = fcode;
 	}
     public String getFlightCode(){
