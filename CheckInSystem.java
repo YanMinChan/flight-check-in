@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class CheckInSystem {
 
 	// instance variables
@@ -273,6 +275,9 @@ public class CheckInSystem {
 	public String DetailsByRefID(String bookRefField,String ln) throws Exception {
 	    Booking details = findByBookingRef(bookRefField);
 	    if (details == null) throw new IllegalBookingReferenceException();
+	    if (details.getCheckIn() == true) {
+        	throw new Exception("User had already checked-in!");
+        } 
     	if (details.getPassengerLastName().equals(ln))
     	{
 			details.setCheckIn(true);
