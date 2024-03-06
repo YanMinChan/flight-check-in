@@ -64,9 +64,7 @@ public class CheckInGUI extends JFrame implements ActionListener {
         if (e.getSource() == checkInButton) {
             String BookRef = bookingReferenceField.getText();
             String LastName = lastNameField.getText();
-            if (checkInSystem.getBookingMap().get(BookRef).getCheckIn()) {
-            	JOptionPane.showMessageDialog(this, "User had already checked-in!");
-            } else if (!BookRef.isEmpty()) {
+            if (!BookRef.isEmpty()) {
                 try {
                     details = checkInSystem.DetailsByRefID(BookRef,LastName);
                     displayDetails(details);
@@ -179,7 +177,7 @@ public class CheckInGUI extends JFrame implements ActionListener {
     } 
     public static void main(String[] args){
         CheckInSystem checkInSystem = new CheckInSystem();
-        checkInSystem.readFile("bookings.txt", "Booking");
+        checkInSystem.readFile("Faulty_Bookings.txt", "Booking");
         checkInSystem.readFile("flights.txt", "Flight");
         new CheckInGUI(checkInSystem);
     }
