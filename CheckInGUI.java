@@ -100,7 +100,7 @@ public class CheckInGUI extends JFrame implements ActionListener {
                     weightField.setEnabled(false);
                     dimensionField.setEnabled(false);
                     submitBaggageButton.setEnabled(false);
-                } catch(IllegalBaggageWeight ibr) {
+                } catch(IllegalBaggageWeightException ibr) {
                 	JOptionPane.showMessageDialog(this, "Baggage weight is more than 200!");
                 } catch (NumberFormatException nfe) {
                     JOptionPane.showMessageDialog(this, "Invalid weight or dimension value.");
@@ -114,16 +114,11 @@ public class CheckInGUI extends JFrame implements ActionListener {
         }
     }
     
-    private double baggageFees(int weightValue,int dimensionValue,String BookRef) throws IllegalBaggageWeight
+    private double baggageFees(int weightValue,int dimensionValue,String BookRef) throws IllegalBaggageWeightException
     {
     	Baggage bag = new Baggage(0,0,0);
         bag.setDim(dimensionValue);
-        try {
-			bag.setWeight(weightValue);
-		} catch (IllegalBaggageWeight e) {
-			String error = "Baggage weight is more than 200! " + e.getMessage(); 
-			System.out.println(error);
-		}
+		bag.setWeight(weightValue);
         fees = bag.calculateBaggageFee(dimensionValue, weightValue);
         checkInSystem.addBaggageDetails(BookRef, dimensionValue, weightValue,fees);
         bag.setFee(fees);
