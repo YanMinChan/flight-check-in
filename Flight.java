@@ -7,7 +7,7 @@ public class Flight {
 	
     public Flight(String destinationAirport, String carrier, double[] capacity,String fcode) {
 		if (capacity == null || capacity.length == 0) {
-            throw new IllegalArgumentException("Capacity must be specified and cannot be empty");
+            throw new IllegalCapacityException();
         }
         this.destinationAirport = destinationAirport;
 		this.carrier = carrier;
@@ -16,9 +16,6 @@ public class Flight {
 	}
 
     public String getFlightCode(){
-        if (flightCode == null) {
-            throw new IllegalStateException("Flight code has not been set");
-        }
         return flightCode;
     }
 
@@ -35,9 +32,6 @@ public class Flight {
     }
     
     public void setFlightCode(String f){
-        if (f == null || f.isEmpty()) {
-            throw new IllegalArgumentException("Flight code cannot be null or empty");
-        }
         flightCode = f;
     }
     
