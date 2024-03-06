@@ -10,7 +10,7 @@ public class Flight {
             throw new IllegalCapacityException();
         }
         this.destinationAirport = destinationAirport;
-        this,carrier = carrier;
+        this.carrier = carrier;
         this.capacity = capacity;
         flightCode = fcode;
 	}
