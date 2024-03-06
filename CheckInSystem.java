@@ -150,6 +150,9 @@ public class CheckInSystem {
 
 		//for these two formatting errors, ignore lines in error and try and carry on
 		
+		catch (IllegalCapacityException ice){
+			    System.out.println("Error creating flight: " + ice.getMessage());
+		}
 		//this catches trying to convert a String to an integer
 		catch (NumberFormatException nfe) {
 			String error = "Number conversion error in '" + line + "'  - " 
