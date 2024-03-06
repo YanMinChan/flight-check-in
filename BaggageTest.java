@@ -33,6 +33,24 @@ public class BaggageTest {
         baggage.setFee(60);
         assertEquals(60, baggage.getFee(), 0.01);
     }
+    @Test
+    public void testSetWeight() throws IllegalBaggageWeightException {
+        
+
+        // Test setting a valid weight
+        baggage.setWeight(100);
+        assertEquals(100, baggage.getWeight(),0.001);
+
+        // Test setting a weight that is too high
+        assertThrows(IllegalBaggageWeightException.class, () -> {
+            baggage.setWeight(201);
+        });
+
+        // Test setting a weight that is too low
+        assertThrows(IllegalBaggageWeightException.class, () -> {
+            baggage.setWeight(-1);
+        });
+    }
 
     @Test
     public void testcalculateBaggageFee() {

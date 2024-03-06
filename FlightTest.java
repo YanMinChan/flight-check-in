@@ -3,7 +3,7 @@ import org.junit.*;
 public class FlightTest {
     private Flight flight;
     @Before
-    public void setUp(){
+    public void setUp() throws IllegalCapacityException{
         double[] arr = {1, 2, 3};
         flight = new Flight("Mumbai", "Vistara",arr,"MV001");
     }
