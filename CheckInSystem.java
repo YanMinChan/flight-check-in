@@ -311,33 +311,33 @@ public class CheckInSystem {
 		return flightMap;
 	}
 
-	public static void main(String[] args){
+	// public static void main(String[] args){
 
-		//Initialize check in system and read booking.txt
-		CheckInSystem sys = new CheckInSystem();
-		sys.readFile("bookings.txt", "Booking");
+	// 	//Initialize check in system and read booking.txt
+	// 	CheckInSystem sys = new CheckInSystem();
+	// 	sys.readFile("bookings.txt", "Booking");
 
-		//Check if the readfile works for booking.txt
-		String name = sys.getBookingMap().get("BR777888").getPassengerName();
-		System.out.println(name);
+	// 	//Check if the readfile works for booking.txt
+	// 	String name = sys.getBookingMap().get("BR777888").getPassengerName();
+	// 	System.out.println(name);
 
 
-		//read flights.txt
-		sys.readFile("flights.txt", "Flight");
+	// 	//read flights.txt
+	// 	sys.readFile("flights.txt", "Flight");
 
-		//Check if readfile works for flight.txt
-		String carrier = sys.getFlightMap().get("LAAA002").getCarrier();
-		System.out.println(carrier);
+	// 	//Check if readfile works for flight.txt
+	// 	String carrier = sys.getFlightMap().get("LAAA002").getCarrier();
+	// 	System.out.println(carrier);
 		
-		//String RefId = sys.DetailsByRefID("BR111222");
-		//System.out.println(RefId);
+	// 	//String RefId = sys.DetailsByRefID("BR111222");
+	// 	//System.out.println(RefId);
 		
-		//String ln = sys.DetailsByLastName("Brown");
-		//System.out.println(ln);
+	// 	//String ln = sys.DetailsByLastName("Brown");
+	// 	//System.out.println(ln);
 	
 
 	
-	}
+	// }
 	
 }
 

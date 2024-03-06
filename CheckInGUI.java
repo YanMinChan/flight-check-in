@@ -175,12 +175,12 @@ public class CheckInGUI extends JFrame implements ActionListener {
     		JOptionPane.showMessageDialog(this, "No booking details found."); 
     	} 
     } 
-    public static void main(String[] args){
-        CheckInSystem checkInSystem = new CheckInSystem();
-        checkInSystem.readFile("Faulty_Bookings.txt", "Booking");
-        checkInSystem.readFile("flights.txt", "Flight");
-        new CheckInGUI(checkInSystem);
-    }
+    // public static void main(String[] args){
+    //     CheckInSystem checkInSystem = new CheckInSystem();
+    //     checkInSystem.readFile("Faulty_Bookings.txt", "Booking");
+    //     checkInSystem.readFile("flights.txt", "Flight");
+    //     new CheckInGUI(checkInSystem);
+    // }
 }
 
 
