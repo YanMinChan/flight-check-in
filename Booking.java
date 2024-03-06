@@ -5,16 +5,15 @@ public class Booking {
 	private boolean checkIn;
 	private Baggage baggage;
 	
-	public Booking(String bookingRef, String passengerName, String flightCode, boolean checkIn) {
+	public Booking(String bookingRef, String passengerName, String flightCode, boolean checkIn) throws IllegalBookingReference {
+		if (bookingRef.length() != 8) throw new IllegalBookingReference();
 		bookingReference = bookingRef;
 		this.passengerName = passengerName;
 		this.flightCode = flightCode;
 		this.checkIn = checkIn;
 		baggage = new Baggage(0, 0, 0);
 	}
-	public String getBookingRef() throws IllegalBookingReference{
-
-		if (bookingReference.length() != 8) throw new IllegalBookingReference();
+	public String getBookingRef() {		
 		return bookingReference;
 	}
 	public String getPassengerName(){
