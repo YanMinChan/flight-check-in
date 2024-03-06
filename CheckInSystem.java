@@ -100,7 +100,6 @@ public class CheckInSystem {
 		//for these two formatting errors, ignore lines in error and try and carry on
 		
 		//this catches trying to convert a String to an integer
-		//YM: should we change this into an exception that catch boolean? Or it works for boolean too
 		catch (NumberFormatException nfe) {
 			String error = "Number conversion error in '" + line + "'  - " 
 			                  + nfe.getMessage();
@@ -150,6 +149,7 @@ public class CheckInSystem {
 
 		//for these two formatting errors, ignore lines in error and try and carry on
 		
+		//this catches situation where the capacity of the Flight object is illegal
 		catch (IllegalCapacityException ice){
 			    System.out.println("Error creating flight: " + ice.getMessage());
 		}
