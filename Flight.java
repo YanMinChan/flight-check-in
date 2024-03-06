@@ -5,7 +5,7 @@ public class Flight {
     private String carrier;
     private double[] capacity;
 	
-    public Flight(String destinationAirport, String carrier, double[] capacity,String fcode) {
+    public Flight(String destinationAirport, String carrier, double[] capacity,String fcode) throws IllegalCapacityException {
 		if (capacity == null || capacity.length == 0) {
             throw new IllegalCapacityException();
         }
