@@ -1,20 +1,10 @@
 New York,Delta Airlines,250.0,200.0,180.0,NYDA001
-Los Angeles,American Airlines,300.0,280.0,260.0,LAAA001
-London,British Airways,350.0,320.0,310.0,LBA001
-Paris,Air France,400.0,380.0,360.0,PAF001
-Tokyo,Japan Airlines,450.0,430.0,410.0,TJA001
-Sydney,Qantas Airways,500.0,480.0,460.0,SQA026
-Beijing,Air China,550.0,530.0,510.0,BAC027
-Dubai,Emirates,600.0,580.0,560.0,DE028
-Singapore,Singapore Airlines,650.0,630.0,610.0,SSA029
-Hong Kong,Cathay Pacific,700.0,680.0,660.0,HKCP030
-New York,Delta Airlines,750.0,730.0,710.0,NYDA021
-Los Angeles,American Airlines,800.0,780.0,760.0,LAAA022
-London,British Airways,850.0,830.0,810.0,LBA023
-Paris,Air France,900.0,880.0,860.0,PAF024
-Tokyo,Japan Airlines,950.0,930.0,910.0,TJA005
-Sydney,Qantas Airways,1000.0,980.0,960.0,SQA036
-Beijing,Air China,550.0,530.0,510.0,BAC037
-Dubai,Emirates,600.0,580.0,560.0,DE038
-Singapore,Singapore Airlines,650.0,630.0,610.0,SSA039
-Hong Kong,Cathay Pacific,700.0,680.0,660.0,HKCP040
+Los Angeles,American Airlines,300.0,280.0,260.0,LAAA002
+London,British Airways,350.0,320.0,310.0,LBA003
+Paris,Air France,400.0,380.0,360.0,PAF004
+Tokyo,Japan Airlines,450.0,430.0,410.0,TJA005
+Sydney,Qantas Airways,500.0,480.0,460.0,SQA006
+Beijing,Air China,550.0,530.0,510.0,BAC007
+Dubai,Emirates,600.0,580.0,560.0,DE008
+Singapore,Singapore Airlines,650.0,630.0,610.0,SSA009
+Hong Kong,Cathay Pacific,700.0,680.0,660.0,HKCP010
