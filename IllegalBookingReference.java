@@ -1,6 +1,6 @@
 public class IllegalBookingReference extends Exception {
     public IllegalBookingReference(){
-        super("Duplicate booking reference entered!");
+        super("Incorrect booking reference entered!");
     }
     
 }
