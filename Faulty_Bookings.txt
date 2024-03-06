@@ -7,7 +7,7 @@ BR333444,Michael Davis,SQA006,false
 BR555666,Sarah Taylor,BAC007,true
 BR777888,David Lee,DE008,false
 BR999000,Emily White,SSA009,true
-BR123789,Chris Martin,HK010,
+BR123789,Chris Martin,HK010,TRUE 
 BR456123,Lisa Rodriguez,NYDA001,true
 R789456,Matthew Clark,LAAA002,false
 B369258,Anna Martinez,BLA003,true
