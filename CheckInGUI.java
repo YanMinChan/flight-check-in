@@ -100,11 +100,10 @@ public class CheckInGUI extends JFrame implements ActionListener {
                     weightField.setEnabled(false);
                     dimensionField.setEnabled(false);
                     submitBaggageButton.setEnabled(false);
-                } catch (NumberFormatException | IllegalBaggageWeight ex) {
+                } catch(IllegalBaggageWeight ibr) {
+                	JOptionPane.showMessageDialog(this, "Baggage weight is more than 200!");
+                } catch (NumberFormatException nfe) {
                     JOptionPane.showMessageDialog(this, "Invalid weight or dimension value.");
-                }
-                catch (IllegalBookingReference e1) {
-                    JOptionPane.showMessageDialog(this, "Wrong booking reference ID.");
                 } 
             }
                 else 
@@ -115,15 +114,15 @@ public class CheckInGUI extends JFrame implements ActionListener {
         }
     }
     
-    private double baggageFees(int weightValue,int dimensionValue,String BookRef) throws IllegalBaggageWeight, IllegalBookingReference
+    private double baggageFees(int weightValue,int dimensionValue,String BookRef) throws IllegalBaggageWeight
     {
     	Baggage bag = new Baggage(0,0,0);
         bag.setDim(dimensionValue);
         try {
 			bag.setWeight(weightValue);
 		} catch (IllegalBaggageWeight e) {
-			JOptionPane.showMessageDialog(this, "Invalid weight or dimension value.");
-			e.printStackTrace();
+			String error = "Baggage weight is more than 200! " + e.getMessage(); 
+			System.out.println(error);
 		}
         fees = bag.calculateBaggageFee(dimensionValue, weightValue);
         checkInSystem.addBaggageDetails(BookRef, dimensionValue, weightValue,fees);
@@ -181,7 +180,7 @@ public class CheckInGUI extends JFrame implements ActionListener {
     		JOptionPane.showMessageDialog(this, "No booking details found."); 
     	} 
     } 
-    public static void main(String[] args) throws IllegalBookingReference {
+    public static void main(String[] args){
         CheckInSystem checkInSystem = new CheckInSystem();
         checkInSystem.readFile("bookings.txt", "Booking");
         checkInSystem.readFile("flights.txt", "Flight");
