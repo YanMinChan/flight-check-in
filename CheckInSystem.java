@@ -48,7 +48,6 @@ public class CheckInSystem {
 	 * Blank lines are skipped
 	 * Validation for integer year, missing items
 	 * @param filename the name of the input file
-	 * @throws IllegalBookingReference 
 	 */
 	public void readFile(String fileName, String fileType) {
 		try {
@@ -82,7 +81,6 @@ public class CheckInSystem {
 	 * and adds to list
 	 * Checks for non-numeric check in and missing items
 	 * @param line the line to be processed
-	 * @throws IllegalBookingReference 
 	 */
 	private void processBooking(String line) {
 		try {
@@ -116,7 +114,7 @@ public class CheckInSystem {
 			System.out.println(error);
 		}
 		//this catches illegal booking reference
-		catch (IllegalBookingReference ibr) {
+		catch (IllegalBookingReferenceException ibr) {
 			String error = "Booking reference length less than 8 in: '" + line 
 					+ "' index position: " + ibr.getMessage(); 
 			System.out.println(error);
@@ -271,7 +269,7 @@ public class CheckInSystem {
 	//details to display in GUI based on ref id
 	public String DetailsByRefID(String bookRefField,String ln) throws Exception {
 	    Booking details = findByBookingRef(bookRefField);
-	    if (details == null) throw new IllegalBookingReference();
+	    if (details == null) throw new IllegalBookingReferenceException();
     	if (details.getPassengerLastName().equals(ln))
     	{
 			details.setCheckIn(true);
@@ -286,7 +284,7 @@ public class CheckInSystem {
 //    	}
 	}
 	
-	public void addBaggageDetails(String bookRefField, int baggagedim, int baggageWeight,double fees) throws IllegalBaggageWeight {
+	public void addBaggageDetails(String bookRefField, int baggagedim, int baggageWeight,double fees) throws IllegalBaggageWeightException {
 		Booking booking = findByBookingRef(bookRefField);
 		if (booking != null) {
 			Baggage baggage = booking.getBaggage();
