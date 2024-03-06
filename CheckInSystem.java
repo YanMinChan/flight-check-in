@@ -115,7 +115,7 @@ public class CheckInSystem {
 		}
 		//this catches illegal booking reference
 		catch (IllegalBookingReferenceException ibr) {
-			String error = "Booking reference length less than 8 in: '" + line 
+			String error = "Booking reference length not 8 in: '" + line 
 					+ "' index position: " + ibr.getMessage(); 
 			System.out.println(error);
 		}
