@@ -14,44 +14,34 @@ public class Flight {
 		this.capacity = capacity;
         flightCode = fcode;
 	}
-
     public String getFlightCode(){
         return flightCode;
     }
-
     public String getDest(){
         return this.destinationAirport;
     }
-
     public String getCarrier(){
         return this.carrier;
     }
-    
     public double[] getCapacity(){
         return this.capacity;
     }
-    
     public void setFlightCode(String f){
         flightCode = f;
     }
-    
     public void setDest(String d){
         destinationAirport=d;
-    }
-    
+    }  
     public void setCarrier(String c){
         carrier=c;
     }
-    
     public void setCapacity(double[] ca){
         capacity=ca;
-    }
-    
+    }  
     public String getShortFlightDetails(){
         return "The flight code is "+flightCode+" and the destination is "+destinationAirport;
 
-    }
-    
+    }   
     public String getFullFlightDetails(){
         return "The flight code is "+flightCode+" ,the destination is "+destinationAirport+" ,the capacity is "+capacity[0]+" ,the carrier is "+carrier;
     }
