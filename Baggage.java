@@ -20,7 +20,7 @@ public class Baggage {
 		baggageDimension = dims;
 	}
 	public void setWeight(double weigh) throws IllegalBaggageWeight {
-		if (baggageWeight > 200 || baggageWeight < 0 ) throw new IllegalBaggageWeight();
+		if (weigh > 200 || weigh < 0 ) throw new IllegalBaggageWeight();
 		baggageWeight = weigh;
 	}
 	public void setFee(double fees) {
