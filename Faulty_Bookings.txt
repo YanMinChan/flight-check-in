@@ -1,0 +1,21 @@
+BR123456,John Doe,NA001,true
+BR987654,Jane Smith,LAAA0002,false
+BR246810,Alice Johnson,LBA003,true
+BR135792,Bob Williams,PAF004,false
+BR111222,Eve Brown,TJA005,true
+BR333444,Michael Davis,SQA006,false
+BR555666,Sarah Taylor,BAC007,true
+BR777888,David Lee,DE008,false
+BR999000,Emily White,SSA009,true
+BR123789,Chris Martin,HK010,
+BR456123,Lisa Rodriguez,NYDA001,true
+R789456,Matthew Clark,LAAA002,false
+B369258,Anna Martinez,BLA003,true
+BR258369,Kevin Scott,AF004,false
+BR654321,Michelle Nguyen,TJA005,true
+BR987123,Steven Allen,SQA006,false
+BR321654,BAC007,true
+BR654987,James Hall,DE008,false
+BR987321,Olivia Kim,SSA009,true
+BR123654,Daniel Lopez,HKCP010,false
+
