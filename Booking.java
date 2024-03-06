@@ -5,8 +5,8 @@ public class Booking {
 	private boolean checkIn;
 	private Baggage baggage;
 	
-	public Booking(String bookingRef, String passengerName, String flightCode, boolean checkIn) throws IllegalBookingReference {
-		if (bookingRef.length() != 8) throw new IllegalBookingReference();
+	public Booking(String bookingRef, String passengerName, String flightCode, boolean checkIn) throws IllegalBookingReferenceException {
+		if (bookingRef.length() != 8) throw new IllegalBookingReferenceException();
 		bookingReference = bookingRef;
 		this.passengerName = passengerName;
 		this.flightCode = flightCode;
