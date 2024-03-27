@@ -7,11 +7,22 @@ public class SharedQueue {
 	// The queue will be recorded in a LinkedList and it will be FIFO
 	
 	// instance variables
-	LinkedList<Booking> queue;
+	private LinkedList<Booking> queue;
+	private boolean done;
 	
-	public SharedQueue() {}
+	public SharedQueue() {
+		done = false;
+	}
 	
 	public synchronized void put(Booking b) {}; 
 	
 	public LinkedList<Booking> getQueue() {return queue;}
+	
+	public void setDone() {
+		done = true;
+	}
+
+	public boolean getDone() {
+		return done;
+	}
 }
