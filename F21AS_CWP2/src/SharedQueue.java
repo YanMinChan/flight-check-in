@@ -11,10 +11,37 @@ public class SharedQueue {
 	private boolean done;
 	
 	public SharedQueue() {
+		queue = new LinkedList<Booking>();
 		done = false;
 	}
 	
-	public synchronized void put(Booking b) {}; 
+	// get passenger in check in desk
+	// will wait if queue is empty
+	public synchronized Booking get() {
+		while (queue.isEmpty()){
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		Booking b = queue.pollFirst();
+		System.out.println("Got: " + b.getPassengerName());
+		return b;
+	}
+	
+	// put passenger into queue
+	// will not wait
+	public synchronized void put(Booking b) {
+//		try {
+//			System.out.println("I'm stuck here");
+//			wait();
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+		System.out.println("Put: " + b.getPassengerName());
+		queue.add(b);
+	}; 
 	
 	public LinkedList<Booking> getQueue() {return queue;}
 	
@@ -23,6 +50,9 @@ public class SharedQueue {
 	}
 
 	public boolean getDone() {
-		return done;
+		if (done && queue.isEmpty()) {
+			return true;
+		}
+		return false;
 	}
 }

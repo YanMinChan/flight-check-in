@@ -43,7 +43,7 @@ public class PassengerSimulator implements Runnable{
 		while(!newMap.isEmpty()) {
 			try {
 				// there will be one passenger simulated per second
-				Thread.sleep(1000);
+				Thread.sleep(300);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -51,7 +51,7 @@ public class PassengerSimulator implements Runnable{
 			int index = r.nextInt(newMapKey.size());
 			String key = newMapKey.get(index);
 			Booking b = newMap.get(key);
-			System.out.println(b.getPassengerName());
+			//System.out.println(b.getPassengerName());
 			queue.put(b);
 			
 			// idk should we modify the original bookingMap too so I'll leave a comment here
@@ -59,7 +59,7 @@ public class PassengerSimulator implements Runnable{
 			newMapKey.remove(index);
 		}
 		queue.setDone();
-		System.out.println("done");
+		//System.out.println("done");
 	}
 
 //	// check if all passenger had checked in
@@ -79,5 +79,7 @@ public class PassengerSimulator implements Runnable{
 		SharedQueue sq = new SharedQueue();
 		Thread simulator = new Thread(new PassengerSimulator(sq));
 		simulator.start();
+		Thread desk = new Thread(new CheckInDesk(sq));
+		desk.start();
 	}
 }
