@@ -9,3 +9,9 @@
 /Flight.class
 /IllegalBookingReference.class
 /BaggageTest.class
+/FlightTest.class
+/IllegalBookingReferenceException.class
+/IllegalBaggageWeightException.class
+/CheckinSystemTest.class
+/IllegalCapacityException.class
+/Main.class

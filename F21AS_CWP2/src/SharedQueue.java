@@ -17,30 +17,26 @@ public class SharedQueue {
 	
 	// get passenger in check in desk
 	// will wait if queue is empty
-	public synchronized Booking get() {
+	public synchronized Booking get(int deskNum) {
 		while (queue.isEmpty()){
 			try {
-				Thread.sleep(50);
+				wait();
+//				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		}
+		} 
 		Booking b = queue.pollFirst();
-		System.out.println("Got: " + b.getPassengerName());
+		System.out.println("		Desk " + deskNum + " got: " + b.getPassengerName());
 		return b;
 	}
 	
 	// put passenger into queue
 	// will not wait
 	public synchronized void put(Booking b) {
-//		try {
-//			System.out.println("I'm stuck here");
-//			wait();
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
 		System.out.println("Put: " + b.getPassengerName());
 		queue.add(b);
+		notifyAll();
 	}; 
 	
 	public LinkedList<Booking> getQueue() {return queue;}

@@ -47,39 +47,30 @@ public class PassengerSimulator implements Runnable{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			
 			// get a random passenger and put it into queue
 			int index = r.nextInt(newMapKey.size());
 			String key = newMapKey.get(index);
 			Booking b = newMap.get(key);
-			//System.out.println(b.getPassengerName());
 			queue.put(b);
 			
-			// idk should we modify the original bookingMap too so I'll leave a comment here
 			newMap.remove(key);
 			newMapKey.remove(index);
 		}
 		queue.setDone();
-		//System.out.println("done");
 	}
-
-//	// check if all passenger had checked in
-//	public boolean finishedCheckIn(HashMap<String, Booking> map) {
-//		for (Map.Entry<String, Booking> b: map.entrySet()) {
-//			if (!b.getValue().getCheckIn()) {
-//				return false;
-//			}
-//		}
-//		return true;
-//	}
 	
 	public static void main(String[] args) {
-//		PassengerSimulator sim = new PassengerSimulator(new SharedQueue());
-//		//sim.initialise();
-//		sim.run();
 		SharedQueue sq = new SharedQueue();
 		Thread simulator = new Thread(new PassengerSimulator(sq));
 		simulator.start();
-		Thread desk = new Thread(new CheckInDesk(sq));
-		desk.start();
+		Thread desk1 = new Thread(new CheckInDesk(sq, 1));
+		Thread desk2 = new Thread(new CheckInDesk(sq, 2));
+		Thread desk3 = new Thread(new CheckInDesk(sq, 3));
+		Thread desk4 = new Thread(new CheckInDesk(sq, 4));
+		desk1.start();
+		desk2.start();
+		desk3.start();
+//		desk4.start();
 	}
 }

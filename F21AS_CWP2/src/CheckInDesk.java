@@ -3,9 +3,11 @@ public class CheckInDesk implements Runnable{
 	// this class gets passenger from queue and let them check in
 	
 	private SharedQueue queue;
+	private int deskNum;
 	
-	public CheckInDesk(SharedQueue queue) {
+	public CheckInDesk(SharedQueue queue, int deskNum) {
 		this.queue = queue;
+		this.deskNum = deskNum;
 	}
 	
 	public void run() {
@@ -16,7 +18,7 @@ public class CheckInDesk implements Runnable{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			Booking b = queue.get();
+			Booking b = queue.get(deskNum);
 			b.setCheckIn(true);
 			// connect to the rest of the code?
 		}

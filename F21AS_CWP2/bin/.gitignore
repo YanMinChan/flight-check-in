@@ -1,0 +1,15 @@
+/Baggage.class
+/BaggageTest.class
+/Booking.class
+/CheckInGUI.class
+/CheckInManager.class
+/CheckInSystem.class
+/CheckinSystemTest.class
+/Flight.class
+/FlightTest.class
+/IllegalBaggageWeightException.class
+/IllegalBookingReferenceException.class
+/IllegalCapacityException.class
+/Main.class
+/PassengerSimulator.class
+/SharedQueue.class
