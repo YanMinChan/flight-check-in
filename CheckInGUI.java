@@ -1,51 +1,116 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class CheckInGUI extends JFrame implements ActionListener {
+public class CheckInGUI extends JFrame implements ActionListener 
+{
     private static final long serialVersionUID = 1L;
     private JTextField lastNameField, bookingReferenceField, weightField, dimensionField;
     private JButton checkInButton, submitBaggageButton;
     private CheckInSystem checkInSystem;
     private String details;
-    private JPanel panel;
+    private JPanel mainPanel,waitingQueuePanel,desk1Panel,desk2Panel,desk3Panel,desk4Panel,flight1Panel,flight2Panel,flight3Panel,panel;
     private JLabel weightLabel,dimensionLabel;
     private double fees,dispFees;
     private JFrame detailsFrame;
     private JTextArea detailsArea;
-	
     
+    public CheckInGUI() {
+        this(new CheckInSystem());
+    }
 
     public CheckInGUI(CheckInSystem checkInSystem) {
-    	    this.checkInSystem = checkInSystem;
-    	    setTitle("Check-In");
-    	    setSize(300, 200);
-    	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	
-    	    panel = new JPanel();
-    	    panel.setLayout(new GridLayout(5, 2)); // Changed the grid layout to accommodate the new components
-    	
-    	    JLabel lastNameLabel = new JLabel("Last Name:");
-    	    lastNameField = new JTextField();
-    	    JLabel bookingReferenceLabel = new JLabel("Booking Reference:");
-    	    bookingReferenceField = new JTextField();
-    	    
-    	
-    	    // Add labels and text fields to the panel
-    	    panel.add(lastNameLabel);
-    	    panel.add(lastNameField);
-    	    panel.add(bookingReferenceLabel);
-    	    panel.add(bookingReferenceField);
-    	    panel.add(new JLabel());
-    	
-    	    checkInButton = new JButton("Check In"); // Initialize checkInButton here
-    	    checkInButton.addActionListener(this);
-    	    panel.add(checkInButton);
-    	
-            add(panel, BorderLayout.CENTER);
+        this.checkInSystem = checkInSystem;
+        initialise();
+        setVisible(true);
+    }
+
+   
+   
+    private void initialise() {
+        //this.checkInSystem = checkInSystem;
+        setTitle("Check-In");
+        setSize(1000, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(3, 1));
+
+        // Create waiting queue panel
+        waitingQueuePanel = new JPanel();
+        waitingQueuePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        waitingQueuePanel.setBorder(BorderFactory.createTitledBorder("Waiting Queue"));
+        mainPanel.add(waitingQueuePanel);
+
+
+        // Create desks panel
+        JPanel desksPanel = new JPanel();
+        desksPanel.setLayout(new GridLayout(2, 2));
+        desksPanel.setBorder(BorderFactory.createTitledBorder("Check-In Desks"));
+
+        // Create Desks 1 and 2
+        desk1Panel = new JPanel();
+        desk1Panel.setBorder(BorderFactory.createTitledBorder("Desk 1"));
+        desksPanel.add(desk1Panel);
+
+        desk2Panel = new JPanel();
+        desk2Panel.setBorder(BorderFactory.createTitledBorder("Desk 2"));
+        desksPanel.add(desk2Panel);
+
+        // Create Desks 3 and 4
+        desk3Panel = new JPanel();
+        desk3Panel.setBorder(BorderFactory.createTitledBorder("Desk 3"));
+        desksPanel.add(desk3Panel);
+
+        desk4Panel = new JPanel();
+        desk4Panel.setBorder(BorderFactory.createTitledBorder("Desk 4"));
+        desksPanel.add(desk4Panel);
+
+        mainPanel.add(desksPanel);
+        // Create flights panel
+        JPanel flightsPanel = new JPanel();
+        flightsPanel.setLayout(new GridLayout(1, 3));
+        flightsPanel.setBorder(BorderFactory.createTitledBorder("Flights"));
+
+        // Create Flight 1
+        flight1Panel = new JPanel();
+        flight1Panel.setBorder(BorderFactory.createTitledBorder("Flight 1"));
+        flightsPanel.add(flight1Panel);
+
+        // Create Flight 2
+        flight2Panel = new JPanel();
+        flight2Panel.setBorder(BorderFactory.createTitledBorder("Flight 2"));
+        flightsPanel.add(flight2Panel);
+
+        // Create Flight 3
+        flight3Panel = new JPanel();
+        flight3Panel.setBorder(BorderFactory.createTitledBorder("Flight 3"));
+        flightsPanel.add(flight3Panel);
+
+        mainPanel.add(flightsPanel);
+
+         // Create check-in panel
+         panel = new JPanel();
+         panel.setLayout(new GridLayout(5, 2));
+         panel.setBorder(BorderFactory.createTitledBorder("Check-In Details"));
+ 
+         JLabel lastNameLabel = new JLabel("Last Name:");
+         lastNameField = new JTextField();
+         JLabel bookingReferenceLabel = new JLabel("Booking Reference:");
+         bookingReferenceField = new JTextField();
+ 
+         checkInButton = new JButton("Check In");
+         panel.add(checkInButton); 
+
+         panel.add(new JLabel());
+
+         setLayout(new BorderLayout());
+
+         add(mainPanel, BorderLayout.CENTER);
               
-    	
-    	    setVisible(true);
+            setVisible(true);
             addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosing(WindowEvent e) {
@@ -58,7 +123,7 @@ public class CheckInGUI extends JFrame implements ActionListener {
                     
                 }
             });
-    	}
+        }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == checkInButton) {
@@ -101,7 +166,7 @@ public class CheckInGUI extends JFrame implements ActionListener {
                     dimensionField.setEnabled(false);
                     submitBaggageButton.setEnabled(false);
                 } catch(IllegalBaggageWeightException ibr) {
-                	JOptionPane.showMessageDialog(this, "Baggage weight is more than 200!");
+                    JOptionPane.showMessageDialog(this, "Baggage weight is more than 200!");
                 } catch (NumberFormatException nfe) {
                     JOptionPane.showMessageDialog(this, "Invalid weight or dimension value.");
                 } 
@@ -116,9 +181,9 @@ public class CheckInGUI extends JFrame implements ActionListener {
     
     private double baggageFees(int weightValue,int dimensionValue,String BookRef) throws IllegalBaggageWeightException
     {
-    	Baggage bag = new Baggage(0,0,0);
+        Baggage bag = new Baggage(0,0,0);
         bag.setDim(dimensionValue);
-		bag.setWeight(weightValue);
+        bag.setWeight(weightValue);
         fees = bag.calculateBaggageFee(dimensionValue, weightValue);
         checkInSystem.addBaggageDetails(BookRef, dimensionValue, weightValue,fees);
         bag.setFee(fees);
@@ -130,60 +195,72 @@ public class CheckInGUI extends JFrame implements ActionListener {
     
     private void displayDetails(String details) 
     { 
-    	if (details != null && !details.isEmpty()) 
-    	{ 
-    		String[] lines = details.split("\n"); 
-    		detailsFrame = new JFrame("Booking Details"); 
-    		detailsArea = new JTextArea(); 
-    		detailsArea.setEditable(false); 
-    		for (String line : lines) 
-    		{ 
-    			detailsArea.append(line); 
-    			detailsArea.append("\n"); 
-    		} 
-    		
-    		JScrollPane scrollPane = new JScrollPane(detailsArea); 
-    		detailsFrame.add(scrollPane, BorderLayout.CENTER); 
-    		
-    		JPanel inputPanel = new JPanel(); 
-    		inputPanel.setLayout(new GridLayout(3, 2)); 
-    		
-    		weightLabel = new JLabel("Baggage Weight:", SwingConstants.RIGHT); 
-    		dimensionLabel = new JLabel("Baggage Dimension:", SwingConstants.RIGHT); 
-    		weightField = new JTextField(10); 
-    		dimensionField = new JTextField(10); 
-    		
-    		inputPanel.add(weightLabel); 
-    		inputPanel.add(weightField); 
-    		inputPanel.add(dimensionLabel); 
-    		inputPanel.add(dimensionField); 
-    		
-    		submitBaggageButton = new JButton("Submit Baggage"); 
-    		submitBaggageButton.addActionListener(this); 
-    		inputPanel.add(submitBaggageButton); 
-    		detailsFrame.add(inputPanel, BorderLayout.SOUTH); 
-    		
-    		detailsFrame.setSize(300, 200); 
-    		detailsFrame.setVisible(true);
-    		
-    		// Enable the weight and dimension fields 
-    		weightField.setEnabled(true); 
-    		dimensionField.setEnabled(true); 
-    		} 
-    	else 
-    	{ 
-    		JOptionPane.showMessageDialog(this, "No booking details found."); 
-    	} 
-    } 
-    // public static void main(String[] args){
-    //     CheckInSystem checkInSystem = new CheckInSystem();
-    //     checkInSystem.readFile("Faulty_Bookings.txt", "Booking");
-    //     checkInSystem.readFile("flights.txt", "Flight");
-    //     new CheckInGUI(checkInSystem);
-    // }
+        if (details != null && !details.isEmpty()) 
+        { 
+            String[] lines = details.split("\n"); 
+            detailsFrame = new JFrame("Booking Details"); 
+            detailsArea = new JTextArea(); 
+            detailsArea.setEditable(false); 
+            for (String line : lines) 
+            { 
+                detailsArea.append(line); 
+                detailsArea.append("\n"); 
+            } 
+            
+            JScrollPane scrollPane = new JScrollPane(detailsArea); 
+            detailsFrame.add(scrollPane, BorderLayout.CENTER); 
+            
+            JPanel inputPanel = new JPanel(); 
+            inputPanel.setLayout(new GridLayout(3, 2)); 
+            
+            weightLabel = new JLabel("Baggage Weight:", SwingConstants.RIGHT); 
+            dimensionLabel = new JLabel("Baggage Dimension:", SwingConstants.RIGHT); 
+            weightField = new JTextField(10); 
+            dimensionField = new JTextField(10); 
+            
+            inputPanel.add(weightLabel); 
+            inputPanel.add(weightField); 
+            inputPanel.add(dimensionLabel); 
+            inputPanel.add(dimensionField); 
+            
+            submitBaggageButton = new JButton("Submit Baggage"); 
+            submitBaggageButton.addActionListener(this); 
+            inputPanel.add(submitBaggageButton); 
+            detailsFrame.add(inputPanel, BorderLayout.SOUTH); 
+            
+            detailsFrame.setSize(300, 200); 
+            detailsFrame.setVisible(true);
+            
+            // Enable the weight and dimension fields 
+            weightField.setEnabled(true); 
+            dimensionField.setEnabled(true); 
+            } 
+        else 
+        { 
+            JOptionPane.showMessageDialog(this, "No booking details found."); 
+        } 
+    }
+    public void displayQueue(LinkedList<Booking> queue) {
+        StringBuilder queueDetails = new StringBuilder();
+        while (!queue.isEmpty()) {
+            Booking ref = queue.poll();
+            String Name = ref.getPassengerName();
+            queueDetails.append(Name).append("\n");
+        }
+        if (queueDetails.length() > 0) {
+            waitingQueuePanel.add(new JLabel(queueDetails.toString()));
+            validate();
+        }
+    }
+
+    public static void main(String[] args){
+         CheckInSystem checkInSystem = new CheckInSystem();
+         checkInSystem.readFile("Bookings.txt", "Booking");
+         checkInSystem.readFile("flights.txt", "Flight");
+         new CheckInGUI(checkInSystem);
+
+       
+     }
+
+    
 }
-
-
-
-
-
