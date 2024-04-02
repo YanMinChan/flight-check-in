@@ -63,14 +63,13 @@ public class CheckInSystem {
 						processBooking(inputLine);
 					} else if (fileType.equals("Flight")){
 						processFlight(inputLine);
+					} else if (fileType.equals("Baggage")) {
+						processBaggage(inputLine);
 					}
-					
 				}
 			}
 			scanner.close();
 		}
-		
-		
 		//if the file is not found, stop with system exit
 		catch (FileNotFoundException fnf){
 			 System.out.println( fileName + " not found ");
@@ -132,7 +131,7 @@ public class CheckInSystem {
 		try {
 			// split parts by ","
 			String parts [] = line.split(",");
-			// store booking ref, passenger name, flight code and check in
+			// store destination, carrier and capacity
 			String destination = parts[0];
 			String carrier = parts[1];
 			
@@ -144,7 +143,7 @@ public class CheckInSystem {
 			}
 			String flightCode = parts[parts.length-1];
 
-			// create booking object and add to the map
+			// create flight object and add to the map
 			Flight f = new Flight(destination, carrier, flightCapacity,flightCode);
 			this.addFlight(f);
 		}
@@ -168,9 +167,47 @@ public class CheckInSystem {
 			                        + "' index position : " + air.getMessage();
 			System.out.println(error);
 		}
-
 	}
 
+	/**
+	 * Processes line, extracts data, creates Baggage object
+	 * and adds to list
+	 * Checks for non-numeric capacity and missing items
+	 * @param line the line to be processed
+	 */
+	private void processBaggage(String line) {
+		try {
+			// split parts by ","
+			String parts [] = line.split(",");
+			// store booking ref, passenger name, flight code and check in
+			String bookingRef = parts[0];
+			double dim = Double.parseDouble(parts[1]);
+			double weight = Double.parseDouble(parts[2]);
+
+			// create baggage object and add to the corresponding booking
+			Baggage ba = new Baggage(dim, weight);
+			ba.calculateBaggageFee(dim, weight);
+			
+			Booking b = this.findByBookingRef(bookingRef);
+			b.setBaggage(ba);
+		}
+
+		//for these two formatting errors, ignore lines in error and try and carry on
+		//this catches trying to convert a String to an integer
+		catch (NumberFormatException nfe) {
+			String error = "Number conversion error in '" + line + "'  - " 
+			                  + nfe.getMessage();
+			System.out.println(error);
+		}
+		//this catches missing items if only one or two items
+		//other omissions will result in other errors
+		catch (ArrayIndexOutOfBoundsException air) {
+			String error = "Not enough items in  : '" + line
+			                        + "' index position : " + air.getMessage();
+			System.out.println(error);
+		}
+	}
+	
 	public void addBooking(Booking b) {
 		bookingMap.put(b.getBookingRef(), b);
 	}
@@ -311,33 +348,30 @@ public class CheckInSystem {
 		return flightMap;
 	}
 
-	// public static void main(String[] args){
+	public static void main(String[] args){
 
-	// 	//Initialize check in system and read booking.txt
-	// 	CheckInSystem sys = new CheckInSystem();
-	// 	sys.readFile("bookings.txt", "Booking");
+	 	//Initialize check in system and read booking.txt
+	 	CheckInSystem sys = new CheckInSystem();
+	 	sys.readFile("bookings.txt", "Booking");
 
-	// 	//Check if the readfile works for booking.txt
-	// 	String name = sys.getBookingMap().get("BR777888").getPassengerName();
-	// 	System.out.println(name);
+//	 	//Check if the readfile works for booking.txt
+//	 	String name = sys.getBookingMap().get("BR777888").getPassengerName();
+//	 	System.out.println(name);
 
 
-	// 	//read flights.txt
-	// 	sys.readFile("flights.txt", "Flight");
+	 	//read flights.txt
+	 	sys.readFile("flights.txt", "Flight");
 
-	// 	//Check if readfile works for flight.txt
-	// 	String carrier = sys.getFlightMap().get("LAAA002").getCarrier();
-	// 	System.out.println(carrier);
+//	 	//Check if readfile works for flight.txt
+//	 	String carrier = sys.getFlightMap().get("LAAA002").getCarrier();
+//		System.out.println(carrier);
+	 	
+//	 	sys.readFile("baggage.txt", "Baggage");
+//	 	double weight = sys.getBookingMap().get("BR246810").getBaggage().getWeight();
+//	 	System.out.println(weight);
 		
-	// 	//String RefId = sys.DetailsByRefID("BR111222");
-	// 	//System.out.println(RefId);
-		
-	// 	//String ln = sys.DetailsByLastName("Brown");
-	// 	//System.out.println(ln);
-	
-
-	
-	// }
-	
+//		String RefId = sys.DetailsByRefID("BR111222", "Brown");
+//		System.out.println(RefId);	
+	}
 }
 
