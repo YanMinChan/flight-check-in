@@ -2,10 +2,10 @@ public class Baggage {
     private double baggageDimension;
 	private double baggageWeight;
 	private double baggageFee;
-	public Baggage(double dim,double weight, double fee){
+	public Baggage(double dim,double weight){
 		baggageDimension = dim;
 		baggageWeight = weight;
-		baggageFee = fee;	
+		baggageFee = 0;	
 	}
 	public double getDim() {
 		return baggageDimension;
