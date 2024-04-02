@@ -9,7 +9,6 @@ public class SharedQueue {
     // instance variables
     private LinkedList<Booking> queue;
     private boolean done;
-    CheckInGUI ChInPass = new CheckInGUI();
     
     public SharedQueue() {
         queue = new LinkedList<Booking>();
