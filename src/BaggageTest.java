@@ -5,7 +5,8 @@ public class BaggageTest {
 
     @Before
     public void setUp() {
-        baggage = new Baggage(10, 25, 60); // values for dimension, weight, and fee
+        baggage = new Baggage(10, 25); // values for dimension, weight, and fee
+        baggage.setFee(60);
     }
 
     @Test
@@ -30,8 +31,8 @@ public class BaggageTest {
     }
     @Test
     public void testsetFee() {  //test that checks for setFee() method
-        baggage.setFee(60);
-        assertEquals(60, baggage.getFee(), 0.01); 
+        baggage.setFee(40);
+        assertEquals(40, baggage.getFee(), 0.01); 
     }
     @Test
     public void testSetWeight() throws IllegalBaggageWeightException {
