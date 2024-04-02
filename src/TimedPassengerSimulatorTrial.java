@@ -7,7 +7,7 @@ public class TimedPassengerSimulatorTrial implements Runnable {
     private HashMap<String, Booking> newMap;
     private List<String> newMapKey;
     private long startTime;
-    private final long timeLimitMinutes = 30; // 30 minutes time limit
+    private final long timeLimitMinutes = 1; // 30 minutes time limit
     
     public TimedPassengerSimulatorTrial(SharedQueue queue) {
         this.queue = queue;
@@ -43,7 +43,9 @@ public class TimedPassengerSimulatorTrial implements Runnable {
         
         while (!newMap.isEmpty() && !isTimeLimitExceeded()) {
             try {
-                Thread.sleep(300);
+            	// Randomized check-in time between 1 to 10 minutes
+            	int checkInTime = r.nextInt(10) + 1;
+            	Thread.sleep(checkInTime * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -51,14 +53,6 @@ public class TimedPassengerSimulatorTrial implements Runnable {
             int index = r.nextInt(newMapKey.size());
             String key = newMapKey.get(index);
             Booking b = newMap.get(key);
-            
-            // Randomized check-in time between 1 to 10 minutes
-            int checkInTime = r.nextInt(10) + 1;
-            try {
-                Thread.sleep(checkInTime * 60 * 1000); // Convert minutes to milliseconds
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             
             queue.put(b);
             newMap.remove(key);
