@@ -22,10 +22,8 @@ public class SharedQueue {
         while (queue.isEmpty()){
             try {
                 wait();
-//              Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-
             }
         } 
         Booking b = queue.pollFirst();
@@ -38,15 +36,13 @@ public class SharedQueue {
     public synchronized void put(Booking b) {
         System.out.println("Put: " + b.getPassengerName());
         queue.add(b);
-        ChInPass.displayQueue(queue);
+//        ChInPass.displayQueue(queue);
         notifyAll();
     }; 
     
     public LinkedList<Booking> getQueue() {return queue;}
     
-    public void setDone() {
-        done = true;
-    }
+    public void setDone() {done = true;}
 
     public boolean getDone() {
         if (done && queue.isEmpty()) {
@@ -54,18 +50,18 @@ public class SharedQueue {
         }
         return false;
     }
-    
-    public static void main(String[] args) {
-        SharedQueue sq = new SharedQueue();
-        Thread simulator = new Thread(new PassengerSimulatorBaggageDraft(sq));
-        simulator.start();
-        Thread desk1 = new Thread(new CheckInDesk(sq, 1));
-        Thread desk2 = new Thread(new CheckInDesk(sq, 2));
-        Thread desk3 = new Thread(new CheckInDesk(sq, 3));
-        Thread desk4 = new Thread(new CheckInDesk(sq, 4));
-        desk1.start();
-        desk2.start();
-        desk3.start();
-        desk4.start(); // Start desk4
-    }
+	
+//    public static void main(String[] args) {
+//        SharedQueue sq = new SharedQueue();
+//        Thread simulator = new Thread(new PassengerSimulator(sq));
+//        simulator.start();
+//        Thread desk1 = new Thread(new CheckInDesk(sq, 1));
+//        Thread desk2 = new Thread(new CheckInDesk(sq, 2));
+//        Thread desk3 = new Thread(new CheckInDesk(sq, 3));
+//        Thread desk4 = new Thread(new CheckInDesk(sq, 4));
+//        desk1.start();
+//        desk2.start();
+//        desk3.start();
+//        desk4.start(); // Start desk4
+//    }
 }
