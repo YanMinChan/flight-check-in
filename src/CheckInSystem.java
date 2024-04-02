@@ -348,11 +348,35 @@ public class CheckInSystem {
 		return flightMap;
 	}
 
-	public static void main(String[] args){
+	public String CheckInDetails(Booking b) {
+		String ret = "";
+		String name = b.getPassengerName();
+		double weight = b.getBaggage().getWeight();
+		double fees = b.getBaggage().getFee();
+		
+		ret = name + "is dropping off 1 bag of " + Double.toString(weight) + "kg. A baggage fee of £" + Double.toString(fees) + " is due.";
+		
+		return ret;
+	}
+	
+	public String FlightDetails(Flight f) {
+		String ret = "";
+		String flightCode = f.getFlightCode();
+		String dest = f.getDest();
+		int pasCount = totalPassenger(flightCode);
+		double flightCap = f.getCapacity()[0];
+		double percentageFull = pasCount/flightCap;
+		
+		ret = flightCode + " " + dest + "\n" + Integer.toString(pasCount) + " checked in of " + String.format("%.0f", flightCap) + "\n" + "Hold is " + Double.toString(percentageFull) + "% full";
+		
+		return ret;
+		
+	}
+//	public static void main(String[] args){
 
 	 	//Initialize check in system and read booking.txt
-	 	CheckInSystem sys = new CheckInSystem();
-	 	sys.readFile("bookings.txt", "Booking");
+//	 	CheckInSystem sys = new CheckInSystem();
+//	 	sys.readFile("bookings.txt", "Booking");
 
 //	 	//Check if the readfile works for booking.txt
 //	 	String name = sys.getBookingMap().get("BR777888").getPassengerName();
@@ -360,7 +384,7 @@ public class CheckInSystem {
 
 
 	 	//read flights.txt
-	 	sys.readFile("flights.txt", "Flight");
+//	 	sys.readFile("flights.txt", "Flight");
 
 //	 	//Check if readfile works for flight.txt
 //	 	String carrier = sys.getFlightMap().get("LAAA002").getCarrier();
@@ -372,6 +396,6 @@ public class CheckInSystem {
 		
 //		String RefId = sys.DetailsByRefID("BR111222", "Brown");
 //		System.out.println(RefId);	
-	}
+//	}
 }
 
