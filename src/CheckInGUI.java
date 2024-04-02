@@ -185,9 +185,7 @@ public class CheckInGUI extends JFrame implements ActionListener
     
     private double baggageFees(int weightValue,int dimensionValue,String BookRef) throws IllegalBaggageWeightException
     {
-        Baggage bag = new Baggage(0,0,0);
-        bag.setDim(dimensionValue);
-        bag.setWeight(weightValue);
+        Baggage bag = new Baggage(dimensionValue, weightValue);
         fees = bag.calculateBaggageFee(dimensionValue, weightValue);
         checkInSystem.addBaggageDetails(BookRef, dimensionValue, weightValue,fees);
         bag.setFee(fees);
@@ -257,23 +255,23 @@ public class CheckInGUI extends JFrame implements ActionListener
         }
     }
 
-    public static void main(String[] args){
-         //CheckInSystem checkInSystem = new CheckInSystem();
-         //checkInSystem.readFile("Bookings.txt", "Booking");
-         //checkInSystem.readFile("flights.txt", "Flight");
-         //new CheckInGUI(checkInSystem);
-
-        SharedQueue sq = new SharedQueue();
-        Thread simulator = new Thread(new PassengerSimulator(sq));
-        simulator.start();
-        Thread desk1 = new Thread(new CheckInDesk(sq, 1));
-        Thread desk2 = new Thread(new CheckInDesk(sq, 2));
-        Thread desk3 = new Thread(new CheckInDesk(sq, 3));
-        //Thread desk4 = new Thread(new CheckInDesk(sq, 4));
-        desk1.start();
-        desk2.start();
-        desk3.start();
-     }
+//    public static void main(String[] args){
+//         //CheckInSystem checkInSystem = new CheckInSystem();
+//         //checkInSystem.readFile("Bookings.txt", "Booking");
+//         //checkInSystem.readFile("flights.txt", "Flight");
+//         //new CheckInGUI(checkInSystem);
+//
+//        SharedQueue sq = new SharedQueue();
+//        Thread simulator = new Thread(new PassengerSimulator(sq));
+//        simulator.start();
+//        Thread desk1 = new Thread(new CheckInDesk(sq, 1));
+//        Thread desk2 = new Thread(new CheckInDesk(sq, 2));
+//        Thread desk3 = new Thread(new CheckInDesk(sq, 3));
+//        //Thread desk4 = new Thread(new CheckInDesk(sq, 4));
+//        desk1.start();
+//        desk2.start();
+//        desk3.start();
+//     }
 
     
 }
