@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class PassengerSimulator implements Runnable{
+public class PassengerSimulator implements Runnable, Subject {
 	// This class reads bookings.txt and simulate passenger
 	
 	// instance variable
@@ -36,9 +36,7 @@ public class PassengerSimulator implements Runnable{
 	}
 	
 	public void run() {
-		this.initialise();
-		Random r = new Random();
-		
+		this.initialise();	
 		// continue when there are still passenger that haven't check in
 		while(!newMap.isEmpty()) {
 			try {
@@ -47,14 +45,43 @@ public class PassengerSimulator implements Runnable{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			int index = r.nextInt(newMapKey.size());
-			String key = newMapKey.get(index);
-			Booking b = newMap.get(key);
-			queue.put(b);
-			newMap.remove(key);
-			newMapKey.remove(index);
+			generatePassenger();
 		}
 		queue.setDone();
+	}
+	
+	public void generatePassenger() {
+		// get a random booking
+		Random r = new Random();
+		int index = r.nextInt(newMapKey.size());
+		String key = newMapKey.get(index);
+		Booking b = newMap.get(key);
+		
+		// put booking into queue
+		queue.put(b);
+		notifyObservers();
+		newMap.remove(key);
+		newMapKey.remove(index);
+	}
+	
+	public Booking getCurrentPassenger() {
+		return queue.getQueue().getLast();
+	}
+	
+    // implementing subject observer method with GUI
+    private List<Observer> registeredObservers = new LinkedList<Observer>();
+    
+    public void registerObserver(Observer obs) {
+    	registeredObservers.add(obs);
+    }
+    
+	public void removeObserver(Observer obs) {
+		registeredObservers.remove(obs);
+	}
+	
+	public void notifyObservers() {
+		for (Observer obs : registeredObservers)
+			obs.update();
 	}
 	
 	public static void main(String[] args) {
