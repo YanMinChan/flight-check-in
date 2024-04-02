@@ -47,13 +47,10 @@ public class PassengerSimulator implements Runnable{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
-			// get a random passenger and put it into queue
 			int index = r.nextInt(newMapKey.size());
 			String key = newMapKey.get(index);
 			Booking b = newMap.get(key);
 			queue.put(b);
-			
 			newMap.remove(key);
 			newMapKey.remove(index);
 		}

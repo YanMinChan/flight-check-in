@@ -42,7 +42,11 @@ public class CheckInGUI extends JFrame implements ActionListener
         waitingQueuePanel = new JPanel();
         waitingQueuePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         waitingQueuePanel.setBorder(BorderFactory.createTitledBorder("Waiting Queue"));
-        mainPanel.add(waitingQueuePanel);
+      
+
+        JScrollPane waitingqscrollpanel = new JScrollPane(waitingQueuePanel);
+        waitingqscrollpanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        mainPanel.add(waitingqscrollpanel);
 
 
         // Create desks panel
@@ -254,10 +258,10 @@ public class CheckInGUI extends JFrame implements ActionListener
     }
 
     public static void main(String[] args){
-         CheckInSystem checkInSystem = new CheckInSystem();
-         checkInSystem.readFile("Bookings.txt", "Booking");
-         checkInSystem.readFile("flights.txt", "Flight");
-         new CheckInGUI(checkInSystem);
+         //CheckInSystem checkInSystem = new CheckInSystem();
+         //checkInSystem.readFile("Bookings.txt", "Booking");
+         //checkInSystem.readFile("flights.txt", "Flight");
+         //new CheckInGUI(checkInSystem);
 
         SharedQueue sq = new SharedQueue();
         Thread simulator = new Thread(new PassengerSimulator(sq));
