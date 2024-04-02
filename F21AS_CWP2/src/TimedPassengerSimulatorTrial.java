@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class PassengerSimulator implements Runnable {
+public class TimedPassengerSimulatorTrial implements Runnable {
     private SharedQueue queue;
     private CheckInSystem sys;
     private HashMap<String, Booking> bookingMap;
@@ -9,7 +9,7 @@ public class PassengerSimulator implements Runnable {
     private long startTime;
     private final long timeLimitMinutes = 30; // 30 minutes time limit
     
-    public PassengerSimulator(SharedQueue queue) {
+    public TimedPassengerSimulatorTrial(SharedQueue queue) {
         this.queue = queue;
     }
     
@@ -69,7 +69,7 @@ public class PassengerSimulator implements Runnable {
     
     public static void main(String[] args) {
         SharedQueue sq = new SharedQueue();
-        Thread simulator = new Thread(new PassengerSimulator(sq));
+        Thread simulator = new Thread(new TimedPassengerSimulatorTrial(sq));
         simulator.start();
         Thread desk1 = new Thread(new CheckInDesk(sq, 1));
         Thread desk2 = new Thread(new CheckInDesk(sq, 2));

@@ -11,7 +11,7 @@ public class CheckInGUI extends JFrame implements ActionListener
     private JButton checkInButton, submitBaggageButton;
     private CheckInSystem checkInSystem;
     private String details;
-    private JPanel mainPanel,waitingQueuePanel,desk1Panel,desk2Panel,desk3Panel,desk4Panel,flight1Panel,flight2Panel,flight3Panel,panel;
+    private JPanel mainPanel,waitingQueuePanel,desk1Panel,desk2Panel,desk3Panel,desk4Panel,flight1Panel,flight2Panel,flight3Panel,panel,waitingqscrollpanel;
     private JLabel weightLabel,dimensionLabel;
     private double fees,dispFees;
     private JFrame detailsFrame;
@@ -40,7 +40,7 @@ public class CheckInGUI extends JFrame implements ActionListener
 
         // Create waiting queue panel
         waitingQueuePanel = new JPanel();
-        waitingQueuePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        waitingQueuePanel.setLayout(new BoxLayout(waitingQueuePanel, BoxLayout.Y_AXIS));
         waitingQueuePanel.setBorder(BorderFactory.createTitledBorder("Waiting Queue"));
       
 
