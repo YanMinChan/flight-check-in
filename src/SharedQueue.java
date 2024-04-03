@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class SharedQueue {
+public class SharedQueue implements Subject {
     // This is the queue shared between passenger simulator and the check in desk.
     // A passenger simulator that reads bookings.txt and simulate passenger arrival is needed
     // Methods that put and get passengers are needed
@@ -25,7 +25,9 @@ public class SharedQueue {
                 e.printStackTrace();
             }
         } 
+
         Booking b = queue.pollFirst();
+        notifyObservers();
         System.out.println("        Desk " + deskNum + " got: " + b.getPassengerName());
         return b;
     }
@@ -35,7 +37,7 @@ public class SharedQueue {
     public synchronized void put(Booking b) {
         System.out.println("Put: " + b.getPassengerName());
         queue.add(b);
-//        ChInPass.displayQueue(queue);
+        notifyObservers();
         notifyAll();
     }; 
     
@@ -50,6 +52,22 @@ public class SharedQueue {
         return false;
     }
 	
+    // implementing subject observer method with GUI
+    private List<Observer> registeredObservers = new LinkedList<Observer>();
+    
+    public void registerObserver(Observer obs) {
+    	registeredObservers.add(obs);
+    }
+    
+	public void removeObserver(Observer obs) {
+		registeredObservers.remove(obs);
+	}
+	
+	public void notifyObservers() {
+		for (Observer obs : registeredObservers)
+			obs.update();
+	}
+    
 //    public static void main(String[] args) {
 //        SharedQueue sq = new SharedQueue();
 //        Thread simulator = new Thread(new PassengerSimulator(sq));

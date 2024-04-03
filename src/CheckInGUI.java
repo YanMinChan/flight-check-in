@@ -25,7 +25,7 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
     }
 
     public CheckInGUI(CheckInSystem checkInSystem) {
-        //this.checkInSystem = checkInSystem;
+        this.checkInSystem = checkInSystem;
         initialise();
         setVisible(true);
     }
@@ -53,7 +53,7 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
         mainPanel.setLayout(new GridLayout(3, 1));
 
         // Create waiting queue panel
-        queueDis = new WaitingQueueDisplay(sim);
+        queueDis = new WaitingQueueDisplay(queue);
         JScrollPane waitingqscrollpanel = new JScrollPane(queueDis);
         waitingqscrollpanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         mainPanel.add(waitingqscrollpanel);

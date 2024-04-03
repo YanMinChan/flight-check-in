@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class PassengerSimulator implements Runnable, Subject {
+public class PassengerSimulator implements Runnable {
 	// This class reads bookings.txt and simulate passenger
 	
 	// instance variable
@@ -59,29 +59,12 @@ public class PassengerSimulator implements Runnable, Subject {
 		
 		// put booking into queue
 		queue.put(b);
-		notifyObservers();
 		newMap.remove(key);
 		newMapKey.remove(index);
 	}
 	
 	public Booking getCurrentPassenger() {
 		return queue.getQueue().getLast();
-	}
-	
-    // implementing subject observer method with GUI
-    private List<Observer> registeredObservers = new LinkedList<Observer>();
-    
-    public void registerObserver(Observer obs) {
-    	registeredObservers.add(obs);
-    }
-    
-	public void removeObserver(Observer obs) {
-		registeredObservers.remove(obs);
-	}
-	
-	public void notifyObservers() {
-		for (Observer obs : registeredObservers)
-			obs.update();
 	}
 	
 	public static void main(String[] args) {
