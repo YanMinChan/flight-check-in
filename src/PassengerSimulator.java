@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class PassengerSimulator implements Runnable, Subject {
+public class PassengerSimulator implements Runnable, Subject, Observer {
 	// This class reads bookings.txt and simulate passenger
 	
 	// instance variable
@@ -9,6 +9,7 @@ public class PassengerSimulator implements Runnable, Subject {
 	private HashMap<String, Booking> bookingMap;
 	private HashMap<String, Booking> newMap;
 	private List<String> newMapKey;
+	private int passengerCounter = 0;
 	
 	// constructor
 	public PassengerSimulator(SharedQueue queue) {
@@ -82,6 +83,11 @@ public class PassengerSimulator implements Runnable, Subject {
 	public void notifyObservers() {
 		for (Observer obs : registeredObservers)
 			obs.update();
+	}
+
+	public void update() {
+		generatePassenger();
+		JOptionPane.showMessageDialog(null, "A new passenger has been generated. Total passengers so far: " + passengerCounter);
 	}
 	
 	public static void main(String[] args) {
