@@ -24,7 +24,6 @@ public class CheckInDesk implements Runnable, Subject{
 			b = queue.get(deskNum);
 			b.setCheckIn(true);
 			notifyObservers();
-			// connect to the rest of the code?
 		}
 	}
 	

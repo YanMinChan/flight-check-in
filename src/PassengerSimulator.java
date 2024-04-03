@@ -63,7 +63,7 @@ public class PassengerSimulator implements Runnable{
 		
 		// generate random baggage
 		double weight = Math.round(r.nextDouble()*80*100)/100; //max weight 80
-		double dim = Math.round(r.nextDouble()*100*100)/100; //max dim 100
+		double dim = Math.round(r.nextDouble()*50*100)/100; //max dim 50
 		Baggage ba = new Baggage(dim, weight);
 		ba.setFee(ba.calculateBaggageFee(dim, weight));
 		b.setBaggage(ba);

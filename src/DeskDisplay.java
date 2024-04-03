@@ -38,6 +38,7 @@ public class DeskDisplay extends JPanel implements Observer, Subject {
 		
         revalidate();
         repaint();
+        
 		
 		
 //        Booking currentPassenger = sim.getCurrentPassenger();
