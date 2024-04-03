@@ -52,6 +52,10 @@ public class SharedQueue implements Subject {
         return false;
     }
 	
+	public int getPassengerInQueueCount() {
+		return queue.size();
+	}
+    
     // implementing subject observer method with GUI
     private List<Observer> registeredObservers = new LinkedList<Observer>();
     

@@ -2,7 +2,7 @@ import java.util.*;
 
 import javax.swing.*;
 
-public class PassengerSimulator implements Runnable, Subject, Observer {
+public class PassengerSimulator implements Runnable{
 	// This class reads bookings.txt and simulate passenger
 	
 	// instance variable
@@ -64,31 +64,6 @@ public class PassengerSimulator implements Runnable, Subject, Observer {
 		queue.put(b);
 		newMap.remove(key);
 		newMapKey.remove(index);
-	}
-	
-	public Booking getCurrentPassenger() {
-		return queue.getQueue().getLast();
-	}
-	
-    // implementing subject observer method with GUI
-    private List<Observer> registeredObservers = new LinkedList<Observer>();
-    
-    public void registerObserver(Observer obs) {
-    	registeredObservers.add(obs);
-    }
-    
-	public void removeObserver(Observer obs) {
-		registeredObservers.remove(obs);
-	}
-	
-	public void notifyObservers() {
-		for (Observer obs : registeredObservers)
-			obs.update();
-	}
-
-	public void update() {
-		generatePassenger();
-		JOptionPane.showMessageDialog(null, "A new passenger has been generated. Total passengers so far: " + passengerCounter);
 	}
 	
 	public static void main(String[] args) {
