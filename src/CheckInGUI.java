@@ -69,9 +69,9 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
 
         // Create Desks 1, 2, 3, 4
         DeskDisplay dd1 = new DeskDisplay(desk1, 1);
-        DeskDisplay dd2 = new DeskDisplay(desk2, 1);
-        DeskDisplay dd3 = new DeskDisplay(desk3, 1);
-        DeskDisplay dd4 = new DeskDisplay(desk4, 1);
+        DeskDisplay dd2 = new DeskDisplay(desk2, 2);
+        DeskDisplay dd3 = new DeskDisplay(desk3, 3);
+        DeskDisplay dd4 = new DeskDisplay(desk4, 4);
         desksPanel.add(dd1);
         desksPanel.add(dd2);
         desksPanel.add(dd3);
