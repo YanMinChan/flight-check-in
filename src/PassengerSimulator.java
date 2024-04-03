@@ -29,30 +29,30 @@ public class PassengerSimulator implements Runnable {
         newMapKey = new ArrayList<String>(newMap.keySet());
     }
     
-//    private boolean isTimeLimitExceeded() {
-//        long elapsedTime = System.currentTimeMillis() - startTime;
-//        long elapsedTimeMinutes = elapsedTime / (1000 * 60); // Convert milliseconds to minutes
-//        return elapsedTimeMinutes >= timeLimitMinutes;
-//    }
+    private boolean isTimeLimitExceeded() {
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        long elapsedTimeMinutes = elapsedTime / (1000 * 60); // Convert milliseconds to minutes
+        return elapsedTimeMinutes >= timeLimitMinutes;
+    }
     
     public void run() {
         this.initialise();
         Random r = new Random();
-        //startTime = System.currentTimeMillis(); // Start time
+        startTime = System.currentTimeMillis(); // Start time
         
         while (!newMap.isEmpty()) {
             try {
                 // Randomized passenger simulating time between 1 to 10 minutes
-                int checkInTime = r.nextInt(10) + 1;
-                Thread.sleep(checkInTime * 100);
+                int simTime = r.nextInt(10) + 1;
+                Thread.sleep(simTime * 100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             generatePassenger();
         }
-//        if (isTimeLimitExceeded()) {
-//            System.out.println("Time limit reached. Stopping simulation.");
-//        }
+        if (isTimeLimitExceeded()) {
+            System.out.println("Time limit reached. Stopping simulation.");
+        }
         queue.setDone();
     }
     

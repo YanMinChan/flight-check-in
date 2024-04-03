@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class CheckInDesk implements Runnable, Subject{
 	// this class gets passenger from queue and let them check in
@@ -7,23 +8,54 @@ public class CheckInDesk implements Runnable, Subject{
 	private SharedQueue queue;
 	private int deskNum;
 	private Booking b;
+	private boolean timeOut;
+	private long startTime;
+    private final long timeLimitMinutes = 1;
 	
 	public CheckInDesk(SharedQueue queue, int deskNum) {
 		this.queue = queue;
 		this.deskNum = deskNum;
+		timeOut = false;
+		startTimer();
+		startTime = System.currentTimeMillis();
 	}
+	
+    private void startTimer() {
+        Thread timerThread = new Thread(() -> {
+            try {
+                Thread.sleep(timeLimitMinutes * 1 * 1000); // Convert minutes to milliseconds
+                synchronized (this) {
+                    timeOut = true; // Set the time limit flag
+//                    System.out.println("Check-in time limit reached. Closing check-in counters.");
+                    while(timeOut) {
+                    	Thread.sleep(100);
+                    }
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        timerThread.start();
+    }
 	
 	public void run() {
 		// while there are still passenger in queue, continue check in
-		while(!queue.getDone()) {
+		while(!queue.getDone() & !timeOut) {
 			try {
-				Thread.sleep(3000);
+				Random r = new Random();
+                // Randomized passenger simulating time between 1 to 10 minutes
+                int checkInTime = r.nextInt(10) + 1;
+				Thread.sleep(checkInTime * 1000);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				String notice = "Desk closed!";
 			}
 			b = queue.get(deskNum);
 			b.setCheckIn(true);
 			notifyObservers();
+		}
+		if (timeOut) {
+			String notice = "Desk " + deskNum + " closed!";
+			System.out.println(notice);
 		}
 	}
 	
@@ -45,5 +77,9 @@ public class CheckInDesk implements Runnable, Subject{
 	public void notifyObservers() {
 		for (Observer obs : registeredObservers)
 			obs.update();
+	}
+	
+	public boolean getTimeOut() {
+		return timeOut;
 	}
 }

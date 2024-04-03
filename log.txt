@@ -1,80 +1,64 @@
 The log:
-Bob Williams has joined the queue
-Sophia Lee has joined the queue
-Emma Johnson has joined the queue
-David Lee has joined the queue
-Victoria Taylor has joined the queue
-Samantha Hernandez has joined the queue
-Samantha Martinez has joined the queue
-Ava Robinson has joined the queue
-William Clark has joined the queue
-Bob Williams went to desk 4
-Bob Williams is dropping off 1 bag of 51.0kg. A baggage fee of £860.0 is due.
-Sophia Lee went to desk 3
-Sophia Lee is dropping off 1 bag of 67.0kg. A baggage fee of £1040.0 is due.
-Emma Johnson went to desk 1
-Emma Johnson is dropping off 1 bag of 21.0kg. A baggage fee of £500.0 is due.
-David Lee went to desk 2
-David Lee is dropping off 1 bag of 47.0kg. A baggage fee of £720.0 is due.
-Olivia Garcia has joined the queue
-Aiden Brown has joined the queue
-Isabella Taylor has joined the queue
-Joseph Wilson has joined the queue
-Daniel Garcia has joined the queue
-Benjamin Martinez has joined the queue
-John Doe has joined the queue
-Nicholas White has joined the queue
-Emily Davis has joined the queue
 Eve Brown has joined the queue
-Victoria Taylor went to desk 2
-Victoria Taylor is dropping off 1 bag of 40.0kg. A baggage fee of £240.0 is due.
-Samantha Hernandez went to desk 1
-Samantha Hernandez is dropping off 1 bag of 6.0kg. A baggage fee of £0.0 is due.
-Samantha Martinez went to desk 3
-Samantha Martinez is dropping off 1 bag of 16.0kg. A baggage fee of £600.0 is due.
-Ava Robinson went to desk 4
-Ava Robinson is dropping off 1 bag of 12.0kg. A baggage fee of £740.0 is due.
-Sarah Taylor has joined the queue
-Matthew Thompson has joined the queue
-Jane Smith has joined the queue
-William Brown has joined the queue
+Sophia Lee has joined the queue
 David Harris has joined the queue
-Emily White has joined the queue
+Eve Brown went to desk 3
+Eve Brown is dropping off 1 bag of 11.0kg. A baggage fee of £780.0 is due.
 Joseph Wright has joined the queue
-Charlotte Harris has joined the queue
+Isabella Taylor has joined the queue
+William Brown has joined the queue
+Sophia Lee went to desk 2
+Sophia Lee is dropping off 1 bag of 3.0kg. A baggage fee of £240.0 is due.
+John Doe has joined the queue
+Matthew Thompson has joined the queue
+David Lee has joined the queue
 Samuel Anderson has joined the queue
-Sophia Brown has joined the queue
-William Clark went to desk 2
-William Clark is dropping off 1 bag of 77.0kg. A baggage fee of £1360.0 is due.
-Olivia Garcia went to desk 4
-Olivia Garcia is dropping off 1 bag of 37.0kg. A baggage fee of £720.0 is due.
-Aiden Brown went to desk 3
-Aiden Brown is dropping off 1 bag of 4.0kg. A baggage fee of £200.0 is due.
-Isabella Taylor went to desk 1
-Isabella Taylor is dropping off 1 bag of 2.0kg. A baggage fee of £180.0 is due.
-Alexander Martinez has joined the queue
+Ava Robinson has joined the queue
 James Taylor has joined the queue
+Aiden Brown has joined the queue
+David Harris went to desk 1
+David Harris is dropping off 1 bag of 58.0kg. A baggage fee of £740.0 is due.
+Joseph Wilson has joined the queue
+William Clark has joined the queue
+Charlotte Harris has joined the queue
+Emily White has joined the queue
+Joseph Wright went to desk 4
+Joseph Wright is dropping off 1 bag of 52.0kg. A baggage fee of £440.0 is due.
+Emma Johnson has joined the queue
+Victoria Taylor has joined the queue
+Benjamin Martinez has joined the queue
+Jane Smith has joined the queue
+Bob Williams has joined the queue
+Samantha Hernandez has joined the queue
+Sophia Brown has joined the queue
+Olivia Garcia has joined the queue
+Nicholas White has joined the queue
+Alexander Martinez has joined the queue
+Samantha Martinez has joined the queue
+Emily Davis has joined the queue
+Sarah Taylor has joined the queue
+Daniel Garcia has joined the queue
 
 Flight Report for NYDA001:
-Total Passengers: 8
-Total Weight: 438
-Total Volume: 375
-Total Baggage Fees: 6360
+Total Passengers: 4
+Total Weight: 539
+Total Volume: 208
+Total Baggage Fees: 4440
 Is Capacity Exceeded: true
 
 
 Flight Report for LBA003:
-Total Passengers: 7
-Total Weight: 370
-Total Volume: 277
-Total Baggage Fees: 3700
+Total Passengers: 3
+Total Weight: 512
+Total Volume: 391
+Total Baggage Fees: 7400
 Is Capacity Exceeded: true
 
 
 Flight Report for LAAA002:
 Total Passengers: 6
-Total Weight: 533
-Total Volume: 262
-Total Baggage Fees: 5760
+Total Weight: 308
+Total Volume: 267
+Total Baggage Fees: 3760
 Is Capacity Exceeded: true
 

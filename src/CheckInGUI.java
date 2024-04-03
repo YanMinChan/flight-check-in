@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Map;
+import java.util.*;
+import java.util.Timer;
+
 
 
 public class CheckInGUI extends JFrame implements ActionListener, Observer 
@@ -10,6 +12,8 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
     private CheckInSystem checkInSystem;
     private JPanel mainPanel;
     private WaitingQueueDisplay queueDis;
+    private CheckInDesk desk1, desk2, desk3, desk4;
+    private SharedQueue sq;
     
     public CheckInGUI() {
         this(new CheckInSystem());
@@ -24,14 +28,15 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
    
     private void initialise() {
 	    // Setting up threads
-	    SharedQueue sq = new SharedQueue();
+	    sq = new SharedQueue();
 	    PassengerSimulator sim = new PassengerSimulator(sq, checkInSystem);
 	    Thread simulator = new Thread(sim);
 	    simulator.start();
-	    CheckInDesk desk1 = new CheckInDesk(sq, 1);
-	    CheckInDesk desk2 = new CheckInDesk(sq, 2);
-	    CheckInDesk desk3 = new CheckInDesk(sq, 3);
-	    CheckInDesk desk4 = new CheckInDesk(sq, 4);
+	    desk1 = new CheckInDesk(sq, 1);
+	    desk2 = new CheckInDesk(sq, 2);
+	    desk3 = new CheckInDesk(sq, 3);
+	    desk4 = new CheckInDesk(sq, 4);
+	    
 	    Thread tdesk1 = new Thread(desk1);
 	    Thread tdesk2 = new Thread(desk2);
 	    Thread tdesk3 = new Thread(desk3);
@@ -40,8 +45,13 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
 	    tdesk2.start();
 	    tdesk3.start();
 	    tdesk4.start();
-    	
-        setTitle("Check-In");
+
+    	GUI();
+
+    }
+
+    private void GUI() {
+    	setTitle("Check-In");
         setSize(1000, 600);
         
         // write all flights details to log when close
@@ -53,7 +63,6 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
         		for(Map.Entry<String, Flight> f: checkInSystem.getFlightMap().entrySet()) {
         			String fcode = f.getValue().getFlightCode();
         			String log = "\n" + checkInSystem.getFlightReport(fcode);
-					//System.out.println(log);
         			logger.write(log);
         		}
         		logger.writeLogToFile();
@@ -105,9 +114,7 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
         mainPanel.add(flightsPanel);
 
          add(mainPanel, BorderLayout.CENTER);
-        }
-
-    
+    }
     
     public void actionPerformed(ActionEvent e) {
 //        if (e.getSource() == checkInButton) {
