@@ -27,13 +27,13 @@ public class WaitingQueueDisplay extends JPanel implements Observer{
 		removeAll();
 		
 		// count passenger in queue
-		String details = "A new passenger has been generated. Total passengers so far: " + Integer.toString(sq.getPassengerInQueueCount());
+		String details = "Total passengers so far: " + Integer.toString(sq.getPassengerInQueueCount());
 		JLabel label = new JLabel(details);
 		add(label);
 		
 		// print passenger details
 		for (Booking b: sq.getQueue()) {
-			details = String.format("%-10s %-30s %-10s %-10s %-10s", b.getBookingRef(), b.getPassengerName(), Double.toString(b.getBaggage().getWeight()), Double.toString(b.getBaggage().getDim()), b.getFlightCode());
+			details = String.format("%-10s %-30s %-10s %-10s", b.getBookingRef(), b.getPassengerName(), Double.toString(b.getBaggage().getWeight()), Double.toString(b.getBaggage().getDim()));
 			label = new JLabel(details);
 			add(label);
 		}

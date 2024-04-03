@@ -32,10 +32,10 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
 	    PassengerSimulator sim = new PassengerSimulator(sq, checkInSystem);
 	    Thread simulator = new Thread(sim);
 	    simulator.start();
-	    desk1 = new CheckInDesk(sq, 1);
-	    desk2 = new CheckInDesk(sq, 2);
-	    desk3 = new CheckInDesk(sq, 3);
-	    desk4 = new CheckInDesk(sq, 4);
+	    desk1 = new CheckInDesk(sq, 1, 10);
+	    desk2 = new CheckInDesk(sq, 2, 5);
+	    desk3 = new CheckInDesk(sq, 3, 6);
+	    desk4 = new CheckInDesk(sq, 4, 7);
 	    
 	    Thread tdesk1 = new Thread(desk1);
 	    Thread tdesk2 = new Thread(desk2);

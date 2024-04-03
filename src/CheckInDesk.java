@@ -10,11 +10,12 @@ public class CheckInDesk implements Runnable, Subject{
 	private Booking b;
 	private boolean timeOut;
 	private long startTime;
-    private final long timeLimitMinutes = 10;
+    private int timeLimit;
 	
-	public CheckInDesk(SharedQueue queue, int deskNum) {
+	public CheckInDesk(SharedQueue queue, int deskNum, int timeLimit) {
 		this.queue = queue;
 		this.deskNum = deskNum;
+		this.timeLimit = timeLimit;
 		timeOut = false;
 		startTimer();
 		startTime = System.currentTimeMillis();
@@ -23,7 +24,7 @@ public class CheckInDesk implements Runnable, Subject{
     private void startTimer() {
         Thread timerThread = new Thread(() -> {
             try {
-                Thread.sleep(timeLimitMinutes * 1 * 1000); // Convert minutes to milliseconds
+                Thread.sleep(timeLimit * 1 * 1000); // Convert minutes to milliseconds
                 synchronized (this) {
                     timeOut = true; // Set the time limit flag
 //                    System.out.println("Check-in time limit reached. Closing check-in counters.");
@@ -47,7 +48,7 @@ public class CheckInDesk implements Runnable, Subject{
 			try {
 				Random r = new Random();
                 // Randomized passenger simulating time between 1 to 10 minutes
-                int checkInTime = r.nextInt(10) + 1;
+                int checkInTime = r.nextInt(3) + 1;
 				Thread.sleep(checkInTime * 1000);
 			} catch (InterruptedException e) {
 				String notice = "Desk closed!";
@@ -57,6 +58,7 @@ public class CheckInDesk implements Runnable, Subject{
 		if (timeOut) {
 			String notice = "Desk " + deskNum + " closed!";
 			System.out.println(notice);
+			notifyObservers();
 		}
 	}
 	
