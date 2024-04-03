@@ -1,24 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.Queue;
+
 
 public class CheckInGUI extends JFrame implements ActionListener, Observer 
 {
     private static final long serialVersionUID = 1L;
-    private JTextField lastNameField, bookingReferenceField, weightField, dimensionField;
-    private JButton checkInButton, submitBaggageButton;
     private CheckInSystem checkInSystem;
-    private String details;
-    private JPanel mainPanel,waitingQueuePanel,desk1Panel,desk2Panel,desk3Panel,desk4Panel,flight1Panel,flight2Panel,flight3Panel,panel,waitingqscrollpanel;
-    private JLabel weightLabel,dimensionLabel;
-    private double fees,dispFees;
-    private JFrame detailsFrame;
-    private JTextArea detailsArea;
+    private JPanel mainPanel;
     private WaitingQueueDisplay queueDis;
-    private Container desksPanel;
     
     public CheckInGUI() {
         this(new CheckInSystem());
@@ -113,38 +104,7 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
 
         mainPanel.add(flightsPanel);
 
-//         // Create check-in panel
-//         panel = new JPanel();
-//         panel.setLayout(new GridLayout(5, 2));
-//         panel.setBorder(BorderFactory.createTitledBorder("Check-In Details"));
-// 
-//         JLabel lastNameLabel = new JLabel("Last Name:");
-//         lastNameField = new JTextField();
-//         JLabel bookingReferenceLabel = new JLabel("Booking Reference:");
-//         bookingReferenceField = new JTextField();
-// 
-//         checkInButton = new JButton("Check In");
-//         panel.add(checkInButton); 
-//
-//         panel.add(new JLabel());
-
-//         setLayout(new BorderLayout());
-
          add(mainPanel, BorderLayout.CENTER);
-//              
-//            setVisible(true);
-//            addWindowListener(new WindowAdapter() {
-//                @Override
-//                public void windowClosing(WindowEvent e) {
-//
-//                    StringBuilder rep = new StringBuilder();
-//                    for(String flightCode : checkInSystem.flightMap.keySet()){
-//                        rep.append(checkInSystem.getFlightReport(flightCode)).append("\n");
-//                    }
-//                    checkInSystem.writeToFile("report.txt", rep.toString());
-//                    
-//                }
-//            });
         }
 
     
