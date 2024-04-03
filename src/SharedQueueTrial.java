@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.concurrent.*;
 
 public class SharedQueueTrial implements Subject{
     private LinkedList<Booking> queue;
@@ -14,16 +15,13 @@ public class SharedQueueTrial implements Subject{
     }
 
     private void startTimer() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                if (!done) {
-                    System.out.println("Time limit exceeded. Stopping simulation.");
-                    Thread.currentThread().interrupt(); // Interrupt the passenger simulator thread
-                }
+        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+        executor.schedule(() -> {
+            if (!done) {
+                System.out.println("Time limit exceeded. Stopping simulation.");
+                Thread.currentThread().interrupt(); // Interrupt the passenger simulator thread
             }
-        }, timeLimitMinutes * 1000); // Convert minutes to milliseconds
+        }, timeLimitMinutes, TimeUnit.MINUTES); // Schedule after the specified time limit
     }
 
     public synchronized Booking get(int deskNum) {
