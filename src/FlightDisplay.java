@@ -14,7 +14,7 @@ public class FlightDisplay extends JPanel{
 		
 		
 		for (Flight f: s.getQueue()) {
-			details = String.format("%-10s %-30s %-10s %-10s", f.getFlightCode(), f.getDest());
+			details = String.format("%-10s %-30s", f.getFlightCode(), f.getDest());
 			label = new JLabel(details);
 			add(label);
 		}
