@@ -1,84 +1,82 @@
 The log:
-Joseph Wright has joined the queue
-Joseph Wright went to desk 4
-Joseph Wright is dropping off 1 bag of 43.0kg. A baggage fee of £860.0 is due.
-David Lee has joined the queue
-David Lee went to desk 1
-David Lee is dropping off 1 bag of 2.0kg. A baggage fee of £0.0 is due.
-Emily White has joined the queue
-Emily White went to desk 3
-Emily White is dropping off 1 bag of 20.0kg. A baggage fee of £20.0 is due.
-David Harris has joined the queue
-David Harris went to desk 2
-David Harris is dropping off 1 bag of 42.0kg. A baggage fee of £600.0 is due.
-William Clark has joined the queue
-William Clark went to desk 4
-William Clark is dropping off 1 bag of 71.0kg. A baggage fee of £1500.0 is due.
-Sarah Taylor has joined the queue
-Sarah Taylor went to desk 2
-Sarah Taylor is dropping off 1 bag of 48.0kg. A baggage fee of £820.0 is due.
-John Doe has joined the queue
-John Doe went to desk 4
-John Doe is dropping off 1 bag of 57.0kg. A baggage fee of £540.0 is due.
-Samuel Anderson has joined the queue
-Samuel Anderson went to desk 1
-Samuel Anderson is dropping off 1 bag of 0.0kg. A baggage fee of £340.0 is due.
-William Brown has joined the queue
-William Brown went to desk 3
-William Brown is dropping off 1 bag of 52.0kg. A baggage fee of £440.0 is due.
-Desk 2 closed!
-Samantha Martinez has joined the queue
-Samantha Martinez went to desk 1
-Samantha Martinez is dropping off 1 bag of 57.0kg. A baggage fee of £980.0 is due.
 Benjamin Martinez has joined the queue
 Benjamin Martinez went to desk 1
-Benjamin Martinez is dropping off 1 bag of 65.0kg. A baggage fee of £1460.0 is due.
-Desk 3 closed!
-Desk 4 closed!
-Alexander Martinez has joined the queue
-Daniel Garcia has joined the queue
-Aiden Brown has joined the queue
-Alexander Martinez went to desk 1
-Alexander Martinez is dropping off 1 bag of 19.0kg. A baggage fee of £0.0 is due.
-Sophia Brown has joined the queue
-Matthew Thompson has joined the queue
-Olivia Garcia has joined the queue
-Isabella Taylor has joined the queue
-Sophia Lee has joined the queue
-James Taylor has joined the queue
-Desk 1 closed!
+Benjamin Martinez is dropping off 1 bag of 69.0kg. A baggage fee of £1120.0 is due.
 Ava Robinson has joined the queue
-Nicholas White has joined the queue
-Joseph Wilson has joined the queue
-Jane Smith has joined the queue
+Ava Robinson went to desk 4
+Ava Robinson is dropping off 1 bag of 15.0kg. A baggage fee of £740.0 is due.
+Alexander Martinez has joined the queue
+Alexander Martinez went to desk 2
+Alexander Martinez is dropping off 1 bag of 55.0kg. A baggage fee of £500.0 is due.
 Emma Johnson has joined the queue
-Eve Brown has joined the queue
-Charlotte Harris has joined the queue
-Samantha Hernandez has joined the queue
-Bob Williams has joined the queue
-Emily Davis has joined the queue
+Emma Johnson went to desk 3
+Emma Johnson is dropping off 1 bag of 39.0kg. A baggage fee of £180.0 is due.
+William Brown has joined the queue
+William Brown went to desk 1
+William Brown is dropping off 1 bag of 13.0kg. A baggage fee of £300.0 is due.
+Samantha Martinez has joined the queue
+Samantha Martinez went to desk 4
+Samantha Martinez is dropping off 1 bag of 5.0kg. A baggage fee of £600.0 is due.
+Sarah Taylor has joined the queue
+Sarah Taylor went to desk 2
+Desk 2 closed!
+John Doe has joined the queue
+John Doe went to desk 3
+John Doe is dropping off 1 bag of 57.0kg. A baggage fee of £1160.0 is due.
+Desk 2 closed!
+Joseph Wilson has joined the queue
+Joseph Wilson went to desk 1
+Joseph Wilson is dropping off 1 bag of 26.0kg. A baggage fee of £680.0 is due.
+Sophia Lee has joined the queue
+David Harris has joined the queue
+William Clark has joined the queue
+Desk 4 closed!
+Sophia Lee went to desk 1
+Sophia Lee is dropping off 1 bag of 26.0kg. A baggage fee of £0.0 is due.
+Desk 3 closed!
+Daniel Garcia has joined the queue
+Isabella Taylor has joined the queue
+David Harris went to desk 1
+David Harris is dropping off 1 bag of 64.0kg. A baggage fee of £1000.0 is due.
 Victoria Taylor has joined the queue
+Desk 1 closed!
+David Lee has joined the queue
+Nicholas White has joined the queue
+Jane Smith has joined the queue
+Emily White has joined the queue
+Eve Brown has joined the queue
+Matthew Thompson has joined the queue
+Joseph Wright has joined the queue
+Bob Williams has joined the queue
+Olivia Garcia has joined the queue
+Emily Davis has joined the queue
+Samuel Anderson has joined the queue
+Sophia Brown has joined the queue
+James Taylor has joined the queue
+Samantha Hernandez has joined the queue
+Aiden Brown has joined the queue
+Charlotte Harris has joined the queue
 
 Flight Report for NYDA001:
-Total Passengers: 7
-Total Weight: 521
-Total Volume: 409
-Total Baggage Fees: 8060
+Total Passengers: 9
+Total Weight: 426
+Total Volume: 337
+Total Baggage Fees: 5920
 Is Capacity Exceeded: true
 
 
 Flight Report for LBA003:
 Total Passengers: 6
-Total Weight: 469
-Total Volume: 296
-Total Baggage Fees: 5640
+Total Weight: 534
+Total Volume: 307
+Total Baggage Fees: 6300
 Is Capacity Exceeded: true
 
 
 Flight Report for LAAA002:
-Total Passengers: 8
-Total Weight: 421
-Total Volume: 265
-Total Baggage Fees: 5280
+Total Passengers: 5
+Total Weight: 474
+Total Volume: 301
+Total Baggage Fees: 6220
 Is Capacity Exceeded: true
 
