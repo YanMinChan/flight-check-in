@@ -3,14 +3,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UserRunTime implements ActionListener {
+public class UserRuntime implements ActionListener {
     private JFrame frame;
     private JLabel label;
     private JTextField textField;
     private JButton button;
     private long sleepTime;
 
-    public UserRunTime() {
+    public UserRuntime() {
         frame = new JFrame("User Run Time");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(200, 100);
