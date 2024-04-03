@@ -10,7 +10,7 @@ public class CheckInDesk implements Runnable, Subject{
 	private Booking b;
 	private boolean timeOut;
 	private long startTime;
-    private final long timeLimitMinutes = 1;
+    private final long timeLimitMinutes = 10;
 	
 	public CheckInDesk(SharedQueue queue, int deskNum) {
 		this.queue = queue;
@@ -41,6 +41,9 @@ public class CheckInDesk implements Runnable, Subject{
 	public void run() {
 		// while there are still passenger in queue, continue check in
 		while(!queue.getDone() & !timeOut) {
+			b = queue.get(deskNum);
+			b.setCheckIn(true);
+			notifyObservers();
 			try {
 				Random r = new Random();
                 // Randomized passenger simulating time between 1 to 10 minutes
@@ -49,9 +52,7 @@ public class CheckInDesk implements Runnable, Subject{
 			} catch (InterruptedException e) {
 				String notice = "Desk closed!";
 			}
-			b = queue.get(deskNum);
-			b.setCheckIn(true);
-			notifyObservers();
+
 		}
 		if (timeOut) {
 			String notice = "Desk " + deskNum + " closed!";
