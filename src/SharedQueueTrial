@@ -1,0 +1,56 @@
+import java.util.*;
+
+public class SharedQueue {
+    private LinkedList<Booking> queue;
+    private boolean done;
+    private final long timeLimitMinutes = 30; // 30 minutes time limit
+    private long startTime;
+
+    public SharedQueue() {
+        queue = new LinkedList<Booking>();
+        done = false;
+        startTime = System.currentTimeMillis();
+        startTimer();
+    }
+
+    private void startTimer() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (!done) {
+                    System.out.println("Time limit exceeded. Stopping simulation.");
+                    Thread.currentThread().interrupt(); // Interrupt the passenger simulator thread
+                }
+            }
+        }, timeLimitMinutes * 60 * 1000); // Convert minutes to milliseconds
+    }
+
+    public synchronized Booking get(int deskNum) {
+        while (queue.isEmpty()) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                System.out.println("Thread interrupted. Stopping check-in.");
+                return null; // Return null when interrupted
+            }
+        }
+        Booking b = queue.pollFirst();
+        System.out.println("Desk " + deskNum + " got: " + b.getPassengerName());
+        return b;
+    }
+
+    public synchronized void put(Booking b) {
+        System.out.println("Put: " + b.getPassengerName());
+        queue.add(b);
+        notifyAll();
+    }
+
+    public void setDone() {
+        done = true;
+    }
+
+    public boolean getDone() {
+        return done && queue.isEmpty();
+    }
+}
