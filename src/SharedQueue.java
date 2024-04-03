@@ -9,30 +9,32 @@ public class SharedQueue implements Subject {
     // instance variables
     private LinkedList<Booking> queue;
     private boolean done;
+    private boolean timeOut;
     private final long timeLimitMinutes = 10; // 10 minutes time limit
     private long startTime;
     
     public SharedQueue() {
         queue = new LinkedList<Booking>();
         done = false;
+        timeOut = false;
         startTime = System.currentTimeMillis();
-        startTimer();
+//        startTimer();
     }
     
-    private void startTimer() {
-        Thread timerThread = new Thread(() -> {
-            try {
-                Thread.sleep(timeLimitMinutes * 60 * 1000); // Convert minutes to milliseconds
-                synchronized (this) {
-                    done = true; // Set the time limit flag
-                    System.out.println("Check-in time limit reached. Closing check-in counters.");
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-        timerThread.start();
-    }
+//    private void startTimer() {
+//        Thread timerThread = new Thread(() -> {
+//            try {
+//                Thread.sleep(timeLimitMinutes * 60 * 1000); // Convert minutes to milliseconds
+//                synchronized (this) {
+//                    timeOut = true; // Set the time limit flag
+//                    System.out.println("Check-in time limit reached. Closing check-in counters.");
+//                }
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        });
+//        timerThread.start();
+//    }
     
     // get passenger in check in desk
     // will wait if queue is empty
