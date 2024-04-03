@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UserRuntime implements ActionListener {
+public class UserRuntime implements ActionListener, Runnable {
     private JLabel runtime;
     private JFrame newFrame;
     private JTextField input;
@@ -11,11 +11,26 @@ public class UserRuntime implements ActionListener {
     private long time;
 
     public UserRuntime() {
+       
+
+    }
+    public JFrame getNewFrame() {
+        return newFrame;
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        time = Long.parseLong(input.getText()) * 1000;
+        newFrame.dispose();
+        JOptionPane.showMessageDialog(null, "Thread sleep time set to: " + time + " milliseconds.");
+    }
+    public void run(){
         newFrame = new JFrame("User Run Time");
         newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        runtime = new JLabel("Enter runtime in seconds:");
         runtime.setSize(200, 100);
 
-        runtime = new JLabel("Enter runtime in seconds:");
+        
         input = new JTextField(5);
         button = new JButton("Set Sleep Time");
 
@@ -26,14 +41,10 @@ public class UserRuntime implements ActionListener {
         newFrame.add(button, BorderLayout.SOUTH);
 
         button.addActionListener(this);
+        newFrame.pack();
+        newFrame.setVisible(true);
 
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        time = Long.parseLong(input.getText()) * 1000;
-        newFrame.dispose();
-        JOptionPane.showMessageDialog(null, "Thread sleep time set to: " + time + " milliseconds.");
+        getSleepTime();
     }
 
     public long getSleepTime() {

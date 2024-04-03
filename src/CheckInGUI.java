@@ -14,6 +14,8 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
     private WaitingQueueDisplay queueDis;
     private CheckInDesk desk1, desk2, desk3, desk4;
     private SharedQueue sq;
+    private UserRuntime u;
+    private long a;
     
     public CheckInGUI() {
         this(new CheckInSystem());
@@ -27,6 +29,11 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
    
    
     private void initialise() {
+        u = new UserRuntime();
+        Thread runtime = new Thread(u);
+        a = u.getSleepTime();
+        runtime.start();
+           
 	    // Setting up threads
 	    sq = new SharedQueue();
 	    PassengerSimulator sim = new PassengerSimulator(sq, checkInSystem);
