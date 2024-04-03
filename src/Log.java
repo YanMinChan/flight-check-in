@@ -25,14 +25,41 @@ public class Log {
 		 	fw.close();
 		 }
 		 //message and stop if file not found
-		 catch (FileNotFoundException fnf){
+		 catch (FileNotFoundException fnf) {
 			 System.out.println(filename + " not found ");
 			 System.exit(0);
 		 }
 		 //stack trace here because we don't expect to come here
-		 catch (IOException ioe){
+		 catch (IOException ioe) {
 		    ioe.printStackTrace();
 		    System.exit(1);
 		 }
 	}
+
+    private Log(String logFile) {
+        this.logFile = logFile;
+    }
+
+	public Log getInstance(String logFile) {
+        synchronized(Log.class) {
+            if(instance==null) {
+                instance = new Log(logFile);
+            }
+        }
+        return instance;
+    }
+
+	public void write(String data) throws IOException {
+        PrintWriter out = new PrintWriter (new BufferedWriter(new FileWriter(logFile)));
+        out.write(data);
+    }
+
+	public void close() {
+		try {
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
