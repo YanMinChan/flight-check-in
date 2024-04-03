@@ -24,7 +24,8 @@ public class DeskDisplay extends JPanel implements Observer, Subject {
 		// Print desk action
 		Booking b = desk.getCurrentPassenger();
 		String details = b.getCheckInDetails(b);
-		//Log.write(details);
+        Log logger = Log.getInstance("log.txt");
+        logger.write(details);
 		JTextArea textArea = new JTextArea(2, 20);
 		textArea.setText(details);
 		textArea.setWrapStyleWord(true);

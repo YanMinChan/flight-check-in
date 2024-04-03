@@ -47,7 +47,8 @@ public class SharedQueue implements Subject {
         notifyObservers();
         System.out.println("        Desk " + deskNum + " got: " + b.getPassengerName());
         String log = b.getPassengerName() + " went to desk " + deskNum;
-        //Log.write(log);
+        Log logger = Log.getInstance("log.txt");
+        logger.write(log);
         return b;
     }
     
@@ -56,7 +57,8 @@ public class SharedQueue implements Subject {
     public synchronized void put(Booking b) {
         System.out.println("Put: " + b.getPassengerName());
         String log = b.getPassengerName() + " has joined the queue";
-        //Log.write(log);
+        Log logger = Log.getInstance("log.txt");
+        logger.write(log);
         queue.add(b);
         notifyObservers();
         notifyAll();

@@ -2,31 +2,32 @@
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 
 public class Log {
 	
+	private final String logFile;
 	private static Log instance;
-//	private List<String> logBuffer;
-	private FileWriter writer;
+	private String log;
 	
 	/**
 	 * writes supplied text to file
 	 * @param filename the name of the file to be written to
 	 * @param report the text to be written to the file
 	 */
-	public void writeToFile(String filename, String report) {
+	public void writeLogToFile() {
 	
 		 FileWriter fw;
 		 try {
-		    fw = new FileWriter(filename);
-		    fw.write("The report\n");
-		    fw.write(report);
+		    fw = new FileWriter(logFile);
+		    fw.write("The log:\n");
+		    fw.write(log);
 		 	fw.close();
 		 }
 		 //message and stop if file not found
 		 catch (FileNotFoundException fnf) {
-			 System.out.println(filename + " not found ");
+			 System.out.println(logFile + " not found ");
 			 System.exit(0);
 		 }
 		 //stack trace here because we don't expect to come here
@@ -38,9 +39,10 @@ public class Log {
 
     private Log(String logFile) {
         this.logFile = logFile;
+        this.log = "";
     }
 
-	public Log getInstance(String logFile) {
+	public static Log getInstance(String logFile) {
         synchronized(Log.class) {
             if(instance==null) {
                 instance = new Log(logFile);
@@ -49,17 +51,8 @@ public class Log {
         return instance;
     }
 
-	public void write(String data) throws IOException {
-        PrintWriter out = new PrintWriter (new BufferedWriter(new FileWriter(logFile)));
-        out.write(data);
+	public void write(String data) {
+        log += data + "\n";
     }
-
-	public void close() {
-		try {
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 }

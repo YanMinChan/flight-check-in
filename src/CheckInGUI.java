@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 
 public class CheckInGUI extends JFrame implements ActionListener, Observer 
@@ -51,6 +52,23 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
     	
         setTitle("Check-In");
         setSize(1000, 600);
+        
+        // write all flights details to log when close
+        addWindowListener(new WindowAdapter() {
+        	@Override
+        	public void windowClosing(WindowEvent e) {
+        		// write log of flight details
+        		Log logger = Log.getInstance("log.txt");
+        		for(Map.Entry<String, Flight> f: checkInSystem.getFlightMap().entrySet()) {
+        			String fcode = f.getValue().getFlightCode();
+        			String log = "\n" + checkInSystem.getFlightReport(fcode);
+					//System.out.println(log);
+        			logger.write(log);
+        		}
+        		logger.writeLogToFile();
+        	}
+        });
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         mainPanel = new JPanel();
