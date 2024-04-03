@@ -46,6 +46,8 @@ public class SharedQueue implements Subject {
         Booking b = queue.pollFirst();
         notifyObservers();
         System.out.println("        Desk " + deskNum + " got: " + b.getPassengerName());
+        String log = b.getPassengerName() + " went to desk " + deskNum;
+        //Log.write(log);
         return b;
     }
     
@@ -53,6 +55,8 @@ public class SharedQueue implements Subject {
     // will not wait
     public synchronized void put(Booking b) {
         System.out.println("Put: " + b.getPassengerName());
+        String log = b.getPassengerName() + " has joined the queue";
+        //Log.write(log);
         queue.add(b);
         notifyObservers();
         notifyAll();

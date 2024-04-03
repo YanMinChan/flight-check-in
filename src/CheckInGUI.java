@@ -282,6 +282,7 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
     	CheckInSystem CIsys = new CheckInSystem();
     	CIsys.readFile("bookings.txt", "Booking");
     	CIsys.readFile("flights.txt", "Flight");
+    	CIsys.readFile("baggage.txt", "Baggage");
     	//System.out.println(CIsys.getFlightMap().get("NYDA001").getDest());
     	
     	new CheckInGUI(CIsys);
