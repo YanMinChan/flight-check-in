@@ -13,6 +13,7 @@ public class CheckInSystem {
 	// instance variables
 	HashMap<String, Flight> flightMap;
 	HashMap<String, Booking> bookingMap;
+	private static CheckInSystem checkInSystemInstance;
 
 	public CheckInSystem(){
 		flightMap = new HashMap<String, Flight>();
@@ -372,6 +373,8 @@ public class CheckInSystem {
 		return ret;
 		
 	}
+
+	
 //	public static void main(String[] args){
 
 	 	//Initialize check in system and read booking.txt
@@ -398,4 +401,3 @@ public class CheckInSystem {
 //		System.out.println(RefId);	
 //	}
 }
-

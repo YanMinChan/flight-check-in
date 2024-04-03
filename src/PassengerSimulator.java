@@ -6,12 +6,13 @@ public class PassengerSimulator implements Runnable{
 	// This class reads bookings.txt and simulate passenger
 	
 	// instance variable
-	private SharedQueue queue;
+	private static SharedQueue queue;
 	private CheckInSystem sys;
 	private HashMap<String, Booking> bookingMap;
 	private HashMap<String, Booking> newMap;
 	private List<String> newMapKey;
 	private int passengerCounter = 0;
+	private static PassengerSimulator simulatorInstance;
 	
 	// constructor
 	public PassengerSimulator(SharedQueue queue) {
@@ -65,6 +66,13 @@ public class PassengerSimulator implements Runnable{
 		newMap.remove(key);
 		newMapKey.remove(index);
 	}
+	public Booking getCurrentPassenger() {
+		return queue.getQueue().getLast();
+	}
+
+
+		
+
 	
 	public static void main(String[] args) {
 		SharedQueue sq = new SharedQueue();
