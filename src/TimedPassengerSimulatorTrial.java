@@ -61,7 +61,7 @@ public class TimedPassengerSimulatorTrial implements Runnable {
         queue.setDone();
     }
     
-    public static void main(String[] args) {
+   /*  public static void main(String[] args) {
         SharedQueue sq = new SharedQueue();
         Thread simulator = new Thread(new TimedPassengerSimulatorTrial(sq));
         simulator.start();
@@ -74,4 +74,5 @@ public class TimedPassengerSimulatorTrial implements Runnable {
         desk3.start();
         desk4.start(); // Start desk4
     }
+    */
 }

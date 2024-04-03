@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -52,31 +53,31 @@ public class CheckInSystem {
 	 * Validation for integer year, missing items
 	 * @param filename the name of the input file
 	 */
-	public void readFile(String fileName, String fileType) {
-		try {
-			File f = new File(fileName);
-			Scanner scanner = new Scanner(f);
-			while (scanner.hasNextLine()) {
-				//read first line and process it
-				String inputLine = scanner.nextLine(); 
-				if (inputLine.length() != 0) {//ignored if blank line
-					if (fileType.equals("Booking")){
-						processBooking(inputLine);
-					} else if (fileType.equals("Flight")){
-						processFlight(inputLine);
-					} else if (fileType.equals("Baggage")) {
-						processBaggage(inputLine);
-					}
-				}
-			}
-			scanner.close();
-		}
-		//if the file is not found, stop with system exit
-		catch (FileNotFoundException fnf){
-			 System.out.println( fileName + " not found ");
-			 System.exit(0);
-		 }
-	}
+	public void readFile(InputStream inputStream, String fileType) 
+    {
+        //File f = new File(fileName);
+        Scanner scanner = new Scanner(inputStream);
+        while (scanner.hasNextLine()) {
+            //read first line and process it
+            String inputLine = scanner.nextLine(); 
+            if (!inputLine.isEmpty()) {//ignored if blank line
+                processLine(inputLine, fileType);
+            }
+        }
+        scanner.close();
+        
+    }
+
+    private void processLine(String line, String fileType) {
+        if (fileType.equals("Booking")) {
+            processBooking(line);
+        } else if (fileType.equals("Flight")) {
+            processFlight(line);
+        } else if (fileType.equals("Baggage")) {
+            processBaggage(line);
+        }
+    }
+    
 	
 	/**
 	 * Processes line, extracts data, creates Booking object

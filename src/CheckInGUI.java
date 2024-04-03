@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.InputStream;
 import java.util.*;
 import java.util.Timer;
 
@@ -124,161 +125,28 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
     }
     
     public void actionPerformed(ActionEvent e) {
-//        if (e.getSource() == checkInButton) {
-//            String BookRef = bookingReferenceField.getText();
-//            String LastName = lastNameField.getText();
-//            if (!BookRef.isEmpty()) {
-//                try {
-//                    details = checkInSystem.DetailsByRefID(BookRef,LastName);
-//                    displayDetails(details);
-//
-//                    // Enable the weight and dimension fields
-//                    
-//                    weightField.setEnabled(true);
-//                    dimensionField.setEnabled(true);
-//                    
-//                } catch (Exception ex) {
-//                    JOptionPane.showMessageDialog(this, "Error retrieving booking details: " + ex.getMessage());
-//                }
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Please enter a reference ID.");
-//            }
-//           
-//        } 
-//        else if (e.getSource() == submitBaggageButton) {
-//            String weight = weightField.getText();
-//            String dimension = dimensionField.getText();
-//            String bookRef = bookingReferenceField.getText();
-//            if (!weight.isEmpty() && !dimension.isEmpty()) {
-//                try {
-//                    int weightValue = Integer.parseInt(weight);
-//                    int dimensionValue = Integer.parseInt(dimension);
-//                    dispFees = baggageFees(weightValue,dimensionValue,bookRef);
-//                    JOptionPane.showMessageDialog(this, "Baggage successfully submitted with weight " + weightValue + " and dimension " + dimensionValue + "\n" + "Extra fees to be paid : "+ dispFees);
-//                    detailsArea.append("Extra fees : "+ dispFees + "\n");
-//                    
-//                    // Clear the weight and dimension fields
-//                    weightField.setText("");
-//                    dimensionField.setText("");
-//                    weightField.setEnabled(false);
-//                    dimensionField.setEnabled(false);
-//                    submitBaggageButton.setEnabled(false);
-//                } catch(IllegalBaggageWeightException ibr) {
-//                    JOptionPane.showMessageDialog(this, "Baggage weight is more than 200!");
-//                } catch (NumberFormatException nfe) {
-//                    JOptionPane.showMessageDialog(this, "Invalid weight or dimension value.");
-//                } 
-//            }
-//                else 
-//                {
-//                    JOptionPane.showMessageDialog(this, "Please enter both weight and dimension.");
-//                }
-//            
-//        }
+
     }
     
-//    private double baggageFees(int weightValue,int dimensionValue,String BookRef) throws IllegalBaggageWeightException
-//    {
-//        Baggage bag = new Baggage(dimensionValue, weightValue);
-//        fees = bag.calculateBaggageFee(dimensionValue, weightValue);
-//        checkInSystem.addBaggageDetails(BookRef, dimensionValue, weightValue,fees);
-//        bag.setFee(fees);
-//        
-//        return fees;
-//        
-//    }
-    
-    
-//    private void displayDetails(String details) 
-//    { 
-//        if (details != null && !details.isEmpty()) 
-//        { 
-//            String[] lines = details.split("\n"); 
-//            detailsFrame = new JFrame("Booking Details"); 
-//            detailsArea = new JTextArea(); 
-//            detailsArea.setEditable(false); 
-//            for (String line : lines) 
-//            { 
-//                detailsArea.append(line); 
-//                detailsArea.append("\n"); 
-//            } 
-//            
-//            JScrollPane scrollPane = new JScrollPane(detailsArea); 
-//            detailsFrame.add(scrollPane, BorderLayout.CENTER); 
-//            
-//            JPanel inputPanel = new JPanel(); 
-//            inputPanel.setLayout(new GridLayout(3, 2)); 
-//            
-//            weightLabel = new JLabel("Baggage Weight:", SwingConstants.RIGHT); 
-//            dimensionLabel = new JLabel("Baggage Dimension:", SwingConstants.RIGHT); 
-//            weightField = new JTextField(10); 
-//            dimensionField = new JTextField(10); 
-//            
-//            inputPanel.add(weightLabel); 
-//            inputPanel.add(weightField); 
-//            inputPanel.add(dimensionLabel); 
-//            inputPanel.add(dimensionField); 
-//            
-//            submitBaggageButton = new JButton("Submit Baggage"); 
-//            submitBaggageButton.addActionListener(this); 
-//            inputPanel.add(submitBaggageButton); 
-//            detailsFrame.add(inputPanel, BorderLayout.SOUTH); 
-//            
-//            detailsFrame.setSize(300, 200); 
-//            detailsFrame.setVisible(true);
-//            
-//            // Enable the weight and dimension fields 
-//            weightField.setEnabled(true); 
-//            dimensionField.setEnabled(true); 
-//            } 
-//        else 
-//        { 
-//            JOptionPane.showMessageDialog(this, "No booking details found."); 
-//        } 
-//    }
-    
-//    public void displayQueue(LinkedList<Booking> queue) {
-//        StringBuilder queueDetails = new StringBuilder();
-//        while (!queue.isEmpty()) {
-//            Booking ref = queue.poll();
-//            String Name = ref.getPassengerName();
-//            queueDetails.append(Name).append("\n");
-//        }
-//        if (queueDetails.length() > 0) {
-//            waitingQueuePanel.add(new JLabel(queueDetails.toString()));
-//            validate();
-//        }
-//    }
 
     public void update() {
     	
     }
     
-    public static void main(String[] args){
-         //CheckInSystem checkInSystem = new CheckInSystem();
-         //checkInSystem.readFile("Bookings.txt", "Booking");
-         //checkInSystem.readFile("flights.txt", "Flight");
-         //new CheckInGUI(checkInSystem);
-
-//        SharedQueue sq = new SharedQueue();
-////        Thread simulator = new Thread(new PassengerSimulator(sq));
-////        simulator.start();
-//        Thread desk1 = new Thread(new CheckInDesk(sq, 1));
-//        Thread desk2 = new Thread(new CheckInDesk(sq, 2));
-//        Thread desk3 = new Thread(new CheckInDesk(sq, 3));
-//        //Thread desk4 = new Thread(new CheckInDesk(sq, 4));
-//        desk1.start();
-//        desk2.start();
-//        desk3.start();
-    	
-    	CheckInSystem CIsys = new CheckInSystem();
-    	CIsys.readFile("bookings.txt", "Booking");
-    	CIsys.readFile("flights.txt", "Flight");
-    	CIsys.readFile("baggage.txt", "Baggage");
-    	//System.out.println(CIsys.getFlightMap().get("NYDA001").getDest());
-    	
-    	new CheckInGUI(CIsys);
-     }
+    public static void main(String[] args)
+    {
+         CheckInSystem CIsys = new CheckInSystem();
+        InputStream bookingsInputStream = CheckInGUI.class.getResourceAsStream("/Users/dhanushkumar/Desktop/f21as_cw/bookings.txt");
+        InputStream flightsInputStream = CheckInGUI.class.getResourceAsStream("/Users/dhanushkumar/Desktop/f21as_cw/flights.txt");
+        InputStream baggageInputStream = CheckInGUI.class.getResourceAsStream("/Users/dhanushkumar/Desktop/f21as_cw/baggage.txt");
+    
+        // Call the readFile method for each file type with the corresponding InputStream
+        CIsys.readFile(bookingsInputStream, "Booking");
+        CIsys.readFile(flightsInputStream, "Flight");
+        CIsys.readFile(baggageInputStream, "Baggage");
+    
+        new CheckInGUI(CIsys);
+    }
 
     
 }
