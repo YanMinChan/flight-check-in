@@ -9,7 +9,7 @@ public class SharedQueue implements Subject {
     // instance variables
     private LinkedList<Booking> queue;
     private boolean done;
-    private final long timeLimitMinutes = 10; // 30 minutes time limit
+    private final long timeLimitMinutes = 10; // 10 minutes time limit
     private long startTime;
     
     public SharedQueue() {
@@ -20,16 +20,18 @@ public class SharedQueue implements Subject {
     }
     
     private void startTimer() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                if (!done) {
-                    System.out.println("Time limit exceeded. Stopping simulation.");
-                    Thread.currentThread().interrupt(); // Interrupt the passenger simulator thread
+        Thread timerThread = new Thread(() -> {
+            try {
+                Thread.sleep(timeLimitMinutes * 60 * 1000); // Convert minutes to milliseconds
+                synchronized (this) {
+                    done = true; // Set the time limit flag
+                    System.out.println("Check-in time limit reached. Closing check-in counters.");
                 }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        }, timeLimitMinutes * 1000); // Convert minutes to milliseconds
+        });
+        timerThread.start();
     }
     
     // get passenger in check in desk
