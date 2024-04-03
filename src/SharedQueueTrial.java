@@ -1,12 +1,12 @@
 import java.util.*;
 
-public class SharedQueue {
+public class SharedQueueTrial implements Subject{
     private LinkedList<Booking> queue;
     private boolean done;
-    private final long timeLimitMinutes = 30; // 30 minutes time limit
+    private final long timeLimitMinutes = 10; // 30 minutes time limit
     private long startTime;
 
-    public SharedQueue() {
+    public SharedQueueTrial() {
         queue = new LinkedList<Booking>();
         done = false;
         startTime = System.currentTimeMillis();
@@ -23,7 +23,7 @@ public class SharedQueue {
                     Thread.currentThread().interrupt(); // Interrupt the passenger simulator thread
                 }
             }
-        }, timeLimitMinutes * 60 * 1000); // Convert minutes to milliseconds
+        }, timeLimitMinutes * 1000); // Convert minutes to milliseconds
     }
 
     public synchronized Booking get(int deskNum) {
@@ -36,16 +36,20 @@ public class SharedQueue {
             }
         }
         Booking b = queue.pollFirst();
-        System.out.println("Desk " + deskNum + " got: " + b.getPassengerName());
+        notifyObservers();
+        System.out.println("		Desk " + deskNum + " got: " + b.getPassengerName());
         return b;
     }
 
     public synchronized void put(Booking b) {
         System.out.println("Put: " + b.getPassengerName());
         queue.add(b);
+        notifyObservers();
         notifyAll();
     }
 
+    public LinkedList<Booking> getQueue() {return queue;}
+    
     public void setDone() {
         done = true;
     }
@@ -53,4 +57,26 @@ public class SharedQueue {
     public boolean getDone() {
         return done && queue.isEmpty();
     }
+    
+	public int getPassengerInQueueCount() {
+		return queue.size();
+	}
+    
+	   // implementing subject observer method with GUI
+    private List<Observer> registeredObservers = new LinkedList<Observer>();
+    
+    public void registerObserver(Observer obs) {
+    	registeredObservers.add(obs);
+    }
+    
+	public void removeObserver(Observer obs) {
+		registeredObservers.remove(obs);
+	}
+	
+	public void notifyObservers() {
+		for (Observer obs : registeredObservers)
+			obs.update();
+	}
 }
+
+

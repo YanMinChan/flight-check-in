@@ -33,20 +33,12 @@ public class DeskDisplay extends JPanel implements Observer, Subject {
 	    textArea.setBackground(UIManager.getColor("Label.background"));
 	    textArea.setFont(UIManager.getFont("Label.font"));
 	    textArea.setBorder(UIManager.getBorder("Label.border"));
-//		JLabel label = new JLabel(details);
 		add(textArea);
 		
         revalidate();
         repaint();
+        notifyObservers();
         
-		
-		
-//        Booking currentPassenger = sim.getCurrentPassenger();
-//        if (currentPassenger != null) {
-//            this.setText(cs.CheckInDetails(currentPassenger));
-//            this.revalidate();
-//            this.repaint();
-//    }
     }
     
     // implementing subject observer method with GUI

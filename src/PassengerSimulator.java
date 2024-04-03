@@ -6,7 +6,7 @@ public class PassengerSimulator implements Runnable{
 	// This class reads bookings.txt and simulate passenger
 	
 	// instance variable
-	private static SharedQueue queue;
+	private SharedQueue queue;
 	private CheckInSystem sys;
 	private HashMap<String, Booking> bookingMap;
 	private HashMap<String, Booking> newMap;
@@ -15,15 +15,14 @@ public class PassengerSimulator implements Runnable{
 	private static PassengerSimulator simulatorInstance;
 	
 	// constructor
-	public PassengerSimulator(SharedQueue queue) {
+	public PassengerSimulator(SharedQueue queue, CheckInSystem sys) {
 		this.queue = queue;
+		this.sys = sys;
 	};
 	
 	// set up all hashmap and list needed
 	private void initialise() {
-		// Read bookings.txt
-		sys = new CheckInSystem();
-		sys.readFile("bookings.txt", "Booking");
+		// get booking map
 		bookingMap = sys.getBookingMap();
 		this.notCheckedInMap(bookingMap);
 	}
@@ -81,17 +80,17 @@ public class PassengerSimulator implements Runnable{
 		
 
 	
-	public static void main(String[] args) {
-		SharedQueue sq = new SharedQueue();
-		Thread simulator = new Thread(new PassengerSimulator(sq));
-		simulator.start();
-		Thread desk1 = new Thread(new CheckInDesk(sq, 1));
-		Thread desk2 = new Thread(new CheckInDesk(sq, 2));
-		Thread desk3 = new Thread(new CheckInDesk(sq, 3));
-		//Thread desk4 = new Thread(new CheckInDesk(sq, 4));
-		desk1.start();
-		desk2.start();
-		desk3.start();
-//		desk4.start();
-	}
+//	public static void main(String[] args) {
+//		SharedQueue sq = new SharedQueue();
+//		Thread simulator = new Thread(new PassengerSimulator(sq));
+//		simulator.start();
+//		Thread desk1 = new Thread(new CheckInDesk(sq, 1));
+//		Thread desk2 = new Thread(new CheckInDesk(sq, 2));
+//		Thread desk3 = new Thread(new CheckInDesk(sq, 3));
+//		//Thread desk4 = new Thread(new CheckInDesk(sq, 4));
+//		desk1.start();
+//		desk2.start();
+//		desk3.start();
+////		desk4.start();
+//	}
 }

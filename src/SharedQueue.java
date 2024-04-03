@@ -9,10 +9,27 @@ public class SharedQueue implements Subject {
     // instance variables
     private LinkedList<Booking> queue;
     private boolean done;
+    private final long timeLimitMinutes = 10; // 30 minutes time limit
+    private long startTime;
     
     public SharedQueue() {
         queue = new LinkedList<Booking>();
         done = false;
+        startTime = System.currentTimeMillis();
+        startTimer();
+    }
+    
+    private void startTimer() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (!done) {
+                    System.out.println("Time limit exceeded. Stopping simulation.");
+                    Thread.currentThread().interrupt(); // Interrupt the passenger simulator thread
+                }
+            }
+        }, timeLimitMinutes * 1000); // Convert minutes to milliseconds
     }
     
     // get passenger in check in desk

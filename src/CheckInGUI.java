@@ -24,17 +24,16 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
     }
 
     public CheckInGUI(CheckInSystem checkInSystem) {
-        //this.checkInSystem = checkInSystem;
+        this.checkInSystem = checkInSystem;
         initialise();
         setVisible(true);
     }
    
    
     private void initialise() {
-
 	    // Setting up threads
 	    SharedQueue sq = new SharedQueue();
-	    PassengerSimulator sim = new PassengerSimulator(sq);
+	    PassengerSimulator sim = new PassengerSimulator(sq, checkInSystem);
 	    Thread simulator = new Thread(sim);
 	    simulator.start();
 	    CheckInDesk desk1 = new CheckInDesk(sq, 1);
@@ -69,10 +68,14 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
         desksPanel.setBorder(BorderFactory.createTitledBorder("Check-In Desks"));
 
         // Create Desks 1, 2, 3, 4
-        desksPanel.add(new DeskDisplay(desk1, 1));
-        desksPanel.add(new DeskDisplay(desk2, 2));
-        desksPanel.add(new DeskDisplay(desk3, 3));
-        desksPanel.add(new DeskDisplay(desk4, 4));
+        DeskDisplay dd1 = new DeskDisplay(desk1, 1);
+        DeskDisplay dd2 = new DeskDisplay(desk2, 1);
+        DeskDisplay dd3 = new DeskDisplay(desk3, 1);
+        DeskDisplay dd4 = new DeskDisplay(desk4, 1);
+        desksPanel.add(dd1);
+        desksPanel.add(dd2);
+        desksPanel.add(dd3);
+        desksPanel.add(dd4);
         mainPanel.add(desksPanel);
         
         // Create flights panel
@@ -80,20 +83,15 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
         flightsPanel.setLayout(new GridLayout(1, 3));
         flightsPanel.setBorder(BorderFactory.createTitledBorder("Flights"));
 
-        // Create Flight 1
-        flight1Panel = new JPanel();
-        flight1Panel.setBorder(BorderFactory.createTitledBorder("Flight 1"));
-        flightsPanel.add(flight1Panel);
-
-        // Create Flight 2
-        flight2Panel = new JPanel();
-        flight2Panel.setBorder(BorderFactory.createTitledBorder("Flight 2"));
-        flightsPanel.add(flight2Panel);
-
-        // Create Flight 3
-        flight3Panel = new JPanel();
-        flight3Panel.setBorder(BorderFactory.createTitledBorder("Flight 3"));
-        flightsPanel.add(flight3Panel);
+        // Create Flight 1, 2, 3
+        DeskDisplay[] displays = new DeskDisplay[4];
+        displays[0] = dd1;
+        displays[1] = dd2;
+        displays[2] = dd3;
+        displays[3] = dd4;
+        flightsPanel.add(new FlightDisplay(displays, checkInSystem.getFlightMap().get("NYDA001"), checkInSystem));
+        flightsPanel.add(new FlightDisplay(displays, checkInSystem.getFlightMap().get("LAAA002"), checkInSystem));
+        flightsPanel.add(new FlightDisplay(displays, checkInSystem.getFlightMap().get("LBA003"), checkInSystem));
 
         mainPanel.add(flightsPanel);
 
@@ -280,7 +278,13 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
 //        desk1.start();
 //        desk2.start();
 //        desk3.start();
-    	new CheckInGUI();
+    	
+    	CheckInSystem CIsys = new CheckInSystem();
+    	CIsys.readFile("bookings.txt", "Booking");
+    	CIsys.readFile("flights.txt", "Flight");
+    	//System.out.println(CIsys.getFlightMap().get("NYDA001").getDest());
+    	
+    	new CheckInGUI(CIsys);
      }
 
     

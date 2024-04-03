@@ -366,7 +366,7 @@ public class CheckInSystem {
 		String dest = f.getDest();
 		int pasCount = totalPassenger(flightCode);
 		double flightCap = f.getCapacity()[0];
-		double percentageFull = pasCount/flightCap;
+		double percentageFull = Math.round((pasCount/flightCap)*100*100)/100;
 		
 		ret = flightCode + " " + dest + "\n" + Integer.toString(pasCount) + " checked in of " + String.format("%.0f", flightCap) + "\n" + "Hold is " + Double.toString(percentageFull) + "% full";
 		

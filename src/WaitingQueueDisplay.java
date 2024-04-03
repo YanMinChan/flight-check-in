@@ -33,7 +33,7 @@ public class WaitingQueueDisplay extends JPanel implements Observer{
 		
 		// print passenger details
 		for (Booking b: sq.getQueue()) {
-			details = String.format("%-10s %-30s %-10s %-10s", b.getBookingRef(), b.getPassengerName(), Double.toString(b.getBaggage().getWeight()), Double.toString(b.getBaggage().getDim()));
+			details = String.format("%-10s %-30s %-10s %-10s %-10s", b.getBookingRef(), b.getPassengerName(), Double.toString(b.getBaggage().getWeight()), Double.toString(b.getBaggage().getDim()), b.getFlightCode());
 			label = new JLabel(details);
 			add(label);
 		}
