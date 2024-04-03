@@ -1,7 +1,9 @@
 import javax.swing.*;
-import java.util.Observable;
 
-public class DeskDisplay extends JPanel implements Observer {
+import java.util.LinkedList;
+import java.util.List;
+
+public class DeskDisplay extends JPanel implements Observer, Subject {
 
     private CheckInDesk desk;
     private int deskNumber;
@@ -10,12 +12,34 @@ public class DeskDisplay extends JPanel implements Observer {
     public DeskDisplay(CheckInDesk desk, int deskNumber) {
         this.desk = desk;
         this.deskNumber = deskNumber;
+        desk.registerObserver(this);
         this.setBorder(BorderFactory.createTitledBorder("Desk " +  deskNumber));
     }
 
     @Override
-    public void update() 
-    {
+    public void update() {
+		// remove existing JLabels
+		removeAll();
+		
+		// Print desk action
+		Booking b = desk.getCurrentPassenger();
+		String details = b.getCheckInDetails(b);
+		JTextArea textArea = new JTextArea(2, 20);
+		textArea.setText(details);
+		textArea.setWrapStyleWord(true);
+		textArea.setLineWrap(true);
+		textArea.setEditable(false);
+		textArea.setFocusable(false);
+	    textArea.setBackground(UIManager.getColor("Label.background"));
+	    textArea.setFont(UIManager.getFont("Label.font"));
+	    textArea.setBorder(UIManager.getBorder("Label.border"));
+//		JLabel label = new JLabel(details);
+		add(textArea);
+		
+        revalidate();
+        repaint();
+		
+		
 //        Booking currentPassenger = sim.getCurrentPassenger();
 //        if (currentPassenger != null) {
 //            this.setText(cs.CheckInDetails(currentPassenger));
@@ -23,4 +47,20 @@ public class DeskDisplay extends JPanel implements Observer {
 //            this.repaint();
 //    }
     }
+    
+    // implementing subject observer method with GUI
+    private List<Observer> registeredObservers = new LinkedList<Observer>();
+    
+    public void registerObserver(Observer obs) {
+    	registeredObservers.add(obs);
+    }
+    
+	public void removeObserver(Observer obs) {
+		registeredObservers.remove(obs);
+	}
+	
+	public void notifyObservers() {
+		for (Observer obs : registeredObservers)
+			obs.update();
+	}
 }

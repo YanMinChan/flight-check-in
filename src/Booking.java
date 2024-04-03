@@ -48,7 +48,16 @@ public class Booking {
 		return Name[Name.length-1];
 	}
 
-	
+	public String getCheckInDetails(Booking b) {
+		String ret = "";
+		String name = b.getPassengerName();
+		double weight = b.getBaggage().getWeight();
+		double fees = b.getBaggage().getFee();
+		
+		ret = name + " is dropping off 1 bag of " + Double.toString(weight) + "kg. A baggage fee of £" + Double.toString(fees) + " is due.";
+		
+		return ret;
+	}
 	
 
 }
