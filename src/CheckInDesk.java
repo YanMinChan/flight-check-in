@@ -13,7 +13,7 @@ public class CheckInDesk implements Runnable{
 		// while there are still passenger in queue, continue check in
 		while(!queue.getDone()) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

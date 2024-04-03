@@ -1,26 +1,26 @@
 import javax.swing.*;
 import java.util.Observable;
 
-public class DeskDisplay extends JLabel implements Observer {
+public class DeskDisplay extends JPanel implements Observer {
 
-    private PassengerSimulator sim;
+    private CheckInDesk desk;
     private int deskNumber;
     CheckInSystem cs;
 
-    public DeskDisplay(PassengerSimulator sim, int deskNumber) 
-    {
-        this.sim = sim;
+    public DeskDisplay(CheckInDesk desk, int deskNumber) {
+        this.desk = desk;
         this.deskNumber = deskNumber;
+        this.setBorder(BorderFactory.createTitledBorder("Desk " +  deskNumber));
     }
 
     @Override
     public void update() 
     {
-        Booking currentPassenger = sim.getCurrentPassenger();
-        if (currentPassenger != null) {
-            this.setText(cs.CheckInDetails(currentPassenger));
-            this.revalidate();
-            this.repaint();
-    }
+//        Booking currentPassenger = sim.getCurrentPassenger();
+//        if (currentPassenger != null) {
+//            this.setText(cs.CheckInDetails(currentPassenger));
+//            this.revalidate();
+//            this.repaint();
+//    }
     }
 }

@@ -17,11 +17,6 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
     private JFrame detailsFrame;
     private JTextArea detailsArea;
     private WaitingQueueDisplay queueDis;
-    private PassengerSimulator sim;
-    private SharedQueue queue;
-    private DeskDisplay desk1Display;
-    private DeskDisplay desk2Display;
-    private DeskDisplay desk3Display;
     private Container desksPanel;
     
     public CheckInGUI() {
@@ -32,71 +27,29 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
         //this.checkInSystem = checkInSystem;
         initialise();
         setVisible(true);
-         // Create Desks 1 and 2
-        desk1Panel = new JPanel();
-        desk1Panel.setBorder(BorderFactory.createTitledBorder("Desk 1"));
-        desk1Display = new DeskDisplay(sim, 1);
-        desk1Panel.add(desk1Display);
-        desksPanel.add(desk1Panel);
-
-        desk2Panel = new JPanel();
-        desk2Panel.setBorder(BorderFactory.createTitledBorder("Desk 2"));
-        desk2Display = new DeskDisplay(sim, 2);
-        desk2Panel.add(desk2Display);
-        desksPanel.add(desk2Panel);
-
-        // Create Desks 3 and 4
-        desk3Panel = new JPanel();
-        desk3Panel.setBorder(BorderFactory.createTitledBorder("Desk 3"));
-        desk3Display = new DeskDisplay(sim, 3);
-        desk3Panel.add(desk3Display);
-        desksPanel.add(desk3Panel);
-
-        add(desksPanel, BorderLayout.CENTER);
     }
    
    
     private void initialise() {
+
+	    // Setting up threads
+	    SharedQueue sq = new SharedQueue();
+	    PassengerSimulator sim = new PassengerSimulator(sq);
+	    Thread simulator = new Thread(sim);
+	    simulator.start();
+	    CheckInDesk desk1 = new CheckInDesk(sq, 1);
+	    CheckInDesk desk2 = new CheckInDesk(sq, 2);
+	    CheckInDesk desk3 = new CheckInDesk(sq, 3);
+	    CheckInDesk desk4 = new CheckInDesk(sq, 4);
+	    Thread tdesk1 = new Thread(desk1);
+	    Thread tdesk2 = new Thread(desk2);
+	    Thread tdesk3 = new Thread(desk3);
+	    Thread tdesk4 = new Thread(desk4);
+	    tdesk1.start();
+	    tdesk2.start();
+	    tdesk3.start();
+	    tdesk4.start();
     	
-        	// Create desks panel
-    desksPanel = new JPanel();
-    desksPanel.setLayout(new GridLayout(2, 2));
-    ((JComponent) desksPanel).setBorder(BorderFactory.createTitledBorder("Check-In Desks"));
-
-    // Setting up threads
-    queue = new SharedQueue();
-    sim = new PassengerSimulator(queue);
-    Thread simulator = new Thread(sim);
-    simulator.start();
-    Thread desk1 = new Thread(new CheckInDesk(queue, 1));
-    Thread desk2 = new Thread(new CheckInDesk(queue, 2));
-    Thread desk3 = new Thread(new CheckInDesk(queue, 3));
-    desk1.start();
-    desk2.start();
-    desk3.start();
-
-    desk1Panel = new JPanel();
-        desk1Panel.setBorder(BorderFactory.createTitledBorder("Desk 1"));
-        desk1Display = new DeskDisplay(sim, 1);
-        desk1Panel.add(desk1Display);
-        desksPanel.add(desk1Panel);
-
-        desk2Panel = new JPanel();
-        desk2Panel.setBorder(BorderFactory.createTitledBorder("Desk 2"));
-        desk2Display = new DeskDisplay(sim, 2);
-        desk2Panel.add(desk2Display);
-        desksPanel.add(desk2Panel);
-
-        // Create Desks 3 and 4
-        desk3Panel = new JPanel();
-        desk3Panel.setBorder(BorderFactory.createTitledBorder("Desk 3"));
-        desk3Display = new DeskDisplay(sim, 3);
-        desk3Panel.add(desk3Display);
-        desksPanel.add(desk3Panel);
-
-        add(desksPanel, BorderLayout.CENTER);
-    	
-        //this.checkInSystem = checkInSystem;
         setTitle("Check-In");
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,44 +58,23 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
         mainPanel.setLayout(new GridLayout(3, 1));
 
         // Create waiting queue panel
-        queueDis = new WaitingQueueDisplay(queue);
+        queueDis = new WaitingQueueDisplay(sq);
         JScrollPane waitingqscrollpanel = new JScrollPane(queueDis);
         waitingqscrollpanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         mainPanel.add(waitingqscrollpanel);
-//        waitingQueuePanel = new JPanel();
-//        waitingQueuePanel.setLayout(new BoxLayout(waitingQueuePanel, BoxLayout.Y_AXIS));
-//        waitingQueuePanel.setBorder(BorderFactory.createTitledBorder("Waiting Queue"));
-//      
-//
-//        JScrollPane waitingqscrollpanel = new JScrollPane(waitingQueuePanel);
-//        waitingqscrollpanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        
-//        mainPanel.add(waitingqscrollpanel);
       
         // Create desks panel
         JPanel desksPanel = new JPanel();
         desksPanel.setLayout(new GridLayout(2, 2));
         desksPanel.setBorder(BorderFactory.createTitledBorder("Check-In Desks"));
 
-        // Create Desks 1 and 2
-        desk1Panel = new JPanel();
-        desk1Panel.setBorder(BorderFactory.createTitledBorder("Desk 1"));
-        desksPanel.add(desk1Panel);
-
-        desk2Panel = new JPanel();
-        desk2Panel.setBorder(BorderFactory.createTitledBorder("Desk 2"));
-        desksPanel.add(desk2Panel);
-
-        // Create Desks 3 and 4
-        desk3Panel = new JPanel();
-        desk3Panel.setBorder(BorderFactory.createTitledBorder("Desk 3"));
-        desksPanel.add(desk3Panel);
-
-        desk4Panel = new JPanel();
-        desk4Panel.setBorder(BorderFactory.createTitledBorder("Desk 4"));
-        desksPanel.add(desk4Panel);
-
+        // Create Desks 1, 2, 3, 4
+        desksPanel.add(new DeskDisplay(desk1, 1));
+        desksPanel.add(new DeskDisplay(desk2, 2));
+        desksPanel.add(new DeskDisplay(desk3, 3));
+        desksPanel.add(new DeskDisplay(desk4, 4));
         mainPanel.add(desksPanel);
+        
         // Create flights panel
         JPanel flightsPanel = new JPanel();
         flightsPanel.setLayout(new GridLayout(1, 3));
