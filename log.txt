@@ -1,80 +1,75 @@
 The log:
-Charlotte Harris has joined the queue
-Charlotte Harris went to desk 4
-Charlotte Harris is dropping off 1 bag of 73.0kg. A baggage fee of £920.0 is due.
-David Lee has joined the queue
-David Lee went to desk 1
-David Lee is dropping off 1 bag of 54.0kg. A baggage fee of £520.0 is due.
-Aiden Brown has joined the queue
-Aiden Brown went to desk 3
-Aiden Brown is dropping off 1 bag of 8.0kg. A baggage fee of £0.0 is due.
-Sophia Lee has joined the queue
-Sophia Lee went to desk 2
-Sophia Lee is dropping off 1 bag of 6.0kg. A baggage fee of £620.0 is due.
-James Taylor has joined the queue
+Samantha Martinez has joined the queue
+Samantha Martinez went to desk 4
+Samantha Martinez is dropping off 1 bag of 29.0kg. A baggage fee of £300.0 is due.
+William Clark has joined the queue
+William Clark went to desk 1
+William Clark is dropping off 1 bag of 37.0kg. A baggage fee of £140.0 is due.
 Sarah Taylor has joined the queue
-Sophia Lee boarded flight LAAA002
-James Taylor went to desk 2
-James Taylor is dropping off 1 bag of 13.0kg. A baggage fee of £240.0 is due.
-Samuel Anderson has joined the queue
-Charlotte Harris boarded flight NYDA001
-Sarah Taylor went to desk 4
-Emma Johnson has joined the queue
-Sarah Taylor is dropping off 1 bag of 6.0kg. A baggage fee of £0.0 is due.
-James Taylor boarded flight LBA003
-Samuel Anderson went to desk 2
-Samuel Anderson is dropping off 1 bag of 78.0kg. A baggage fee of £1580.0 is due.
-Jane Smith has joined the queue
-David Lee boarded flight LAAA002
-Emma Johnson went to desk 1
-Emma Johnson is dropping off 1 bag of 79.0kg. A baggage fee of £1340.0 is due.
-Aiden Brown boarded flight NYDA001
-Jane Smith went to desk 3
-Jane Smith is dropping off 1 bag of 7.0kg. A baggage fee of £740.0 is due.
-Samantha Hernandez has joined the queue
-Emily White has joined the queue
-Benjamin Martinez has joined the queue
-Emma Johnson boarded flight LBA003
-Samantha Hernandez went to desk 1
-Samantha Hernandez is dropping off 1 bag of 56.0kg. A baggage fee of £880.0 is due.
-Sarah Taylor boarded flight NYDA001
-Emily White went to desk 4
-Emily White is dropping off 1 bag of 59.0kg. A baggage fee of £1080.0 is due.
-Samuel Anderson boarded flight LAAA002
-Desk 2 closed!
+Sarah Taylor went to desk 3
+Sarah Taylor is dropping off 1 bag of 8.0kg. A baggage fee of £20.0 is due.
+Matthew Thompson has joined the queue
+Matthew Thompson went to desk 2
+Matthew Thompson is dropping off 1 bag of 11.0kg. A baggage fee of £480.0 is due.
 Joseph Wilson has joined the queue
-William Brown has joined the queue
-Jane Smith boarded flight LAAA002
-Desk 3 closed!
-Samantha Hernandez boarded flight LBA003
-Benjamin Martinez went to desk 1
-Benjamin Martinez is dropping off 1 bag of 37.0kg. A baggage fee of £720.0 is due.
-Nicholas White has joined the queue
-Emily White boarded flight LBA003
-Desk 4 closed!
+David Lee has joined the queue
+Sarah Taylor boarded flight NYDA001
+Joseph Wilson went to desk 3
+Joseph Wilson is dropping off 1 bag of 54.0kg. A baggage fee of £1100.0 is due.
+Samantha Martinez boarded flight LBA003
+David Lee went to desk 4
+David Lee is dropping off 1 bag of 67.0kg. A baggage fee of £900.0 is due.
+Joseph Wright has joined the queue
+William Clark boarded flight LAAA002
+Joseph Wright went to desk 1
+Joseph Wright is dropping off 1 bag of 6.0kg. A baggage fee of £600.0 is due.
+Joseph Wilson boarded flight NYDA001
+Samuel Anderson has joined the queue
+Samuel Anderson went to desk 3
+Samuel Anderson is dropping off 1 bag of 55.0kg. A baggage fee of £780.0 is due.
+Victoria Taylor has joined the queue
+Emily Davis has joined the queue
+Matthew Thompson boarded flight LBA003
+Desk 2 closed!
+Emma Johnson has joined the queue
+Eve Brown has joined the queue
+Joseph Wright boarded flight LAAA002
+Victoria Taylor went to desk 1
+Victoria Taylor is dropping off 1 bag of 46.0kg. A baggage fee of £480.0 is due.
 Daniel Garcia has joined the queue
+David Lee boarded flight LAAA002
+Emily Davis went to desk 4
+Emily Davis is dropping off 1 bag of 44.0kg. A baggage fee of £860.0 is due.
+Bob Williams has joined the queue
+Victoria Taylor boarded flight LBA003
+Emma Johnson went to desk 1
+Emma Johnson is dropping off 1 bag of 42.0kg. A baggage fee of £960.0 is due.
+Emily Davis boarded flight LAAA002
+Desk 4 closed!
+Samuel Anderson boarded flight LAAA002
+Desk 3 closed!
+Olivia Garcia has joined the queue
 
 Flight Report for NYDA001:
-Total Passengers: 6
-Total Weight: 240
-Total Volume: 102
-Total Baggage Fees: 1980
-Is Capacity Exceeded: true
+Total Passengers: 5
+Total Weight: 191
+Total Volume: 150
+Total Baggage Fees: 1460
+Is Capacity Exceeded: false
 
 
 Flight Report for LBA003:
-Total Passengers: 8
-Total Weight: 402
-Total Volume: 239
-Total Baggage Fees: 5060
-Is Capacity Exceeded: true
+Total Passengers: 7
+Total Weight: 220
+Total Volume: 196
+Total Baggage Fees: 2220
+Is Capacity Exceeded: false
 
 
 Flight Report for LAAA002:
-Total Passengers: 7
-Total Weight: 288
-Total Volume: 257
-Total Baggage Fees: 4380
+Total Passengers: 8
+Total Weight: 356
+Total Volume: 209
+Total Baggage Fees: 3740
 Is Capacity Exceeded: true
 
-David Harris has joined the queue

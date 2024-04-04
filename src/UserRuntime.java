@@ -17,9 +17,6 @@ public class UserRuntime implements ActionListener, Runnable {
     public UserRuntime(CheckInSystem sys) {
     	this.sys = sys;
     }
-    public JFrame getNewFrame() {
-        return newFrame;
-    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
