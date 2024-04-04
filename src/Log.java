@@ -18,9 +18,8 @@ public class Log {
 	 */
 	public void writeLogToFile() {
 	
-		 FileWriter fw;
-		 try {
-		    fw = new FileWriter(logFile);
+		 
+		 try (FileWriter fw = new FileWriter("log.txt")){
 		    fw.write("The log:\n");
 		    fw.write(log);
 		 	fw.close();

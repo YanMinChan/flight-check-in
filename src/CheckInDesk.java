@@ -45,11 +45,16 @@ public class CheckInDesk implements Runnable, Subject{
 			b = queue.get(deskNum);
 			b.setCheckIn(true);
 			notifyObservers();
+			// passenger are checking in
 			try {
 				Random r = new Random();
                 // Randomized passenger simulating time between 1 to 10 minutes
                 int checkInTime = r.nextInt(3) + 1;
 				Thread.sleep(checkInTime * 1000);
+		        String log = b.getPassengerName() + " boarded flight " + b.getFlightCode();
+//		        System.out.println(log);
+		        Log logger = Log.getInstance("log.txt");
+		        logger.write(log);
 			} catch (InterruptedException e) {
 				String notice = "Desk closed!";
 			}

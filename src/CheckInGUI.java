@@ -30,7 +30,7 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
    
    
     private void initialise() {
-        u = new UserRuntime();
+        u = new UserRuntime(checkInSystem);
         Thread runtime = new Thread(u);
         a = u.getSleepTime();
         runtime.start();
@@ -133,20 +133,20 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
     	
     }
     
-    public static void main(String[] args)
-    {
-         CheckInSystem CIsys = new CheckInSystem();
-        InputStream bookingsInputStream = CheckInGUI.class.getResourceAsStream("/Users/dhanushkumar/Desktop/f21as_cw/bookings.txt");
-        InputStream flightsInputStream = CheckInGUI.class.getResourceAsStream("/Users/dhanushkumar/Desktop/f21as_cw/flights.txt");
-        InputStream baggageInputStream = CheckInGUI.class.getResourceAsStream("/Users/dhanushkumar/Desktop/f21as_cw/baggage.txt");
-    
-        // Call the readFile method for each file type with the corresponding InputStream
-        CIsys.readFile(bookingsInputStream, "Booking");
-        CIsys.readFile(flightsInputStream, "Flight");
-        CIsys.readFile(baggageInputStream, "Baggage");
-    
-        new CheckInGUI(CIsys);
-    }
+//    public static void main(String[] args)
+//    {
+//         CheckInSystem CIsys = new CheckInSystem();
+//        InputStream bookingsInputStream = CheckInGUI.class.getResourceAsStream("/Users/dhanushkumar/Desktop/f21as_cw/bookings.txt");
+//        InputStream flightsInputStream = CheckInGUI.class.getResourceAsStream("/Users/dhanushkumar/Desktop/f21as_cw/flights.txt");
+//        InputStream baggageInputStream = CheckInGUI.class.getResourceAsStream("/Users/dhanushkumar/Desktop/f21as_cw/baggage.txt");
+//    
+//        // Call the readFile method for each file type with the corresponding InputStream
+//        CIsys.readFile(bookingsInputStream, "Booking");
+//        CIsys.readFile(flightsInputStream, "Flight");
+//        CIsys.readFile(baggageInputStream, "Baggage");
+//    
+//        new CheckInGUI(CIsys);
+//    }
 
     
 }

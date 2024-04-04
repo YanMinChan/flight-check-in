@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Map;
 
 public class UserRuntime implements ActionListener, Runnable {
     private JLabel runtime;
@@ -9,10 +12,10 @@ public class UserRuntime implements ActionListener, Runnable {
     private JTextField input;
     private JButton button;
     private long time;
+    private CheckInSystem sys;
 
-    public UserRuntime() {
-       
-
+    public UserRuntime(CheckInSystem sys) {
+    	this.sys = sys;
     }
     public JFrame getNewFrame() {
         return newFrame;
@@ -26,6 +29,23 @@ public class UserRuntime implements ActionListener, Runnable {
     }
     public void run(){
         newFrame = new JFrame("User Run Time");
+        
+        // write all flights details to log when close
+        
+        newFrame.addWindowListener(new WindowAdapter() {
+        	@Override
+        	public void windowClosing(WindowEvent e) {
+        		// write log of flight details
+        		Log logger = Log.getInstance("log.txt");
+        		for(Map.Entry<String, Flight> f: sys.getFlightMap().entrySet()) {
+        			String fcode = f.getValue().getFlightCode();
+        			String log = "\n" + sys.getFlightReport(fcode);
+        			logger.write(log);
+        		}
+        		logger.writeLogToFile();
+        	}
+        });
+        
         newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         runtime = new JLabel("Enter runtime in seconds:");
         runtime.setSize(200, 100);
