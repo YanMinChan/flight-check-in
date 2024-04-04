@@ -1,6 +1,9 @@
 import java.util.*;
 
 public class PassengerSimulator implements Runnable {
+	// This class reads bookings.txt and simulate passenger
+	
+	// instance variable
     private SharedQueue queue;
     private CheckInSystem sys;
     private HashMap<String, Booking> bookingMap;
@@ -9,16 +12,20 @@ public class PassengerSimulator implements Runnable {
     private long startTime;
     private final long timeLimitMinutes = 30; // 30 minutes time limit
     
+    
+    // constructor
     public PassengerSimulator(SharedQueue queue, CheckInSystem sys) {
         this.queue = queue;
         this.sys = sys;
     }
     
+    // set up all hashmap and list needed
     private void initialise() {
         bookingMap = sys.getBookingMap();
         this.notCheckedInMap(bookingMap);
     }
     
+    // create a new hashmap that contains passenger that had not check in and its key list
     private void notCheckedInMap(HashMap<String, Booking> oriMap){
         newMap = new HashMap<String, Booking>();
         for (Map.Entry<String, Booking> b: oriMap.entrySet()) {
@@ -29,17 +36,11 @@ public class PassengerSimulator implements Runnable {
         newMapKey = new ArrayList<String>(newMap.keySet());
     }
     
-    private boolean isTimeLimitExceeded() {
-        long elapsedTime = System.currentTimeMillis() - startTime;
-        long elapsedTimeMinutes = elapsedTime / (1000 * 60); // Convert milliseconds to minutes
-        return elapsedTimeMinutes >= timeLimitMinutes;
-    }
-    
     public void run() {
         this.initialise();
         Random r = new Random();
-        startTime = System.currentTimeMillis(); // Start time
         
+     // continue when there are still passenger that haven't check in
         while (!newMap.isEmpty()) {
             try {
                 // Randomized passenger simulating time between 1 to 10 minutes
@@ -49,9 +50,6 @@ public class PassengerSimulator implements Runnable {
                 e.printStackTrace();
             }
             generatePassenger();
-        }
-        if (isTimeLimitExceeded()) {
-            System.out.println("Time limit reached. Stopping simulation.");
         }
         queue.setDone();
     }
