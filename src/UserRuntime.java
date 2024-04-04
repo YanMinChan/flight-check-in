@@ -25,7 +25,7 @@ public class UserRuntime implements ActionListener, Runnable {
     public void actionPerformed(ActionEvent e) {
         time = Long.parseLong(input.getText()) * 1000;
         newFrame.dispose();
-        JOptionPane.showMessageDialog(null, "Thread sleep time set to: " + time + " milliseconds.");
+        
     }
     public void run(){
         newFrame = new JFrame("User Run Time");
