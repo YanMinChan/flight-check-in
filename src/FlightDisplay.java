@@ -39,19 +39,8 @@ public class FlightDisplay extends JPanel implements Observer{
 	    removeAll();
 	    add(textArea);
 		
-		
-//		for (Flight f: s.getQueue()) {
-//			details = String.format("%-10s %-30s", f.getFlightCode(), f.getDest());
-//			label = new JLabel(details);
-//			add(label);
-//		}
-		
         revalidate();
         repaint();
         
-//		if (queueDetails.length() > 0) {
-//			this.add(new JLabel(queueDetails.toString()));
-//
-//      }  
 	}
 }
