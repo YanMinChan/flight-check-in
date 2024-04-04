@@ -16,9 +16,7 @@ public class Log {
 	 * @param filename the name of the file to be written to
 	 * @param report the text to be written to the file
 	 */
-	public void writeLogToFile() {
-	
-		 
+	public void writeLogToFile() { 
 		 try (FileWriter fw = new FileWriter("log.txt")){
 		    fw.write("The log:\n");
 		    fw.write(log);

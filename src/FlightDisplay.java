@@ -7,7 +7,6 @@ import javax.swing.UIManager;
 public class FlightDisplay extends JPanel implements Observer{
     
 	// instance variable
-	//private FlightSharedQueue s;
 	private DeskDisplay[] deskDiss;
 	private Flight f;
 	private CheckInSystem sys;
@@ -23,11 +22,8 @@ public class FlightDisplay extends JPanel implements Observer{
     	this.setBorder(BorderFactory.createTitledBorder("Flight " + f.getFlightCode() + " " + f.getDest()));
     }
     
-    
+    // show current hold of flight
     public void update() {
-
-    	
-	
 		// get flight details
 		String details = sys.FlightDetails(f);
 		JTextArea textArea = new JTextArea(2, 30);
