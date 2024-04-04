@@ -32,7 +32,7 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
     private void initialise() {
         u = new UserRuntime(checkInSystem);
         Thread runtime = new Thread(u);
-        a = u.getSleepTime();
+        a = u.getTime();
         runtime.start();
            
 	    // Setting up threads
