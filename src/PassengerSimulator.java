@@ -9,8 +9,6 @@ public class PassengerSimulator implements Runnable {
     private HashMap<String, Booking> bookingMap;
     private HashMap<String, Booking> newMap;
     private List<String> newMapKey;
-    private long startTime;
-    private final long timeLimitMinutes = 30; // 30 minutes time limit
     
     
     // constructor
