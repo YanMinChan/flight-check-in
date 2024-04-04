@@ -9,10 +9,8 @@ public class SharedQueue implements Subject {
     // instance variables
     private LinkedList<Booking> queue;
     private boolean done;
-  //  private boolean timeOut;
-//    private final long timeLimitMinutes = 10; // 10 minutes time limit
-//    private long startTime;
-    
+
+    // constructor
     public SharedQueue() {
         queue = new LinkedList<Booking>();
         done = false;
@@ -80,18 +78,4 @@ public class SharedQueue implements Subject {
 		for (Observer obs : registeredObservers)
 			obs.update();
 	}
-    
-//    public static void main(String[] args) {
-//        SharedQueue sq = new SharedQueue();
-//        Thread simulator = new Thread(new PassengerSimulator(sq));
-//        simulator.start();
-//        Thread desk1 = new Thread(new CheckInDesk(sq, 1));
-//        Thread desk2 = new Thread(new CheckInDesk(sq, 2));
-//        Thread desk3 = new Thread(new CheckInDesk(sq, 3));
-//        Thread desk4 = new Thread(new CheckInDesk(sq, 4));
-//        desk1.start();
-//        desk2.start();
-//        desk3.start();
-//        desk4.start(); // Start desk4
-//    }
 }
