@@ -28,7 +28,7 @@ public class UserRuntime implements ActionListener, Runnable {
         
     }
     public void run(){
-        newFrame = new JFrame("User Run Time");
+        newFrame = new JFrame("Run Time");
         
         // write all flights details to log when close
         
@@ -52,7 +52,7 @@ public class UserRuntime implements ActionListener, Runnable {
 
         
         input = new JTextField(5);
-        button = new JButton("Set Sleep Time");
+        button = new JButton("Set Run Time");
 
         button.addActionListener(this);
 
@@ -64,10 +64,10 @@ public class UserRuntime implements ActionListener, Runnable {
         newFrame.pack();
         newFrame.setVisible(true);
 
-        getSleepTime();
+        getTime();
     }
 
-    public long getSleepTime() {
+    public long getTime() {
         return time;
     }
 }
