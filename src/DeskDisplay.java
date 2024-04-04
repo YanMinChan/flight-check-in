@@ -8,7 +8,6 @@ public class DeskDisplay extends JPanel implements Observer, Subject {
 	// instance variable
     private CheckInDesk desk;
     private int deskNumber;
-    CheckInSystem cs;
 
     // constructor
     public DeskDisplay(CheckInDesk desk, int deskNumber) {
