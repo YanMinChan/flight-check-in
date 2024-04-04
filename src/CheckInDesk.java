@@ -5,22 +5,23 @@ import java.util.Random;
 public class CheckInDesk implements Runnable, Subject{
 	// this class gets passenger from queue and let them check in
 	
+	// instance variable
 	private SharedQueue queue;
 	private int deskNum;
 	private Booking b;
 	private boolean timeOut;
-	private long startTime;
     private int timeLimit;
 	
+    // Constructor
 	public CheckInDesk(SharedQueue queue, int deskNum, int timeLimit) {
 		this.queue = queue;
 		this.deskNum = deskNum;
 		this.timeLimit = timeLimit;
 		timeOut = false;
 		startTimer();
-		startTime = System.currentTimeMillis();
 	}
 	
+	// Start desk countdown timer
     private void startTimer() {
         Thread timerThread = new Thread(() -> {
             try {
@@ -67,6 +68,7 @@ public class CheckInDesk implements Runnable, Subject{
 		}
 	}
 	
+	// Return passenger checking in the desk currently
 	public Booking getCurrentPassenger(){
 		return b;
 	}
