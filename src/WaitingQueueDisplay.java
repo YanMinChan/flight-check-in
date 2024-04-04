@@ -40,10 +40,5 @@ public class WaitingQueueDisplay extends JPanel implements Observer{
 		
         revalidate();
         repaint();
-		
-//		if (queueDetails.length() > 0) {
-//			this.add(new JLabel(queueDetails.toString()));
-//
-//      }  
 	}
 }

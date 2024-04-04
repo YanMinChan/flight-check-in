@@ -173,7 +173,7 @@ public class CheckInSystem {
 
 	/**
 	 * Processes line, extracts data, creates Baggage object
-	 * and adds to list
+	 * and adds to the respective booking
 	 * Checks for non-numeric capacity and missing items
 	 * @param line the line to be processed
 	 */
