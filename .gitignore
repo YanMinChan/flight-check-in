@@ -1,17 +1,10 @@
-/Baggage.class
-/Booking.class
-/CheckInSystem.class
-/GUI.class
-/CheckInGUI.class
-/IllegalBaggageWeight.class
-/CheckInGUI$1.class
-/CheckInManager.class
-/Flight.class
-/IllegalBookingReference.class
-/BaggageTest.class
-/FlightTest.class
-/IllegalBookingReferenceException.class
-/IllegalBaggageWeightException.class
-/CheckinSystemTest.class
-/IllegalCapacityException.class
-/Main.class
+# Ignore personal configs
+.vscode
+.settings
+.DS_Store
+.classpath
+.project
+
+# Ignore generated .txt files
+log.txt
+report.txt
