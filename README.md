@@ -1,10 +1,10 @@
 # flight-check-in
 Using Java Thread and Swing to simulate passenger checking-in flights. Also creates an excutable jar file for the simulation.
 
-- A dialog prompting user to enter desk runtime.
-![](./images/runtime-gui.png)
-- The main GUI showing the simulation
-![](./images/main-gui.png)
+| Runtime dialog | Main GUI |
+|----------------|----------|
+|![](./images/runtime-gui.png)|![](./images/main-gui.png)|
+
 - A running simulation
 ![](./images/check-in-demo.mp4)
 ## Getting started
