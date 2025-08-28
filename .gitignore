@@ -12,7 +12,6 @@ report.txt
 # Ignore some dir
 /lib
 /bin
-/data
 
 # Ignore output
 *.jar
