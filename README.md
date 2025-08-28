@@ -24,12 +24,16 @@ Below are the guides for running it through a terminal.
     ```sh
     git clone https://github.com/YanMinChan/flight-check-in.git
     ```
-2. Compile and build the application
+2. Change into project directory
+    ```sh
+    cd flight-check-in
+    ```
+3. Compile and build the application
     ```sh
     javac -cp <your-junit.jar> -d bin\ src\*.java
     jar cfm check-in-kiosk.jar manifest.txt -C bin . -C data .
     ```
-3. Run the `jar` file
+4. Run the `jar` file
     ```sh
     java -jar check-in-kiosk.jar
     ```
