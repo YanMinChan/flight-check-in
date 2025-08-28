@@ -32,7 +32,7 @@ public class UserRuntime implements ActionListener{
     }
 
     public void initialise(){
-        dialog = new JDialog(owner,"Run Time",true);
+        dialog = new JDialog(owner,"Run Time",true); // modal set true to pause main GUI until input received
         runtime = new JLabel("Enter runtime in seconds");
 
         JPanel inputPanel = new JPanel();
