@@ -6,6 +6,7 @@ Using Java Thread and Swing to simulate passenger checking-in flights. Also crea
 |Main GUI        |![](./images/main-gui.png)|
 
 - A running simulation
+
 https://github.com/user-attachments/assets/8608b686-5596-4f03-969f-daefe166d189
 
 ## Getting started
