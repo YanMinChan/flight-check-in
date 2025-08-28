@@ -8,3 +8,11 @@
 # Ignore generated .txt files
 log.txt
 report.txt
+
+# Ignore some dir
+/lib
+/bin
+/data
+
+# Ignore output
+*.jar
