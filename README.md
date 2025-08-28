@@ -6,7 +6,9 @@ Using Java Thread and Swing to simulate passenger checking-in flights. Also crea
 |Main GUI        |![](./images/main-gui.png)|
 
 - A running simulation
-![](./images/check-in-demo.mp4)
+
+https://github.com/user-attachments/assets/8608b686-5596-4f03-969f-daefe166d189
+
 ## Getting started
 If you are running it in the Eclipse IDE pretty much everything is available. Just clone and move the `src\` and `data\` to your project.
 
