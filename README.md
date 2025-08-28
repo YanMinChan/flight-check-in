@@ -3,7 +3,7 @@ Using Java Thread and Swing to simulate passenger checking-in flights. Also crea
 
 | Runtime dialog |![](./images/runtime-gui.png)|
 |----------------|-----------------------------|
-|Main GUI        ||![](./images/main-gui.png)|
+|Main GUI        |![](./images/main-gui.png)|
 
 - A running simulation
 ![](./images/check-in-demo.mp4)
