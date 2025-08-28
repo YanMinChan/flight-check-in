@@ -16,8 +16,8 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
     private CheckInDesk desk1, desk2, desk3, desk4;
     private SharedQueue sq;
     private UserRuntime u;
-    private long a;
-    
+    private int[] deskTimer = new int[4];
+
     public CheckInGUI() {
         this(new CheckInSystem());
     }
@@ -27,56 +27,55 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
         initialise();
         setVisible(true);
     }
-   
-   
-    private void initialise() {
-        u = new UserRuntime(checkInSystem);
-        Thread runtime = new Thread(u);
-        a = u.getTime();
-        runtime.start();
-           
-	    // Setting up threads
-	    sq = new SharedQueue();
-	    PassengerSimulator sim = new PassengerSimulator(sq, checkInSystem);
-	    Thread simulator = new Thread(sim);
-	    simulator.start();
-	    desk1 = new CheckInDesk(sq, 1, 10);
-	    desk2 = new CheckInDesk(sq, 2, 5);
-	    desk3 = new CheckInDesk(sq, 3, 6);
-	    desk4 = new CheckInDesk(sq, 4, 7);
-	    
-	    Thread tdesk1 = new Thread(desk1);
-	    Thread tdesk2 = new Thread(desk2);
-	    Thread tdesk3 = new Thread(desk3);
-	    Thread tdesk4 = new Thread(desk4);
-	    tdesk1.start();
-	    tdesk2.start();
-	    tdesk3.start();
-	    tdesk4.start();
 
-    	GUI();
+
+    private void initialise() {
+        u = new UserRuntime(this, checkInSystem);
+        u.initialise();
+        deskTimer = u.getTime();
+
+        // Setting up threads
+        sq = new SharedQueue();
+        PassengerSimulator sim = new PassengerSimulator(sq, checkInSystem);
+        Thread simulator = new Thread(sim);
+        simulator.start();
+        desk1 = new CheckInDesk(sq, 1, deskTimer[0]);
+        desk2 = new CheckInDesk(sq, 2, deskTimer[1]);
+        desk3 = new CheckInDesk(sq, 3, deskTimer[2]);
+        desk4 = new CheckInDesk(sq, 4, deskTimer[3]);
+
+        Thread tdesk1 = new Thread(desk1);
+        Thread tdesk2 = new Thread(desk2);
+        Thread tdesk3 = new Thread(desk3);
+        Thread tdesk4 = new Thread(desk4);
+        tdesk1.start();
+        tdesk2.start();
+        tdesk3.start();
+        tdesk4.start();
+
+        GUI();
 
     }
 
     private void GUI() {
-    	setTitle("Check-In");
+        setTitle("Check-In");
         setSize(1000, 600);
-        
+
         // write all flights details to log when close
         addWindowListener(new WindowAdapter() {
-        	@Override
-        	public void windowClosing(WindowEvent e) {
-        		// write log of flight details
-        		Log logger = Log.getInstance("log.txt");
-        		for(Map.Entry<String, Flight> f: checkInSystem.getFlightMap().entrySet()) {
-        			String fcode = f.getValue().getFlightCode();
-        			String log = "\n" + checkInSystem.getFlightReport(fcode);
-        			logger.write(log);
-        		}
-        		logger.writeLogToFile();
-        	}
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // write log of flight details
+                Log logger = Log.getInstance("log.txt");
+                for(Map.Entry<String, Flight> f: checkInSystem.getFlightMap().entrySet()) {
+                    String fcode = f.getValue().getFlightCode();
+                    String log = "\n" + checkInSystem.getFlightReport(fcode);
+                    logger.write(log);
+                }
+                logger.writeLogToFile();
+            }
         });
-        
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         mainPanel = new JPanel();
@@ -87,7 +86,7 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
         JScrollPane waitingqscrollpanel = new JScrollPane(queueDis);
         waitingqscrollpanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         mainPanel.add(waitingqscrollpanel);
-      
+
         // Create desks panel
         JPanel desksPanel = new JPanel();
         desksPanel.setLayout(new GridLayout(2, 2));
@@ -103,7 +102,7 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
         desksPanel.add(dd3);
         desksPanel.add(dd4);
         mainPanel.add(desksPanel);
-        
+
         // Create flights panel
         JPanel flightsPanel = new JPanel();
         flightsPanel.setLayout(new GridLayout(1, 3));
@@ -123,16 +122,16 @@ public class CheckInGUI extends JFrame implements ActionListener, Observer
 
          add(mainPanel, BorderLayout.CENTER);
     }
-    
+
     public void actionPerformed(ActionEvent e) {
 
     }
-    
+
 
     public void update() {
-    	
+
     }
-    
+
 //    public static void main(String[] args)
 //    {
 //         CheckInSystem CIsys = new CheckInSystem();
