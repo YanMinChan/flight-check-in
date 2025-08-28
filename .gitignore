@@ -5,9 +5,9 @@
 .classpath
 .project
 
-# Ignore generated .txt files
+# Ignore log & pdf files
 log.txt
-report.txt
+*.pdf
 
 # Ignore some dir
 /lib
